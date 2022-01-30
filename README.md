@@ -15,7 +15,7 @@ Archive of various things I did at ITMO University. Large assignments are in sep
 
 ### Labs
 
-[4](discrete%20mathematics/labs/4.1/)
+[1](discrete%20mathematics/labs/4.1/)
 
 # Term 3
 
