@@ -1,0 +1,196 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №2}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{$xy'=y(\ln y - \ln x)$}
+\begin{align*}
+    xy'                                             & = y(\ln y - \ln x)                              \\
+    xy'                                             & = y\left(\ln \left(\frac{y}{x}\right)\right)    \\
+    t := \frac{y}{x}                                & \quad t' = \frac{y'x-y}{x^2} \quad y' = xt' + t \\
+    x(xt'+t)                                        & = xt(\ln (t))                                   \\
+    xt'+t                                           & = t\ln (t)                                      \\
+    xt'                                             & = t(\ln (t) - 1)                        \tag{1} \\
+    \frac{dt}{t(\ln (t) - 1)}                       & = \frac{dx}{x}                                  \\
+    \int \frac{dt}{t(\ln (t) - 1)}                  & = \int \frac{dx}{x}                             \\
+    \int \frac{dt}{t(\ln \left(\frac{t}{e}\right))} & = \ln x + C                                     \\
+    \ln \left(\ln \left(\frac{t}{e}\right)\right)   & = \ln x + C                                     \\
+    \ln \left(\frac{t}{e}\right)                    & = e^{\ln x}e^C                                  \\
+    \ln \left(\frac{t}{e}\right)                    & = xe^C                                          \\
+    \frac{t}{e}                                     & = e^{xe^C}                                      \\
+    \frac{y}{x}                                     & = e^{xe^C+1}                                    \\
+    y                                               & = xe^{xe^C+1}                                   \\
+\end{align*}
+
+(1): $\sphericalangle \ln t - 1 \equiv 0$. $y = ex$ --- подходит.
+
+Ответ: $y = xe^{xe^C+1}$ или $y=ex$
+
+\section{$2x+3y-5+(3x+2y-5)y'=0$}
+\begin{align*}
+    2x+3y-5+(3x+2y-5)y'     & = 0 \\
+    (2x+3y-5)dx+(3x+2y-5)dy & = 0 \\
+\end{align*}
+$$\begin{cases}
+        \cfrac{\partial (2x+3y-5)}{\partial y} = 3 \\
+        \cfrac{\partial (3x+2y-5)}{\partial x} = 3 \\
+    \end{cases} \Rightarrow \text{УПД}$$
+$$\begin{cases}
+        \cfrac{\partial u}{\partial x} = 2x+3y-5 \\
+        \cfrac{\partial u}{\partial y} = 3x+2y-5 \\
+    \end{cases}$$
+\begin{align*}
+    u & = \int (2x+3y-5)dx + C(y) \\
+      & = -5x + x^2 + 3yx + C(y)
+\end{align*}
+\begin{align*}
+    \frac{\partial u}{\partial y} & = 3x + C'(y)  \\
+                                  & = 3x + 2y - 5
+\end{align*}
+\[C'(y) = 2y - 5 \Rightarrow C(y) = y^2 - 5y + C\]
+\[x^2 + y^2 + 3xy - 5x - 5y + C = 0\]
+
+\section{$y(1+\sqrt{x^2y^4+1})dx+2xdy=0$}
+
+$y\equiv 0$ --- подходит.
+
+\[y(1+\sqrt{x^2y^4+1})dx+2xdy=0\]
+\[t := (xy^2)^2 \quad dt = 2xy^4dx + 4y^3x^2dy\]
+\[\frac{dy}{dx} = \frac{\frac{dt}{dx}-2xy^4}{4y^3x^2} = \frac{\frac{dt}{dx} - \frac{t}{x}}{4t^{3/4}\sqrt x} = \frac{dt}{4t^{3/4}\sqrt xdx} - \frac{t^{1/4}}{4\sqrt x^3}\]
+\begin{align*}
+    \frac{t^{1/4}}{\sqrt x}(1+\sqrt{t+1})+2x\left(\frac{dt}{4t^{3/4}\sqrt xdx} - \frac{t^{1/4}}{4\sqrt x^3}\right) & = 0               \\
+    \frac{t^{1/4}}{\sqrt x}(1+\sqrt{t+1})+\frac{dt\sqrt x}{2t^{3/4}dx} - \frac{t^{1/4}}{22\sqrt x}                 & = 0               \\
+    \frac{1}{\sqrt x}\left(t^{1/4}(1+\sqrt{t+1}) +\frac{xdt}{2t^{3/4}dx} - \frac{t^{1/4}}{2} \right)               & = 0               \\
+    \frac{1}{\sqrt x t^{3/4}}\left(t(1+\sqrt{t+1}) +\frac{xdt}{2dx} - \frac{t}{2} \right)                          & = 0               \\
+    t(1+\sqrt{t+1}) +\frac{xdt}{2dx} - \frac{t}{2}                                                                 & = 0               \\
+    \frac{t}{2} - t(1+\sqrt{t+1})                                                                                  & = \frac{xdt}{2dx} \\
+\end{align*}
+\begin{align*}
+    \frac{dt}{dx}                                                   & = \frac{2}{x}\left(\frac{t}{2} - t(1+\sqrt{t+1})\right)         \\
+    \frac{dt}{\frac{t}{2} - t(1+\sqrt{t+1})}                        & = \frac{2dx}{x}                                                 \\
+    \int \frac{-dt}{t(1+2t\sqrt{t+1})}                              & = \int \frac{2dx}{x}                                            \\
+    \int \frac{-dt}{t(1+2t\sqrt{t+1})}                              & = 2\ln |x| + C                                                  \\
+    a := 1+2t\sqrt{t+1}                                             & \quad da = \frac{dt}{\sqrt{t+1}}  \quad t = \frac{(a-1)^2}{4}-1 \\
+    -\int \frac{\frac{a-1}{2}da}{\left(\frac{(a-1)^2}{4}-1\right)a} & = 2\ln |x| + C                                                  \\
+    -2\int \frac{(a-1)da}{a(a+1)(a-3)}                              & = 2\ln |x| + C                                                  \\
+    -\int \frac{(a-1)da}{a(a+1)(a-3)}                               & = \ln |x| + C                                                   \\
+\end{align*}
+\begin{align*}
+    -\int \left(\frac{1}{3a}+\frac{1}{6(a-3)}-\frac{1}{2(a+1)}\right)da & = \ln |x| + C \\
+    -\ln |3a| - \ln |6(a-3)| + \ln |2(a+1)|                             & = \ln |x| + C \\
+    -\ln |1+2t\sqrt{t+1}| -                                                             \\
+    \ln |2t\sqrt{t+1}-2|                                                                \\
+    + \ln |2+2t\sqrt{t+1}|                                              & = \ln |x| + C \\
+    -\ln |1+2(xy^2)^2\sqrt{(xy^2)^2+1}| -                                               \\
+    \ln |2(xy^2)^2\sqrt{(xy^2)^2+1}-2| +                                                \\
+    \ln |2+2(xy^2)^2\sqrt{(xy^2)^2+1}|                                  & = \ln |x| + C \\
+\end{align*}
+
+Ответ: $y\equiv0$ или $\ln |2+2(xy^2)^2\sqrt{(xy^2)^2+1}| = \ln |x| + C$
+
+\section{$4y^6+x^3=6xy^5y'$}
+
+\begin{align*}
+    y' & = \frac{4y^6+x^3}{6xy^5}              \\
+    y' & = \frac{2y}{3x} + \frac{x^2}{6}y^{-5} \\
+\end{align*}
+
+Это уравнение Бернулли.
+
+\begin{align*}
+    t := y^{6}       & \quad t' = 6y^5y'                                                             \\
+    4t+x^3           & = xt'                                                                         \\
+    \frac{4t}{x}+x^2 & = t'                                                                          \\
+    t                & = \left(C + \int x^2 e^{-\int \frac{4}{x}dx}dx \right) e^{\int \frac{4}{x}dx} \\
+    t                & = \left(C + \int x^2 e^{-\ln x-C_1}dx \right) e^{C_1 + \ln x}                 \\
+    t                & = \left(C + \int x e^{-C_1}dx \right) xe^{C_1}                                \\
+    t                & = \left(C + \frac{1}{2}x^2 e^{-C_1} \right) xe^{C_1}                          \\
+    y^6              & = \left(C + \frac{1}{2}x^2 e^{-C_1} \right) xe^{C_1}                          \\
+\end{align*}
+
+$y = \sqrt{-x}$ подходит.
+
+Ответ: $y=\sqrt{-x}$ или $y^6 = \left(C + \frac{1}{2}x^2 e^{-C_1} \right) xe^{C_1}$
+
+\section{}
+
+% Самолёт А летит со скоростью 200 км/ч в направлении, наклон которого к горизонтальной линии равен ¾. Самолёт В из точки 50 км севернее вылетает на перехват его со скоростью 300 км/ч. Нос самолёта В непрерывно направлен к А. Найти уравнение траектории полёта самолёта В, наблюдаемой с борта самолёта А. Задачу решить: в прямоугольной системе координат и в полярной.
+
+\section{}
+
+Естественный прирост населения большого города пропорционален количеству жителей и промежутку  времени. Кроме того, население города увеличивается благодаря миграции: скорость прироста населения этим путём пропорциональна времени, отсчитываемому от момента, когда население города равнялось $A_0$. Найти зависимость числа жителей от времени (считать процесс непрерывным).
+
+\begin{align*}
+    dP                       & = k_1 dt P + k_2 dt       \\
+    \frac{dP}{k_1P+k_2}      & = dt                      \\
+    \frac{1}{k}\ln(k_1P+k_2) & = t + C                   \\
+    k_1 P + k_2              & = C_1e^{k_1t}             \\
+    k_1 A_0 + k_2            & = C_1                     \\
+    k_1P + k_2               & = (k_1 A_0 + k_2)e^{k_1t}
+\end{align*}
+
+% До начала миграции:
+% \begin{align*}
+%     \frac{dA}{dt} & = k_1A                      \\
+%     \frac{dA}{A}  & = k_1dt                     \\
+%     \ln A         & = k_1t + C_1                \\
+%     \ln A_0       & = k_1t_0 + C_1              \\
+%     t_0           & = \frac{\ln A_0 - C_1}{k_1}
+% \end{align*}
+
+% После начала миграции:
+% \begin{align*}
+%     \frac{dA}{dt} & = k_1A + k_2(t-t_0) \\
+%     % A             & = \left( C + \int k_2(t-t_0) e^{-\int k_1 dt} dt \right) e^{\int k_1 dt}                         \\
+%     %               & = \left(C + k_2\int (t-t_0)e^{-k_1t - C_1} dt \right) e^{k_1t + C_1}                             \\
+%     %               & = \left(C + e^{-C_1} k_2  \frac{e^{-k_1x}(t_0k_1 - k_1x - 1)}{k_1^2} \right) e^{k_1t + C_1}      \\
+%     %               & = \left(C + e^{-C_1} k_2  \frac{e^{-k_1x}(\ln A_0 - C - k_1x - 1)}{k_1^2} \right) e^{k_1t + C_1} \\
+% \end{align*}
+
+% Решим методом Лагранжа:
+% \[A = C(t) e^{\int k_1 dt} = C(t) e^{tk_1}\]
+% \[A' = C'(t) e^{tk_1} + C(t)e^{tk_1} k_1\]
+% \[C'(t) e^{tk_1} + C(t)e^{tk_1} k_1 = k_1 C(t) e^{tk_1} + k_2(t-t_0)\]
+% \[C'(t) e^{tk_1} = k_2(t-t_0)\]
+% \[\frac{dC}{dt}  = k_2(t-t_0) e^{-tk_1}\]
+% \[C(t) = k_2\int (t-t_0)e^{-tk_1}dt \]
+% \[C(t) = \frac{k_2e^{-tk_1} (t_0k_1 - k_1t - 1)}{k_1^2} + C\]
+% \[A = \frac{k_2e^{-tk_1} (\ln A_0 - k_1t - 1)}{k_1^2} + C\]
+
+\section{}
+
+Капля сферической формы с начальной массой $M $ г, свободно падая в воздухе, равномерно испаряется и теряет ежесекундно $m$ г. Сила сопротивления воздуха пропорциональна произведению скорости капли на площадь её поверхности. Плотность жидкости гамма. Найти зависимость скорости движения капли от времени, прошедшего с начала её падения, в начальный момент времени скорость равна нулю. Принять, что коэффициент пропорциональности равен $k$.
+
+Масса в момент времени $t$: $M-mt$.
+
+По условию пропорциональности:
+\begin{equation}
+    F = kvS = 2kr^2\pi v
+\end{equation}
+По определению плотности:
+\begin{equation}
+    (M-mt)\rho = V = \frac{4}{3}\pi r^3 \Rightarrow r = \sqrt[3]{\frac{3}{4\pi} (M-mt)\rho}
+\end{equation}
+Подставим $(1)$ в $(2)$:
+$$F = 2k \sqrt[3]{\frac{3}{4\pi} (M-mt)\rho}^2 \pi v$$
+$$(M-mt)g - F = (M-mt)a$$
+$$(M-mt)g - 2k \sqrt[3]{\frac{3}{4\pi} (M-mt)\rho}^2 \pi v = (M-mt) v'$$
+$$g - 2k \sqrt[3]{\frac{3}{4\pi} \rho}^2 (M-mt)^{-1/3} \pi v = v'$$
+\begin{align*}
+    v & = \left( C + \int g\exp\left(\int 2k \sqrt[3]{\frac{3}{4\pi} \rho}^2 (M-mt)^{-1/3} \pi dt\right) dt \right) \exp\left(-\int 2k \sqrt[3]{\frac{3}{4\pi} \rho}^2 (M-mt)^{-1/3} \pi dt\right)
+\end{align*}
+\begin{align*}
+    \int 2k \sqrt[3]{\frac{3}{4\pi} \rho}^2 (M-mt)^{-1/3} \pi dt & = 2k \sqrt[3]{\frac{3}{4\pi} \rho}^2 \pi \int (M-mt)^{-1/3} dt \\
+                                                                 & = \frac{-3k}{m} \sqrt[3]{\frac{3}{4\pi} (M-mt) \rho}^2 \pi + C
+\end{align*}
+\begin{align*}
+    v & = \left( C + \int g\exp\left( \frac{-3k}{m} \sqrt[3]{\frac{3}{4\pi} (M-mt) \rho}^2 \pi + C \right) dt \right) \exp\left(\frac{3k}{m} \sqrt[3]{\frac{3}{4\pi} (M-mt) \rho}^2 \pi + C\right)             \\
+      & = \left( C + g \exp\left( \frac{-3k}{m} \pi \sqrt[3]{\frac{3}{4\pi} \rho}^2 \int (M-mt)^{2/3} dt + C \right) \right) \exp\left(\frac{3k}{m} \sqrt[3]{\frac{3}{4\pi} (M-mt) \rho}^2 \pi + C\right)      \\
+      & = \left( C + g \exp\left( \frac{-3k}{m} \pi \sqrt[3]{\frac{3}{4\pi} \rho}^2 \frac{-3(M-mt)^{5/3}}{5m} + C \right) \right) \exp\left(\frac{3k}{m} \sqrt[3]{\frac{3}{4\pi} (M-mt) \rho}^2 \pi + C\right) \\
+\end{align*}
+
+\end{document}

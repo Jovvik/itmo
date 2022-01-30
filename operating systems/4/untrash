@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# set -x
+
+TRASH_PATH="$HOME/trash"
+TRASH_LOG="$HOME/.trash_log"
+
+while read line
+do
+    f=$(cut -d' ' -f2- <<< "$line")
+    if [ -n "$(basename "$f" | grep "$1")" ]
+    then
+        read -u 3 -p "Restore $f?[y/n] " -r
+        if [[ $REPLY =~ ^[Yy]$ ]]
+        then
+            if [ ! -d "$(dirname "$f")" ]
+            then
+                RESTORE_DIR=$HOME
+            else
+                RESTORE_DIR=$(dirname "$f")
+            fi
+            RESTORE_PATH=$RESTORE_DIR/$(basename "$f")
+            while [ -f "$RESTORE_PATH" ]
+            do
+                read -u 3 -p "'$RESTORE_PATH' already exists, enter a new name: " -r
+                RESTORE_PATH=$RESTORE_DIR/$REPLY
+            done
+            FILE_IN_TRASH_PATH=$TRASH_PATH/"$(cut -d' ' -f1 <<< "$line")"
+            ln "$FILE_IN_TRASH_PATH" "$RESTORE_PATH"
+            rm "$FILE_IN_TRASH_PATH"
+        fi
+    fi
+done 3<&0 < "$TRASH_LOG"

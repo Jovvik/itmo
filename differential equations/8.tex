@@ -1,0 +1,244 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №8}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{Найти второе приближение Пикара для системы: $x(t)' = t+x, y(t)' = xyt$ и задачи Коши $x(0)=1$, $y(0)=-1$}
+
+\[x_0 \equiv 1, y_0 \equiv -1\]
+\begin{align*}
+    x_1 & = x_0 + \int_{t_0}^t (\xi + x_0(\xi)) d\xi         \\
+        & = 1 + \int_{0}^t (\xi + 1) d\xi                    \\
+        & = 1 + \left(\frac{\xi^2}{2} + \xi\right)\Bigg|_0^t \\
+        & = 1 + \frac{t^2}{2} + t                            \\
+\end{align*}
+\begin{align*}
+    y_1 & = y_0 + \int_{t_0}^t (\xi \cdot x_0(\xi) \cdot y_0(\xi)) d\xi \\
+        & = -1 + \int_0^t -\xi d\xi                                     \\
+        & = -1 + \frac{-t^2}{2}                                         \\
+\end{align*}
+\begin{align*}
+    x_2 & = x_0 + \int_{t_0}^t (\xi + x_1(\xi)) d\xi                         \\
+        & = 1 + \int_{0}^t \left(\xi + 1 + \frac{\xi^2}{2} + \xi\right) d\xi \\
+        & = 1 + \left(\xi^2 + \xi + \frac{\xi^3}{6}\right)\Bigg|_0^t         \\
+        & = 1 + t^2 + t + \frac{t^3}{6}                                      \\
+\end{align*}
+\begin{align*}
+    y_2 & = y_0 + \int_{t_0}^t (\xi \cdot x_1(\xi) \cdot y_1(\xi)) d\xi                                                         \\
+        & = -1 + \int_0^t \xi \cdot \left(1 + \frac{\xi^2}{2} + \xi\right) \cdot \left(-1 + \frac{-\xi^2}{2}\right) d\xi        \\
+        & = -1 - \int_0^t \left(\xi + \frac{\xi^3}{2} + \xi^2\right) \cdot \left(1 + \frac{\xi^2}{2}\right) d\xi                \\
+        & = -1 - \int_0^t \left(\xi + \frac{\xi^3}{2} + \xi^2 + \frac{\xi^3}{2} + \frac{\xi^5}{4} + \frac{\xi^4}{2}\right) d\xi \\
+        & = -1 - \frac{\xi^2}{2} - \frac{\xi^4}{4} - \frac{\xi^3}{3} - \frac{\xi^6}{24} - \frac{\xi^5}{10}                      \\
+\end{align*}
+
+\section{Найти \textcolor{red}{второе} приближение Пикара для уравнения $y''-y'\sin x - x^2 =0, y(0)=1, y'(0)=0$}
+
+Пусть $z = y'$. Тогда $z' = z \sin x + x^2$
+
+\[z_0 \equiv 0\]
+\begin{align*}
+    z_1 & = z_0 + \int_{x_0}^x (z_0 \sin \xi + \xi^2) d\xi \\
+        & = \frac{\xi^3}{3} \Big|_0^x                      \\
+        & = \frac{x^3}{3}                                  \\
+\end{align*}
+
+\begin{align*}
+    y_2 & = y_0 + \int_0^x z_1 d\xi       \\
+        & = 1 + \frac{\xi^4}{12}\Big|_0^x \\
+        & = 1 + \frac{x^4}{12}            \\
+\end{align*}
+
+\begin{align*}
+    z_2 & = z_0 + \int_{x_0}^x (z_1 \sin \xi + \xi^2) d\xi                                                 \\
+        & = \int_{0}^x \left(\frac{\xi^3}{3} \sin \xi + \xi^2\right) d\xi                                  \\
+        & = \frac{x^3}{3} + \frac{1}{3}\int_{0}^x \frac{\xi^3}{3} \sin \xi d\xi                            \\
+        & = \frac{x^3}{3} + \frac{1}{3} \left(-\xi^3\cos x\Big|_0^x + 3\int_{0}^x x^2 \cos \xi d\xi\right) \\
+        & = \frac{x^3}{3}(1 - \cos x) + \int_{0}^x x^2 \cos \xi d\xi                                       \\
+        & = \frac{x^3}{3}(1 - \cos x) + \xi^2 \sin \xi \Big|_0^x - \int 2\xi \sin \xi d\xi                 \\
+        & = \frac{x^3}{3}(1 - \cos x) + x^2 \sin x - \int 2\xi \sin \xi d\xi                               \\
+        & = \frac{x^3}{3}(1 - \cos x) + x^2 \sin x + 2x \cos x - 2\int \cos \xi d\xi                       \\
+        & = \frac{x^3}{3}(1 - \cos x) + x^2 \sin x + 2x \cos x - 2\sin \xi\Big|_0^x                        \\
+        & = \frac{x^3}{3}(1 - \cos x) + x^2 \sin x + 2x \cos x - 2\sin x                                   \\
+        & = \frac{1}{3} x^3 - \frac{1}{3} (x^3 - 6 x) \cos x + (x^2 - 2) \sin x                            \\
+\end{align*}
+
+% \begin{align*}
+%     z_3 & = z_0 + \int_{x_0}^x (z_2 \sin \xi + \xi^2) d\xi                                                                                                                         \\
+%         & = \frac{1}{3} x^3 + \int_{0}^x \left(\frac{1}{3} \xi^3 - \frac{1}{3} (\xi^3 - 6 x) \cos \xi + (\xi^2 - 2) \sin \xi\right) \sin \xi d\xi                                  \\
+%         & = \frac{1}{3} x^3 + \int_{0}^x \frac{1}{3} \xi^3 \sin \xi d\xi - \frac{1}{3} \int_0^x (\xi^3 - 6 x) \cos \xi \sin \xi d\xi + \int_0^x (\xi^2 - 2) \sin^2 \xi d\xi        \\
+%         & = \frac{1}{3} x^3 - \frac{1}{3} (x^3 - 6 x) \cos x + (x^2 - 2) \sin x - \frac{1}{3} \int_0^x (\xi^3 - 6 x) \cos \xi \sin \xi d\xi + \int_0^x (\xi^2 - 2) \sin^2 \xi d\xi \\
+% \end{align*}
+
+\section{$(x+y+1)dx+(2x+2y-1)dy=0$}
+
+\begin{align*}
+    t := x + y                                                 \\
+    (t + 1)dx + (2t - 1)dy          & = 0                      \\
+    (t + 1) + (2t - 1)(t' - 1)      & = 0                      \\
+    -t + 2 + (2t - 1)t'             & = 0                      \\
+    t'                              & = \frac{t - 2}{2t - 1}   \\
+    dt                              & = dx\frac{t - 2}{2t - 1} \\
+    \frac{2t - 1}{t - 2}dt          & = dx                     \\
+    \int \frac{2t - 1}{t - 2}dt     & = \int dx                \\
+    \int \frac{2t - 4 + 3}{t - 2}dt & = x                      \\
+    2t + \int \frac{3}{t - 2}dt     & = x                      \\
+    2t + 3\ln|t - 2| + C            & = x                      \\
+    x + 2y + 3\ln|x + y - 2| + C    & = 0                      \\
+\end{align*}
+
+\section{Решить уравнение $x^2(yy''-y'^2)+xyy'=(2xy'-3y)\sqrt{x^3}$. Особое решение привести к виду $y(x)=a\cdot x^b\cdot \ln(cx)$, где $c$ - константа.}
+
+$y\equiv0$ --- решение
+
+$x\equiv0$ --- решение
+
+\begin{align*}
+    x^2(yy''-y'^2)+xyy'                         & = (2xy'-3y)\sqrt{x^3}                                                      \\
+    x^2\left(\frac{y'}{y}\right)'+x\frac{y'}{y} & = \left(2x\frac{y'}{y^2}-\frac{3}{y}\right)\sqrt{x^3}                      \\
+    x^2\left(\frac{y'}{y}\right)'+x\frac{y'}{y} & = \frac{y}{x^2}\left(\frac{2x^3y'}{y^3}-\frac{3x^2y}{y^3}\right)\sqrt{x^3} \\
+    x^2\left(\frac{y'}{y}\right)'+x\frac{y'}{y} & = -\frac{y}{x^2}\left(\frac{x^3}{y^2}\right)'\sqrt{x^3}                    \\
+    t := \frac{y'}{y}                           & \quad a := \frac{x^3}{y^2}                                                 \\
+    x^2 t'+xt                                   & = -\frac{y}{x^2}a'\sqrt{x^3}                                               \\
+    x t'+t                                      & = -\frac{y}{\sqrt{x^3}}a'                                                  \\
+    x t'+t                                      & = -\frac{a'}{\sqrt a}                                                      \\
+    (xt)'                                       & = -\frac{a'}{\sqrt a}                                                      \\
+    \frac{1}{2}(xt)'                            & = -\frac{a'}{2\sqrt a}                                                     \\
+    \frac{1}{2}(xt)'                            & = -\left(\sqrt{a}\right)'                                                  \\
+    \frac{xt}{2}                                & = -\sqrt a + C                                                             \\
+    \frac{xy'}{2y}                              & = -\sqrt{\frac{x^3}{y^2}} + C                                              \\
+    \frac{xy'}{2}                               & = -\sqrt{x^3} + Cy                                                         \\
+    y'                                          & = -2\sqrt{x} + C\frac{y}{x}                                                \\
+\end{align*}
+
+Это линейное уравнение при $p = \cfrac{C}{x}, q = -2\sqrt x$
+
+\begin{align*}
+    y & = \left(\int e^{-\int p}q\right)e^{\int p}                              \\
+      & = -2\left(\int e^{-C\int x^{-1} dx}\sqrt x dx\right)e^{C\int x^{-1} dx} \\
+      & = -2\left(\int x^{-C} \sqrt x dx\right)x^C                              \\
+      & = -2\left(\int x^{-C+1/2} dx\right)x^C                                  \\
+\end{align*}
+
+Разберем случай $C=1/2$. Тогда $y=-2x^{1/2}(\ln x + C)=-2x^{1/2}\ln (cx)$
+
+\begin{align*}
+    y & = -2\left(\frac{x^{-C+3/2}}{3/2} + C_1\right)x^C \\
+\end{align*}
+
+\section{Вычислить время падения мяча 0,4 кг с высоты 16,3 метра с учётом сопротивления воздуха. Сопротивление воздуха пропорционально квадрату скорости и равно 0,48 г при скорости 1 м/сек. }
+
+\begin{figure}[h]
+    \begin{tikzpicture}
+        \draw (0, 5) circle (0.5);
+        \draw[->] (0, 4.5) -- (0, 3) node[midway, left] {$mg$};
+        \draw[->] (0, 5.5) -- (0, 7) node[midway, left] {$F$};
+        \draw[<->] (1, 5) -- (1, 0) node[midway, right] {$h$};
+        \draw (-5, 0) -- (5, 0);
+    \end{tikzpicture}
+    \centering
+\end{figure}
+
+Подставим $F\Big|_{v=1} = 4.8\cdot 10^{-4}$ кгс $= 4.8\cdot 10^{-4}g$ Н:
+
+\begin{align*}
+    F                 & = kv^2 \\
+    4.8\cdot 10^{-4}g & = k    \\
+\end{align*}
+
+\begin{align*}
+    -F + mg             & = ma                                                                                    \\
+    -kv^2 + mg          & = mv'                                                                                   \\
+    -\frac{k}{m}v^2 + g & = v'                                                                                    \\
+    t                   & = \int \frac{dv}{g-\frac{k}{m}v^2}                                                      \\
+                        & = - \frac{\sqrt m}{2\sqrt {kg}} \ln\left|\frac{kv-\sqrt{gkm}}{kv+\sqrt{gkm}}\right| + C \\
+    % \frac{2t\sqrt{kg}}{\sqrt m}         & = \ln\left(\frac{\frac{\sqrt{k}}{\sqrt {mg}} v + 1}{-\frac{\sqrt{k}}{\sqrt {mg}} v + 1}\right) + C                               \\
+    % \sqrt{\frac{k}{m}}                  & = \sqrt{\frac{4.8\cdot 10^{-4}g}{0.4}}                                                                                           \\
+    %                                     & = 10^{-2}\sqrt{12g}                                                                                                              \\
+    %                                     & = 10^{-2} 2\sqrt {3g}                                                                                                            \\
+    % 4t \cdot 10^{-2} \sqrt {3g} \sqrt g & = \ln\left(\frac{\frac{10^{-2} \cdot 2\sqrt {3g}}{\sqrt{g}} v + 1}{-\frac{10^{-2} \cdot 2\sqrt {3g}}{\sqrt{g}} v + 1}\right) + C \\
+\end{align*}
+
+Подставим $v(0) = 0$:
+
+\begin{align*}
+    0 & = \ln 1 + C \\
+    0 & = C         \\
+\end{align*}
+
+\begin{align*}
+    t                                                                                                                                                           & = - \frac{\sqrt m}{2\sqrt {kg}} \ln\left|\frac{kv-\sqrt{gkm}}{kv+\sqrt{gkm}}\right| \\
+    -\frac{2t\sqrt {kg}}{\sqrt m}                                                                                                                               & = \ln\left|\frac{kv-\sqrt{gkm}}{kv+\sqrt{gkm}}\right|                               \\
+    \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)                                                                                                              & = \left|\frac{kv-\sqrt{gkm}}{kv+\sqrt{gkm}}\right|                                  \\
+    (kv+\sqrt{gkm})\exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)                                                                                               & = \left|kv-\sqrt{gkm}\right|                                                        \\
+    \pm(kv+\sqrt{gkm})\exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)                                                                                            & = kv-\sqrt{gkm}                                                                     \\
+    \sqrt{gkm}\left(1 \mp \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)\right)                                                                                 & = kv\left(1 \pm \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)\right)               \\
+    \frac{\sqrt{gm}\left(1 \mp \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)\right)}{\sqrt k\left(1 \pm \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)\right)} & = v                                                                                 \\
+\end{align*}
+
+\begin{align*}
+    \int_0^t v dt                                                                                                                                                                                                & = h          \\
+    \int_0^t \frac{\sqrt{gm}\left(1 \mp \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)\right)}{\sqrt k\left(1 \pm \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)\right)} dt                                      & = h          \\
+    \frac{\sqrt{gm}}{\sqrt k}\int_0^t \frac{1 \mp \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)}{1 \pm \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)} dt                                                       & = h          \\
+    \frac{\sqrt{gm}}{\sqrt k}\int_0^t -\frac{\pm \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right) - 1}{1 \pm \exp\left(-\frac{2t\sqrt {kg}}{\sqrt m}\right)} dt                                                    & = h          \\
+    \frac{\sqrt{gm}}{\sqrt k}\left(t + \left(2\frac{\ln\left|1 \pm \exp\left(\frac{2t\sqrt {kg}}{\sqrt m}\right)\right|}{\frac{2\sqrt {kg}}{\sqrt m}}\right)\Bigg|_0^t\right)                                    & = h          \\
+    \frac{\sqrt{gm}}{\sqrt k}\left(t + \frac{\ln\left|1 \pm \exp\left(\frac{t\sqrt {kg}}{\sqrt m}\right)\right|}{\frac{\sqrt {kg}}{\sqrt m}} - \frac{\ln\left|1 \pm 1\right|}{\frac{\sqrt {kg}}{\sqrt m}}\right) & = h          \\
+    \frac{\sqrt{gm}}{\sqrt k}\left(t + \frac{\ln\left|1 + \exp\left(\frac{t\sqrt {kg}}{\sqrt m}\right)\right|}{\frac{\sqrt {kg}}{\sqrt m}} - \frac{\ln\left|2\right|}{\frac{\sqrt {kg}}{\sqrt m}}\right)         & = h          \\
+    \frac{m}{k}\left(\frac{t\sqrt {kg}}{\sqrt m} + \ln\left|1 + \exp\left(\frac{t\sqrt {kg}}{\sqrt m}\right)\right| - \ln 2\right)                                                                               & = h          \\
+    \frac{m}{k}\left(\frac{t\sqrt {kg}}{\sqrt m} + \ln\left(\frac{1 + \exp\left(\frac{t\sqrt {kg}}{\sqrt m}\right)}{2}\right)\right)                                                                             & = h          \\
+    \frac{0.4}{9.6\cdot 10^{-4}g}\ln\left(\frac{1 + \exp\left(\frac{tg\sqrt {4.8\cdot 10^{-4}}}{\sqrt {0.4}}\right)}{2}\right) + t\frac{\sqrt {0.4 g}}{\sqrt{4.8 \cdot 10^{-4}g}}                                & = h          \\
+    \frac{1}{24\cdot 10^{-4}g}\ln\left(\frac{1 + \exp\left(tg\sqrt {12\cdot 10^{-4}}\right)}{2}\right) + t\frac{1}{\sqrt{12 \cdot 10^{-4}}}                                                                      & = h          \\
+    t                                                                                                                                                                                                            & \approx 1.87
+    % \frac{1}{24\cdot 10^{-4}g}\ln\left(\frac{1 + \exp(2tg\sqrt 3 \cdot 10^{-2})}{2}\right)                                                                                                                       & = 16.3                              \\
+    % \ln\left(\frac{1 + \exp(2tg\sqrt 3 \cdot 10^{-2})}{2}\right)                                                                                                                                                 & = 16.3 \cdot 24\cdot 10^{-4}g       \\
+    % \frac{1 + \exp(2tg\sqrt 3 \cdot 10^{-2})}{2}                                                                                                                                                                 & = \exp(16.3 \cdot 24\cdot 10^{-4}g) \\
+    % \exp(4tg\sqrt 3 \cdot 10^{-2})                                                                                                                                                                               & \approx 1.47875 \cdot 2 - 1         \\
+    % \exp(4tg\sqrt 3 \cdot 10^{-2})                                                                                                                                                                               & \approx 1.9575                      \\
+    % 4tg\sqrt 3 \cdot 10^{-2}                                                                                                                                                                                     & \approx 0.67167                     \\
+    % t                                                                                                                                                                                                            & \approx 0.96947                     \\
+\end{align*}
+
+% \begin{align*}
+%     4t \cdot 10^{-2} \sqrt {3g} \sqrt g                                                                                                   & = \ln\left(\frac{\sqrt g + 10^{-2} \cdot 2\sqrt {3g} v}{\sqrt g - 10^{-2} \cdot 2\sqrt {3g} v}\right)       \\
+%     \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g)                                                                                             & = \frac{\sqrt g + 10^{-2} \cdot 2\sqrt {3g} v}{\sqrt g - 10^{-2} \cdot 2\sqrt {3g} v}                       \\
+%     \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g)(\sqrt g - 10^{-2} \cdot 2\sqrt {3g} v)                                                      & = \sqrt g + 10^{-2} \cdot 2\sqrt {3g} v                                                                     \\
+%     (\exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g) - 1)\sqrt g                                                                                & = 10^{-2} \cdot 2\sqrt {3g} v + \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g) \cdot 10^{-2} \cdot 2\sqrt {3g} v \\
+%     \frac{\exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g) - 1}{10^{-2} \cdot 2\sqrt {3g}}\sqrt g                                                & = v (1 + \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g))                                                         \\
+%     \frac{\exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g) - 1}{10^{-2} \cdot 2\sqrt {3g}(1 + \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g))}\sqrt g & = v                                                                                                         \\
+% \end{align*}
+
+% Выразим $v$ по формуле для кубического уравнения $ax^3 + bx^2 + cx + d = 0$:
+
+% \[a = \frac{k}{3m}, b = 0, c = -g, d = t\]
+% \begin{align*}
+%     v & = \sqrt[3]{\left(\frac{-b^3}{27a^3} + \frac{bc}{6a^2} - \frac{d}{2a}\right) + \sqrt{\left(\frac{-b^3}{27a^3} + \frac{bc}{6a^2} - \frac{d}{2a}\right)^2 + \left(\frac{c}{3a} - \frac{b^2}{9a^2}\right)^3}} \\
+%       & = \sqrt[3]{-\frac{3tm}{2k} + \sqrt{\frac{9(tm)^2}{4k^2} -\frac{(gm)^3}{k^3}}}                                                                                                                             \\
+%       & = \sqrt[3]{-\frac{3tm}{2k} + \frac{m}{k}\sqrt{\frac{9t^2}{4} -\frac{g^3m}{k}}}                                                                                                                            \\
+%       & = \sqrt[3]{-\frac{3t\cdot 0.4}{9.6\cdot 10^{-4}g} + \frac{0.4}{4.8\cdot 10^{-4} g}\sqrt{\frac{9t^2}{4} -\frac{0.4g^3}{4.8\cdot 10^{-4} g}}}                                                               \\
+%       & = \sqrt[3]{-\frac{t}{8\cdot 10^{-4}g} + \frac{1}{12\cdot 10^{-4} g}\sqrt{\frac{9t^2}{4} -\frac{g^2}{12\cdot 10^{-4}}}}                                                                                    \\
+%       & = 5\sqrt[3]{-\frac{10t}{g} + \frac{10}{3g}\sqrt{9t^2 -\frac{g^2}{3\cdot 10^{-4}}}}                                                                                                                        \\
+% \end{align*}
+
+% Предположим, что $g=10$, потому что иначе больно считать.
+
+% \begin{align*}
+%     v & = 5\sqrt[3]{-t + \frac{1}{3}\sqrt{9t^2 -\frac{10^6}{3}}} \\
+% \end{align*}
+
+% \begin{align*}
+%     \int_0^{t} v dt                                                                                                                                                                                                                   & = h                                  \\
+%     \frac{\sqrt g}{10^{-2} \cdot 2\sqrt {3g}}\int_0^{t} \frac{\exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g) - 1}{1 + \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g)} dt                                                                        & = h                                  \\
+%     \frac{\sqrt g}{10^{-2} \cdot 2\sqrt {3g}}\left(\int_0^t dt - \int_0^t \frac{2}{1 + \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g)}dt \right)                                                                                           & = h                                  \\
+%     \frac{\sqrt g}{10^{-2} \cdot 2\sqrt {3g}}\left(t - \int_0^t \frac{2}{1 + \exp(4t \cdot 10^{-2} \sqrt {3g} \sqrt g)}dt \right)                                                                                                     & = h                                  \\
+%     \frac{\sqrt g}{10^{-2} \cdot 2\sqrt {3g}}\left(t - 2\left(t - \frac{\ln|e^{4 \cdot 10^{-2} \sqrt {3g} \sqrt g t} + 1|}{4 \cdot 10^{-2} \sqrt {3g} \sqrt g}\right)\Bigg|_0^t \right)                                               & = h                                  \\
+%     \frac{\sqrt g}{10^{-2} \cdot 2\sqrt {3g}}\left(t - 2\left(t - 0 - \frac{\ln|e^{4 \cdot 10^{-2} \sqrt {3g} \sqrt g t} + 1|}{4 \cdot 10^{-2} \sqrt {3g} \sqrt g} + \frac{\ln|2|}{4 \cdot 10^{-2} \sqrt {3g} \sqrt g}\right) \right) & = h                                  \\
+%     \frac{\sqrt g}{10^{-2} \cdot 2\sqrt {3g}}\left(-t + \frac{\ln|e^{4 \cdot 10^{-2} \sqrt {3g} \sqrt g t} + 1| - \ln 2}{4 \cdot 10^{-2} \sqrt {3g} \sqrt g}\right)                                                                   & = h                                  \\
+%     \frac{\ln|e^{4 \cdot 10^{-2} \sqrt {3g} \sqrt g t} + 1| - \ln 2 - 4t \cdot 10^{-2} \sqrt {3g} \sqrt g}{24 \cdot 10^{-4} \sqrt g}                                                                                                  & = h                                  \\
+%     \ln|e^{4 \cdot 10^{-2} \sqrt {3g} \sqrt g t} + 1| - \ln 2 - 4t \cdot 10^{-2} \sqrt {3g} \sqrt g                                                                                                                                   & = \sqrt g 16.3\cdot 24 \cdot 10^{-4} \\
+%     \ln|e^{4 \cdot 10^{-2} \sqrt 3 g t} + 1| - \ln 2 - 4t \cdot 10^{-2} \sqrt 3 g                                                                                                                                                     & = \sqrt g 16.3\cdot 24 \cdot 10^{-4} \\
+% \end{align*}
+
+\end{document}

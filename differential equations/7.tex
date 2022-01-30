@@ -1,0 +1,277 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №7}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{$(x-y^2)y'=1$}
+
+Найдём интегрирующий множитель $\mu$:
+
+\begin{align*}
+    \mu'_y P - \mu'_x Q & = (Q'_x - P'_y) \mu \\
+\end{align*}
+
+Пусть $\mu'_x \equiv0$
+
+\begin{align*}
+    \mu'_y P    & = (Q'_x - P'_y) \mu \\
+    \mu'_y (-1) & = 1 \mu             \\
+    \mu         & = e^{-y}
+\end{align*}
+
+Домножим исходное уравнение на $\mu$:
+
+\begin{align*}
+    -e^{-y} dx + e^{-y}(x-y^2) dy & = 0
+\end{align*}
+
+Найдем $u(x, y)$, такое что:
+\[\begin{cases}
+        u'_x = -e^{-y} \\
+        u'_y = e^{-y}(x-y^2)
+    \end{cases}\]
+
+\begin{align*}
+    u & = \int -e^{-y}dx + g(y) \\
+      & = -e^{-y}x + g(y)       \\
+\end{align*}
+
+\begin{align*}
+    u'_y                 & = e^{-y}(x-y^2)          \\
+    (-e^{-y}x + g(y))'_y & = e^{-y}(x-y^2)          \\
+    e^{-y}x + g(y)'_y    & = e^{-y}(x-y^2)          \\
+    g(y)'_y              & = -e^{-y}y^2             \\
+    g(y)                 & = \int -e^{-y}y^2dy + C  \\
+    g(y)                 & = -e^{-y}(-y^2-2y-2) + C \\
+\end{align*}
+
+\begin{align*}
+    u & = -e^{-y}x - e^{-y}(-y^2-2y-2) + C
+\end{align*}
+
+Ответ: $-e^{-y}x - e^{-y}(-y^2-2y-2) = C$
+
+\section{$x-y/y'=2/y$}
+
+\begin{align*}
+    x - \frac{y}{y'}   & = \frac{2}{y}        \\
+    \frac{y}{y'}       & = x - \frac{2}{y}    \\
+    \frac{y}{y'}       & = \frac{xy - 2}{y}   \\
+    \frac{y'}{y}       & = \frac{y}{xy - 2}   \\
+    \frac{dy}{dx}      & = \frac{y^2}{xy - 2} \\
+    (xy-2)dy           & = y^2dx              \\
+    - y^2dx + (xy-2)dy & =  0                 \\
+\end{align*}
+
+Найдём интегрирующий множитель $\mu$:
+
+\begin{align*}
+    \mu'_y P - \mu'_x Q & = (Q'_x - P'_y) \mu \\
+\end{align*}
+
+Пусть $\mu'_x \equiv0$
+
+\begin{align*}
+    \mu'_y P       & = (Q'_x - P'_y) \mu \\
+    \mu'_y (- y^2) & = (y + 2y) \mu      \\
+    \mu'_y y       & = -3 \mu            \\
+    \mu            & = \frac{1}{y^3}
+\end{align*}
+
+Домножим исходное уравнение на $\mu$:
+
+\begin{align*}
+    -\frac{1}{y}dx + \frac{xy-2}{y^3}dy & = 0 \\
+\end{align*}
+
+Найдем $u(x, y)$, такое что:
+\[\begin{cases}
+        u'_x =  -\frac{1}{y} \\
+        u'_y = \frac{xy-2}{y^3}
+    \end{cases}\]
+
+\begin{align*}
+    u = \int -\frac{1}{y}dx + g(y) \\
+    u = -\frac{x}{y} + g(y)        \\
+\end{align*}
+
+\begin{align*}
+    u'_y                                & = \frac{xy-2}{y^3}          \\
+    \left(-\frac{x}{y} + g(y)\right)'_y & = \frac{xy-2}{y^3}          \\
+    \frac{x}{y^2} + g'(y)               & = \frac{xy-2}{y^3}          \\
+    g'(y)                               & = \frac{-2}{y^3}            \\
+    g(y)                                & = \int \frac{-2}{y^3}dy + C \\
+    g(y)                                & = \frac{1}{y^2} + C         \\
+\end{align*}
+
+\begin{align*}
+    u = -\frac{x}{y} + \frac{1}{y^2} + C
+\end{align*}
+
+Ответ: $-\frac{x}{y} + \frac{1}{y^2} = C$
+
+\section{$y'+y=xy^3$}
+
+$y\equiv0$ --- решение.
+
+Это уравнение Бернулли при $p(x) = -1, q(x) = x, \alpha = 3$. Выполним стандартную замену $t = y^{1-\alpha}$:
+
+\begin{align*}
+    t := y^{-2}                  & \quad t' = -\frac{2y'}{y^3} \\
+    y'+y                         & = xy^3                      \\
+    \frac{y'}{y^3}+\frac{1}{y^2} & = x                         \\
+    -\frac{t'}{2} + t            & = x                         \\
+    t'                           & = 2t - 2x                   \\
+\end{align*}
+
+Это линейное уравнение при $p(x) = 2, q(x) = -2x$
+
+\begin{align*}
+    t      & = \left(\int e^{-\int p} qdx\right) e^{\int p}            \\
+           & = -2\left(\int e^{-\int 2} xdx\right) e^{\int 2}          \\
+           & = -2\left(\int e^{-2x} xdx\right) e^{2x}                  \\
+           & = -\left(-e^{-2x}x + \int e^{-2x}dx\right) e^{2x}         \\
+           & = -\left(-e^{-2x}x - \frac{e^{-2x}}{2} + C \right) e^{2x} \\
+           & = -\left(-x - \frac{1}{2} \right) + Ce^{2x}               \\
+           & = x + \frac{1}{2} + Ce^{2x}                               \\
+    y^{-2} & = x + \frac{1}{2} + Ce^{2x}
+\end{align*}
+
+Ответ: $y^{-2} = x + \frac{1}{2} + Ce^{2x}$ или $y\equiv0$
+
+\section{$(xy^4-x)dx+(y+xy)dy=0$}
+
+\begin{align*}
+    (xy^4-x)dx+(y+xy)dy & = 0 \\
+    x(y^4-1)dx+y(x+1)dy & = 0 \\
+\end{align*}
+
+Это уравнение с разделяющимися переменными. Хочется поделить на $(y^4-1)$ и $(x+1)$, но сначала надо рассмотреть случаи, когда они $\equiv0$.
+
+\begin{align*}
+    y^4 - 1                & \equiv 0 \\
+    y                      & \equiv 1 \\
+    y'                     & \equiv 1 \\
+    (x^4 - x)dx + (y+xy)y' & = 0      \\
+    0dx + 0                & = 0      \\
+\end{align*}
+
+Таким образом, решение $y \equiv 1$ подходит.
+
+\begin{align*}
+    x + 1               & \equiv 0  \\
+    x                   & \equiv -1 \\
+    x'                  & \equiv 0  \\
+    x(y^4-1)x'+y(x+1)dy & = 0       \\
+    0+y\cdot 0          & = 0       \\
+\end{align*}
+
+Таким образом, решение $x \equiv -1$ подходит.
+
+\begin{align*}
+    x(y^4-1)dx+y(x+1)dy               & = 0                       \\
+    \frac{x}{x+1}dx+\frac{y}{y^4-1}dy & = 0                       \\
+    \frac{x}{x+1}dx                   & = -\frac{y}{y^4-1}dy      \\
+    \int \frac{x}{x+1}dx              & = -\int \frac{y}{y^4-1}dy \\
+\end{align*}
+
+\begin{align*}
+    \int \frac{x}{x+1}dx & = \int dx - \int \frac{1}{x+1}dx \\
+                         & = x - \ln|x+1|
+\end{align*}
+
+\begin{align*}
+    t := \frac{y^2}{2}                                                                               \\
+    \int \frac{y}{y^4-1}dy & = \int \frac{1}{4t^2 - 1} dy                                            \\
+                           & = \int \frac{1}{(2t-1)(2t+1)} dy                                        \\
+                           & = \frac{1}{2}\int \frac{1}{2t-1} dy - \frac{1}{2}\int \frac{1}{2t+1} dy \\
+                           & = \frac{\ln|2t-1|}{4} -  \frac{\ln|2t+1|}{4}  + C                       \\
+                           & = \frac{\ln|y^2-1|}{4} -  \frac{\ln|y^2+1|}{4} + C                      \\
+\end{align*}
+
+\begin{align*}
+    x - \ln|x+1| & = - \frac{\ln|y^2-1|}{4} + \frac{\ln|y^2+1|}{4} + C
+\end{align*}
+
+Ответ: $y \equiv 1$ или $x \equiv -1$ или $x - \ln|x+1| = - \frac{\ln|y^2-1|}{4} + \frac{\ln|y^2+1|}{4} + C$
+
+\section{$yy'+xyy''=x(y')^2+x^3$}
+
+\begin{align*}
+    yy'+xyy''                     & = x(y')^2+x^3     \\
+    y(xy')'                       & = (xy')y' + x^3   \\
+    y(xy')' - (xy')y'             & = x^3             \\
+    \frac{y(xy')' - (xy')y'}{y^2} & = \frac{x^3}{y^2} \\
+    \left(\frac{xy'}{y}\right)'   & = \frac{x^3}{y^2} \\
+\end{align*}
+
+:(
+
+\section{$y''\cos y+(y')^2\sin y=y'$}
+
+$y\equiv\const$ - подходит
+
+\begin{align*}
+    y''\cos y+(y')^2\sin y                            & = y'                         \\
+    t := y'                                           & \quad y'' = t't              \\
+    t't\cos y+t^2\sin y                               & = t                          \\
+    t'\cos y+t\sin y                                  & = 1                          \\
+    % t'                     & = \frac{1}{\cos y} - t\tg y \\
+    \frac{t'}{\cos y}+\frac{t\tg y}{\cos y}           & = \frac{1}{\cos^2 y}         \\
+    \frac{t'}{\cos y}+t\left(\frac{1}{\cos y}\right)' & = \frac{1}{\cos^2 y}         \\
+    \left(\frac{t}{\cos y}\right)'                    & = \frac{1}{\cos^2 y}         \\
+    \int \left(\frac{t}{\cos y}\right)' dy            & = \int \frac{1}{\cos^2 y} dy \\
+    \frac{t}{\cos y} + C                              & = \tg y                      \\
+    t                                                 & = \sin y + C\cos y           \\
+    y'                                                & = \sin y + C\cos y           \\
+    \frac{y'}{\sin y + C\cos y}                       & = 1                          \\
+    \frac{dy}{\sin y + C\cos y}                       & = dx                         \\
+    \int \frac{dy}{\sin y + C\cos y}                  & = \int dx                    \\
+    \int \frac{dy}{\sin y + C\cos y}                  & = x + C_1                    \\
+\end{align*}
+
+\begin{align*}
+    a := \tg\left(\frac{y}{2}\right) & \quad dy = \frac{2}{1 + a^2}da                                                                                                                                               \\
+    \int \frac{dy}{\sin y + C\cos y}
+                                     & = \int \frac{\frac{2}{1 + a^2}da}{\frac{2a}{1+a^2} + C\frac{1-a^2}{1+a^2}}                                                                                                   \\
+                                     & = \int \frac{2da}{2a + C(1-a^2)}                                                                                                                                             \\
+                                     & = \int \frac{2da}{2a + C - Ca^2}                                                                                                                                             \\
+                                     & = 2\int \frac{C}{\left(-Ca+\sqrt{C^2+1}+1\right)\left(Ca+\sqrt{C^2+1}-1\right)} da                                                                                           \\
+                                     & = 2\int \left(\frac{C}{2\sqrt{C^2+1}\left(Ca+\sqrt{C^2+1}-1\right)} - \frac{C}{2\sqrt{C^2+1}\left(Ca-\sqrt{C^2+1}-1\right)}\right) da                                        \\
+                                     & = 2\int \left(\frac{C}{2\sqrt{C^2+1}\left(Ca+\sqrt{C^2+1}-1\right)} - \frac{C}{2\sqrt{C^2+1}\left(Ca-\sqrt{C^2+1}-1\right)}\right) da                                        \\
+                                     & = \frac{\ln\left(\left|C\tg\left(\frac{y}{2}\right)+\sqrt{C^2+1}-1\right|\right)-\ln\left(\left|C\tg\left(\frac{y}{2}\right)-\sqrt{C^2+1}-1\right|\right)}{\sqrt{C^2+1}}+C_1 \\
+    x                                & = \frac{\ln\left(\left|C\tg\left(\frac{y}{2}\right)+\sqrt{C^2+1}-1\right|\right)-\ln\left(\left|C\tg\left(\frac{y}{2}\right)-\sqrt{C^2+1}-1\right|\right)}{\sqrt{C^2+1}}+C_1 \\
+\end{align*}
+
+Ответ: $y\equiv C$ или $x = \frac{\ln\left(\left|C\tg\left(\frac{y}{2}\right)+\sqrt{C^2+1}-1\right|\right)-\ln\left(\left|C\tg\left(\frac{y}{2}\right)-\sqrt{C^2+1}-1\right|\right)}{\sqrt{C^2+1}}+C_1$
+
+% Это линейное уравнение, $p(y) = -\tg y, q(y) = \frac{1}{\cos y}$
+
+% \begin{align*}
+%     t  & = \left(\int e^{-\int p} q\right) e^{\int p}                             \\
+%        & = \left(\int \frac{e^{\int \tg ydy}}{\cos y} dy\right) e^{-\int \tg ydy} \\
+%        & = \left(\int \frac{C_1\cos y}{\cos y}dy\right) \frac{C_2}{\cos y}        \\
+%        & = C_1y \frac{C_2}{\cos y}                                                \\
+%        & = C \frac{y}{\cos y}                                                     \\
+%     y' & = C \frac{y}{\cos y}                                                     \\
+%     x  & = \int C\frac{\cos y dy}{y}                                              \\
+%      & = C\int \frac{\cos y dy}{y}                                              \\
+% \end{align*}
+
+\section{$y''''' - 6 y'''' + 9y'''=0$}
+
+Cоставим характеристическое уравнение:
+
+\begin{align*}
+    \lambda^5 - 6\lambda^4 + 9\lambda^3 = 0 \\
+\end{align*}
+
+Корни - $0$ кратности $3$ и $3$ кратности $2$.
+
+Ответ: $y = C_1 + C_2x + C_3x^2 + C_4e^{3x} + C_5xe^{3x}$
+
+\end{document}

@@ -1,0 +1,382 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №4}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{Найти кривые, у которых радиус кривизны обратно пропорционален косинусу угла между касательной и осью абсцисс.}
+
+\begin{align*}
+    R                                             & = \frac{(r^2+r'^2)^{3/2}}{|r^2 + 2r'^2 - rr''|} \\
+    \tg \alpha                                    & = \frac{r}{r'}                                  \\
+    \tg^2 \alpha                                  & = \frac{r^2}{r'^2}                              \\
+    \frac{1 - \cos^2 \alpha}{\cos^2 \alpha}       & = \frac{r^2}{r'^2}                              \\
+    \frac{1}{\cos^2 \alpha} - 1                   & = \frac{r^2}{r'^2}                              \\
+    \frac{1}{\cos^2 \alpha}                       & = \frac{r^2+r'^2}{r'^2}                         \\
+    \frac{1}{\cos \alpha}                         & = \frac{\sqrt{r^2+r'^2}}{r'}                    \\
+    \frac{(r^2+r'^2)^{3/2}}{|r^2 + 2r'^2 - rr''|} & = \frac{\sqrt{r^2+r'^2}}{r'}                    \\
+    \frac{r^2+r'^2}{|r^2 + 2r'^2 - rr''|}         & = \frac{1}{r'}                                  \\
+    t := r'                                       & \quad r'' = t't                                 \\
+    \frac{r^2+t^2}{|r^2 + 2t^2 - rt't|}           & = \frac{1}{t}                                   \\
+    r^2t+t^3                                      & = |r^2 + 2t^2 - rt't|                           \\
+    \pm r^2t\pm t^3                               & = r^2 + 2t^2 - rt't                             \\
+\end{align*}
+
+Не решается, попробуем в декартовых координатах.
+
+\begin{align*}
+    R                                         & = \frac{(1+y'^2)^{3/2}}{|y''|} \\
+    \frac{1}{\cos^2 \alpha} - 1               & = y'^2                         \\
+    \frac{1}{\cos \alpha}                     & = \sqrt{y'^2 + 1}              \\
+    R                                         & = \frac{n}{\cos \alpha}        \\
+    \frac{(1+y'^2)^{3/2}}{|y''|}              & = n\sqrt{y'^2 + 1}             \\
+    1+y'^2                                    & = |y''|n                       \\
+    \frac{1}{n}                               & = \frac{|y''|}{1+y'^2}         \\
+    \pm\frac{1}{n}                            & = \frac{y''}{1+y'^2}           \\
+    \pm\frac{1}{n}                            & = \arctg' y'                   \\
+    \int \pm\frac{1}{n} dx                    & = \int \arctg' y' dx           \\
+    \pm\frac{x}{n} + C                        & = \arctg y'                    \\
+    \tg\left(\pm\frac{x}{n} + C\right)        & = y'                           \\
+    \int \tg\left(\pm\frac{x}{n} + C\right)dx & = \int dy                      \\
+    \int \tg\left(\pm\frac{x}{n} + C\right)dx & = y + C_1                      \\
+\end{align*}
+
+Найдём этот интеграл:
+
+\begin{align*}
+    t := \pm\frac{x}{n} + C                   & \quad t' = \pm\frac{1}{n} \\
+    \int \tg\left(\pm\frac{x}{n} + C\right)dx & = \int \pm \tg (t) n dt   \\
+                                              & = \mp n\ln|\cos x|        \\
+\end{align*}
+
+Ответ: $y = \mp n\ln|\cos x| - C_1$
+
+% \begin{align*}
+%     R                                                & = \frac{|y''|}{(1+y'^2)^{3/2}}    \\
+%     \tg \alpha                                       & = y'                              \\
+%     \frac{1}{\cos^2 \alpha} - 1                      & = y'^2                            \\
+%     \frac{1}{\cos \alpha}                            & = \sqrt{y'^2 + 1}                 \\
+%     \frac{|y''|}{(1+y'^2)^{3/2}}                     & = \sqrt{y'^2 + 1}                 \\
+%     |y''|                                            & = (y'^2 + 1)^2                    \\
+%     t := y'                                          & \quad y'' = t't                   \\
+%     |t't|                                            & = (t^2 + 1)^2                     \\
+%     t't                                              & = \pm (t^2 + 1)^2                 \\
+%     \frac{t't}{\pm (t^2 + 1)^2}                      & = 1                               \\
+%     \int \frac{tdt}{\pm (t^2 + 1)^2}                 & = \int 1 dy                       \\
+%     \int \frac{d(t^2 + 1)}{\pm 2(t^2 + 1)^2}         & = y + C                           \\
+%     \mp\frac{1}{2(t^2 + 1)}                          & = y + C                           \\
+%     \mp\frac{1}{2(y'^2 + 1)}                         & = y + C                 \tag{1}   \\
+%     \mp\frac{1}{2(y + C)} - 1                        & = y'^2                            \\
+%     \sqrt{\mp\frac{1}{2(y + C)} - 1}                 & = y'                      \tag{2} \\
+%     \int \frac{dy}{\sqrt{\mp\frac{1}{2(y + C)} - 1}} & = x                               \\
+% \end{align*}
+
+% Найдём этот интеграл:
+
+% \begin{align*}
+%     \int \frac{dy}{\sqrt{\mp\frac{1}{2(y + C)} - 1}}
+%      & =  \sqrt{2} \int \frac{dy}{\sqrt{\mp\frac{1}{y + C} - 2}} \\
+% \end{align*}
+% \begin{align*}
+%     a := \sqrt{\frac{\mp 1}{y+C} - 2} \quad a' = \frac{\pm 1}{2(y + C)^2\sqrt{\frac{\mp 1}{y+C} - 2}} = \frac{\pm 1}{2(y + C)^2a} \\
+% \end{align*}
+% \begin{align*}
+%     \sqrt{2} \int \frac{dy}{\sqrt{\mp\frac{1}{y + C} - 2}}
+%      & = \sqrt 2 \int \frac{\pm 2(y + C)^2a da}{a}                                                                                                                                                  \\
+%      & = \sqrt 2 \int \pm 2(y + C)^2 da                                                                                                                                                             \\
+%      & = 2\sqrt 2 \int \pm \frac{da}{(a^2+2)^2}                                                                                                                                                     \\
+%      & = \pm \frac{\sqrt 2}{2} \left(\frac{a}{a^2+2} + \int \frac{da}{a^2+2}\right)                                                                                                                 \\
+%      & = \pm \frac{\sqrt 2}{2} \left(\frac{a}{a^2+2} + \frac{\arctg\left(\frac{a}{\sqrt 2}\right)}{\sqrt 2} + C_1 \right)                                                                           \\
+%      & = \pm \frac{\sqrt 2}{2} \left(\frac{\sqrt{\frac{\mp 1}{y+C} - 2}}{\frac{\mp 1}{y+C} - 2 + 2} + \frac{\arctg\left(\frac{\sqrt{\frac{\mp 1}{y+C} - 2}}{\sqrt 2}\right)}{\sqrt 2} + C_1 \right) \\
+%      & = \pm \frac{\sqrt 2}{2} \left(\mp(y+C)\sqrt{\frac{\mp 1}{y+C} - 2} + \frac{\arctg\left(\frac{\sqrt{\frac{\mp 1}{y+C} - 2}}{\sqrt 2}\right)}{\sqrt 2} + C_1 \right)                           \\
+% \end{align*}
+
+% (1): для $y\equiv C$ радиус кривизны не определен (бесконечен), поэтому это не решение.
+
+% (2): надо проверить, что под корнем $\ge 0$
+
+\section{Определить форму равновесия нерастяжимой нити с закрепленными концами, на которую действует нагрузка так, что на каждую единицу длины нагрузка одинакова (цепи цепного моста). Весом самой нити пренебречь.}
+
+\begin{tikzpicture}
+    \draw[-{>[length=2mm,width=3mm]}] (-1, 0) -- (17, 0) node[anchor=south west] {$x$};
+    \draw[-{>[length=2mm,width=3mm]}] (0, -5) -- (0, 1) node[anchor=south east] {$y$};
+    \draw (0, 0) .. controls (7, -3) .. (14, 0);
+    \draw[blue, very thick] (9, -1.95) -- (10, -1.65) node[midway, above] {$\Delta l$};
+    \node (part) at (9.5, -1.8) {};
+
+    \draw[-{>[length=2mm,width=3mm]}] ($ (part) $) -- ($ (part) - (0, 2) $) node[anchor=west] {$\vec N$};
+    \draw[dotted] (10, -1.65) -- (10, 0) node[anchor=south] {$x+dl$};
+    \draw[dotted] (9, -1.95) -- (9, 0) node[anchor=south] {$x$};
+    \draw[-{>[length=2mm,width=3mm]}] ($ (part) $) -- ($ (part) + (3, 1) $) node[anchor=south] {$\vec F_{x+\Delta l}$};
+    \draw[-{>[length=2mm,width=3mm]}] ($ (part) $) -- ($ (part) - (3, 0.7) $) node[anchor=east] {$\vec F_{x}$};
+
+    \node (cross1) at ($ (part) + (7.5, 1.85)$) {};
+    \draw[dashed] ($ (part) $) -- (cross1);
+    \draw[] ($ (part) + (4, 1) $) arc (12:15:5cm);
+    \node at ($ (part) + (4, 0.7) $) {\small{$\Delta\alpha$}};
+    \draw[] ($ (part) - (0, 1) $) arc (-90:-14:2cm);
+    \node at ($ (part) - (-1.5, 1) $) {\small{$\frac{\pi}{2} + \alpha$}};
+
+    \node (cross2) at ($ (part) + (5.7, 1.85)$) {};
+    \draw[dashed] ($ (part) $) -- (cross2);
+    \draw[] ($ (cross1) - (1, 0) $) arc (180:195:1cm);
+    \node at ($ (cross1) + (-1, 0.3) $) {\small{$\alpha$}};
+\end{tikzpicture}
+
+Обозначения: $\vec F$ --- сила натяжения нити, $\vec N$ --- нагрузка на отрезок, $\alpha$ --- угол, $\Delta l$ --- длина рассматриваемого отрезка, $x$ --- координата начала отрезка, $\rho$ --- удельная плотность нити.
+
+Т.к. нить в состоянии равновесия, $\vec a = \vec 0$.
+
+Т.к. нагрузка распределена равномерно, $|N| = \rho \Delta l$, где $\rho$ --- удельная нагрузка.
+
+По второму закону Ньютона:
+
+\begin{align*}
+    \vec F_x + \vec F_{x+\Delta l} + \vec N = \vec 0
+\end{align*}
+
+Спроецируем перпендикулярно $\vec F_{x}$:
+
+\begin{align*}
+    |F_{x+\Delta l}| \sin (\Delta\alpha) & = |N| \cos\alpha                             \\
+    |F_{x+\Delta l}|                     & = \frac{|N| \cos\alpha}{\sin (\Delta\alpha)} \\
+\end{align*}
+
+Спроецируем перпендикулярно $\vec F_{x+dl}$:
+
+\begin{align*}
+    |F_{x}| \sin (\Delta\alpha) & = |N| \cos(\alpha + \Delta\alpha)                             \\
+    |F_{x}|                     & = \frac{|N| \cos(\alpha + \Delta\alpha)}{\sin (\Delta\alpha)} \\
+\end{align*}
+
+Спроецируем параллельно $\vec F_x$:
+
+\begin{align*}
+    |F_x| + |N|\cos\left(\frac{\pi}{2} + \alpha\right)                                                       & = |F_{x+\Delta l}|\cos(\Delta\alpha)                           \\
+    \frac{|N| \cos(\alpha + \Delta\alpha)}{\sin (\Delta\alpha)} + |N|\cos\left(\frac{\pi}{2} + \alpha\right) & = \frac{|N| \cos\alpha}{\sin (\Delta\alpha)}\cos(\Delta\alpha) \\
+    \frac{\cos(\alpha + \Delta\alpha)}{\sin (\Delta\alpha)} -\sin\alpha                                      & = \frac{\cos\alpha}{\sin (\Delta\alpha)}\cos(\Delta\alpha)     \\
+    \cos(\alpha + \Delta\alpha) -\sin\alpha\sin (\Delta\alpha)                                               & = \cos\alpha\cos(\Delta\alpha)                                 \\
+    \cos(\alpha + \Delta\alpha)                                                                              & = \cos(\alpha - \Delta\alpha)                                  \\
+\end{align*}
+
+???
+
+Не работает, будем проецировать на оси:
+
+На $x$:
+
+\begin{align*}
+    F_{x+\Delta l} \cos(\alpha + \Delta\alpha)                                    & = F_x \cos \alpha                  \\
+    \frac{F_{x+\Delta l} \cos(\alpha + \Delta\alpha)}{\Delta l}                   & = \frac{F_x \cos \alpha}{\Delta l} \\
+    \frac{F_{x+\Delta l} \cos(\alpha + \Delta\alpha) - F_x \cos \alpha}{\Delta l} & = 0                                \\
+    (F_{x}\cos\alpha)'                                                            & = 0                                \\
+    F_{x}\cos\alpha                                                               & = \const = C                       \\
+\end{align*}
+
+На $y$:
+
+\begin{align*}
+    F_{x+dl} \sin(\alpha + \Delta\alpha)                                    & = F_x \sin \alpha + N \\
+    F_{x+dl} \sin(\alpha + \Delta\alpha) - F_x \sin \alpha                  & = \rho \Delta l       \\
+    \frac{F_{x+dl} \sin(\alpha + \Delta\alpha) - F_x \sin \alpha}{\Delta l} & = \rho                \\
+    (F_x \sin \alpha)'                                                      & = \rho                \\
+    \int (F_x \sin \alpha)' dx                                              & = \int \rho dx        \\
+    F_x \sin \alpha                                                         & = \rho x + C_1        \\
+    \frac{C}{\cos \alpha} \sin \alpha                                       & = \rho x + C_1        \\
+    C \tg \alpha                                                            & = \rho x + C_1        \\
+\end{align*}
+
+
+\section{$y'=e^{xy'/y}$}
+
+\begin{align*}
+    y'                 & = e^{xy'/y}                                                 \\
+    t := \frac{xy'}{y} & \quad y' = \frac{yt}{x}                                     \\
+    \frac{yt}{x}       & = e^t                                                       \\
+    y                  & = \frac{xe^t}{t}                                            \\
+    e^t = y'           & = \left(\frac{xe^t}{t}\right)'                              \\
+                       & = \frac{e^t}{t} + x\left(\frac{e^t}{y}\right)'              \\
+                       & = \frac{e^t}{t} + x\left(\frac{te^tt' - e^t t'}{t^2}\right) \\
+                       & = \frac{e^t}{t} + x\frac{e^tt'}{t^2}\left(t-1\right)        \\
+    e^t                & = \frac{e^t}{t} + x\frac{e^tt'}{t^2}\left(t-1\right)        \\
+    1                  & = \frac{1}{t} + x\frac{t'}{t^2}\left(t-1\right)             \\
+    t                  & = 1 + x\frac{t'}{t}\left(t-1\right)                         \\
+    t - 1              & = x\frac{t'}{t}\left(t-1\right)                     \tag{1} \\
+    1                  & = x\frac{t'}{t}                                             \\
+    t                  & = xt'                                                       \\
+    t                  & = Cx                                                        \\
+    y                  & = \frac{xe^{Cx}}{Cx}                                        \\
+    y                  & = \frac{e^{Cx}}{C}                                          \\
+\end{align*}
+
+В силу (1) надо рассмотреть случай $t=1$:
+\begin{align*}
+    y & = \frac{xe^t}{t} \\
+    y & = xe             \\
+\end{align*}
+
+Ответ: $y = \cfrac{e^{Cx}}{C}$ или $y = xe$
+
+% \begin{align*}
+%     y'               & = \exp\left(\frac{xy'}{y}\right)                \\
+%     t := \frac{y}{x} & \quad t' = \frac{y'x-y}{x^2} \quad y' = xt' + t \\
+%     xt' + t          & = \exp\left(\frac{xt' + t}{t}\right)            \\
+% \end{align*}
+
+\section{$xy'-y=\ln y$}
+
+\begin{align*}
+    xy'-y                     & = \ln y       \\
+    xy'                       & = y + \ln y   \\
+    \frac{y'}{y + \ln y}      & = \frac{1}{x} \\
+    \int \frac{dy}{y + \ln y} & = \ln |x| + C \\
+\end{align*}
+
+Этот интеграл не выражается в элементарных функциях.
+
+% Покажем, что $\int \cfrac{dy}{y + \ln y}$ не вычислим в терминах элементарных функций:
+
+% \begin{align*}
+%     \int \frac{dy}{y + \ln y} & = \int \ln\exp\frac{1}{y+\ln y} dy \\
+%                               & = \ln\int\exp\frac{1}{y+\ln y}dy
+% \end{align*}
+
+% \[t := \ln y, dt = \frac{dy}{y}\]
+
+\section{$yy''=2xy'^2 \quad y(2)=2 \quad y'(2)=0.5$}
+
+\begin{align*}
+    yy''                       & = 2xy'^2                                            \\
+    t := \frac{y'}{y} \quad t' & = \frac{yy'' - y'^2}{y^2} \quad yy'' = t'y^2 + y'^2 \\
+    t'y^2 + y'^2               & = 2xy'^2                                   \tag{1}  \\
+    t' + \frac{y'^2}{y^2}      & = 2x\frac{y'^2}{y^2}                       \tag{2}  \\
+    t' + t^2                   & = 2xt^2                                             \\
+    t'                         & = t^2(2x - 1)                                       \\
+    \frac{t'}{t^2}             & = 2x - 1                                            \\
+    \int \frac{dt}{t^2}        & = \int (2x - 1)dx                                   \\
+    -\frac{1}{t}               & = x^2 - x + C                                       \\
+    -\frac{y}{y'}              & = x^2 - x + C                                       \\
+    -\frac{2}{0.5}             & = 4 - 2 + C                                \tag{3}  \\
+    -4                         & = 4 - 2 + C                                         \\
+    -6                         & = C                                                 \\
+    -\frac{y}{y'}              & = x^2 - x - 6                                       \\
+    -\frac{y'}{y}              & = \frac{1}{x^2 - x - 6}                             \\
+    \int-\frac{dy}{y}          & = \int\frac{dx}{x^2 - x - 6}                        \\
+    -\ln|y| + C                & = \int\frac{dx}{x^2 - x - 6}                        \\
+\end{align*}
+
+Разобьем $\cfrac{1}{x^2 - x - 6}$ на сумму дробей:
+
+\begin{align*}
+    \frac{1}{(x-3)(x+2)} & = \frac{A}{x-3} + \frac{B}{x+2} \\
+    1                    & = A(x+2) + B(x-3)               \\
+    A = \frac{1}{5}      & \quad B = -\frac{1}{5}
+\end{align*}
+
+\begin{align*}
+    -\ln|y| + C & = \int \left(\frac{1}{5(x-3)} - \frac{1}{5(x+2)}\right)dx \\
+    -\ln|y| + C & = \frac{1}{5}\left(\ln|x-3| - \ln|x+2|\right)             \\
+    -\ln|2| + C & = \frac{1}{5}\left(\ln|2-3| - \ln|2+2|\right)  \tag{4}    \\
+    -\ln2 + C   & = \frac{1}{5}\left(\ln1 - \ln4\right)                     \\
+    -5\ln2 + 5C & = - 2\ln2                                                 \\
+    5C          & = 3\ln2                                                   \\
+    C           & = 0.6\ln2                                                 \\
+\end{align*}
+
+При переходе (1) $\Rightarrow$ (2) надо проверить случай $y\equiv0$, но он не подходит в условие $y(2)=2$.
+
+(3), (4) --- подстановка $x=2$.
+
+Ответ: $-\ln|y| + 0.6\ln2 = \frac{1}{5}\left(\ln|x-3| - \ln|x+2|\right)$
+
+\section{$2yy'''=y'$}
+
+\begin{align*}
+    2yy'''                   & = y'                    \\
+    t := y'                  & \quad y''' = t''t^2+t't \\
+    2y(t''t^2+t't)           & = t             \tag{1} \\
+    2y(t''t+t')              & = 1                     \\
+    2(t''t+t')               & = \frac{1}{y}           \\
+    2(t''t+t') - \frac{1}{y} & = 0                     \\
+\end{align*}
+
+Очевидно $y\equiv\const$ --- решение из (1), других я не нашел
+
+\section{$yy''+y'^2=1$}
+
+\begin{align*}
+    yy''+y'^2                                           & = 1                           \\
+    t := y'                                             & \quad y'' = t'y               \\
+    y^2t'+t^2                                           & = 1                           \\
+    y^2t'+t^2                                           & = 1                           \\
+    y^2t'                                               & = 1 - t^2             \tag{1} \\
+    t'                                                  & = \frac{1 - t^2}{y^2} \tag{2} \\
+    \frac{t'}{1 - t^2}                                  & = \frac{1}{y^2}               \\
+    \int \frac{dt}{1 - t^2}                             & = \int \frac{dy}{y^2}         \\
+    \int \frac{dt}{(1 - t)(1 + t)}                      & = -\frac{1}{y} + C            \\
+    \int \frac{dt}{2(1 + t)} - \int \frac{dt}{2(1 - t)} & = -\frac{1}{y} + C            \\
+    \frac{1}{2}(\ln|1+t| - \ln|1-t|)                    & = -\frac{1}{y} + C            \\
+    \frac{1}{2}\ln\left|\frac{1+t}{1-t}\right|          & = -\frac{1}{y} + C            \\
+    \frac{1}{2}\ln\left|\frac{1+y'}{1-y'}\right|        & = -\frac{1}{y} + C            \\
+    \left|\frac{1+y'}{1-y'}\right|^{\frac{1}{2}}        & = e^{-\frac{1}{y}} \cdot e^C  \\
+\end{align*}
+
+$y\equiv0$ --- не решение, поэтому переход (1) $\Rightarrow$ (2) не теряет решений.
+
+Не работает, попробуем $t = \cfrac{y'}{y}$:
+
+\begin{align*}
+    yy''+y'^2                                            & = 1                       \\
+    t := \frac{y'}{y} \quad t' = \frac{yy'' - y'^2}{y^2} & \quad yy'' = t'y^2 + y'^2 \\
+    t'y^2 + 2y'^2                                        & = 1                       \\
+    t' + 2t^2                                            & = \frac{1}{y^2}           \\
+\end{align*}
+
+Это уравнение Рикатти, частное решение $t=\cfrac{1}{y}:$
+
+\[-\frac{1}{y^2} + 2\frac{1}{y^2} = \frac{1}{y^2}\]
+
+\begin{align*}
+    t' + 2t^2                                                             & = \frac{1}{y^2}                                \\
+    a := t - \frac{1}{y} \quad a' = t' + \frac{1}{y^2}                    & \quad a^2 = t^2 + \frac{1}{y^2} - \frac{2t}{y} \\
+    a' - \frac{1}{y^2} + 2\left(a^2 - \frac{1}{y^2} + \frac{2t}{y}\right) & = \frac{1}{y^2}                                \\
+    a' + a^2 + \frac{2t}{y}                                               & = \frac{2}{y^2}                                \\
+    a' + a^2 + \frac{2\left(a + \frac{1}{y}\right)}{y}                    & = \frac{2}{y^2}                                \\
+    a' + a^2 + \frac{2a}{y}                                               & = 0                                            \\
+    a'                                                                    & = - a^2 - \frac{2a}{y} \tag{2}                 \\
+    b := \frac{1}{a}                                                      & \quad b' = -\frac{a'}{a^2}                     \\
+    \frac{a'}{a^2}                                                        & = -1 - \frac{2}{ay}                            \\
+    -b'                                                                   & = -1 - \frac{2b}{y}                            \\
+    b'                                                                    & = 1 + \frac{2b}{y}                             \\
+    b' - \frac{2b}{y}                                                     & = 1                                            \\
+    \frac{b'}{y^2} - \frac{2b}{y^3}                                       & = \frac{1}{y^2}                                \\
+    \frac{b'}{y^2} - b(y^{-2})'                                           & = \frac{1}{y^2}                                \\
+    \left(\frac{b}{y^2}\right)'                                           & = \frac{1}{y^2}                                \\
+    \int \left(\frac{b}{y^2}\right)' dy                                   & = \int \frac{1}{y^2} dy                        \\
+    \frac{1}{\left(t - \frac{1}{y}\right)y^2}                             & = -\frac{1}{y} + C                             \\
+    \frac{1}{y^2\frac{y'}{y} - y}                                         & = -\frac{1}{y} + C                             \\
+    \frac{1}{yy' - y}                                                     & = -\frac{1}{y} + C                             \\
+    \frac{1}{y' - 1}                                                      & = -1 + yC                                      \\
+    yC                                                                    & = y'(yC - 1)                                   \\
+    \frac{yC}{yC - 1}                                                     & = y'                                           \\
+    x                                                                     & = \int \frac{dy}{\frac{yC}{yC - 1}}            \\
+    x                                                                     & = \int \frac{yC - 1}{yC}dy                     \\
+    x                                                                     & = \int dy - \int \frac{1}{yC}dy                \\
+    x                                                                     & = y - \frac{\ln|y|}{C} + C_1                   \\
+\end{align*}
+
+По (2) $a\equiv0$ подходит:
+
+\begin{align*}
+    t - \frac{1}{y}            & = 0     \\
+    \frac{y'}{y} - \frac{1}{y} & = 0     \\
+    y'                         & = 1     \\
+    y                          & = x + C \\
+\end{align*}
+
+Ответ: $x = y - \frac{\ln|y|}{C} + C_1$ и $y = x + C$
+
+\end{document}

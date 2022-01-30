@@ -1,0 +1,104 @@
+\input{preamble.sty}
+
+\begin{document}
+
+Есть теорема, которая гласит, что решение такого дифура имеет вид $y=\varphi + \gamma$, где $\gamma$ --- решение $y''-5y'=0$, а $\varphi$ --- частное решение искомого уравнения.
+
+Найдём частное решение $y''-5y'=0$, пусть оно имеет вид $y = e^{Cx} \Rightarrow \begin{cases} y'= Ce^{Cx} \\ y'' = C^2e^{Cx} \end{cases}$
+
+\begin{align*}
+    y''-5y'            & = 0  \\
+    C^2e^{Cx}-5Ce^{Cx} & = 0  \\
+    C^2-5C             & = 0  \\
+    \begin{cases}
+        C = 0 \\
+        C = 5
+    \end{cases} \\
+    \begin{cases}
+        y = 1 \\
+        y = e^{5x}
+    \end{cases} \\
+\end{align*}
+
+Общее решение $y''-5y'=0$ имеет вид $y = C_1 y_1 + C_2 y_2 = C_1 + C_2e^{5x}$.
+
+Теперь найдём частное решение искомого уравнения.
+
+\begin{align*}
+    y''-5y' & = 3x^2+\sin 5x \\
+\end{align*}
+
+Заметим, что слева все линейно, поэтому если $a$ --- решение $y'' - 5y' = 3x^2$,  а $b$ --- решение $y'' - y' = \sin 5x$, то их сумма --- (частное) решение искомого.
+
+\begin{align*}
+    a''-5a' & = 3x^2 \\
+\end{align*}
+
+Пусть $a$ --- полином, при этом его степень не больше 4:
+
+\begin{align*}
+    a   & = kx^4 + lx^3 + mx^2 + nx + p \\
+    a'  & = 4kx^3 + 3lx^2 + 2mx + n     \\
+    a'' & = 12kx^2 + 6lx + 2m           \\
+\end{align*}
+
+\begin{align*}
+    12kx^2 + 6lx + 2m - 5(4kx^3 + 3lx^2 + 2mx + n) & = 3x^2 \\
+\end{align*}
+
+Очев $k=0$, т.е. полином степени 3.
+
+\begin{align*}
+    6lx + 2m - 5(3lx^2 + 2mx + n) & = 3x^2 \\
+    \begin{cases}
+        6l = 10m \\
+        2m = 5n  \\
+        -15l = 3 \\
+    \end{cases}              \\
+    \begin{cases}
+        -0.12 = m  \\
+        -0.048 = n \\
+        l = -0.2   \\
+    \end{cases}              \\
+    a = -0.2x^3 - 0.12x^2 - 0.048x
+\end{align*}
+
+Найдём $b$:
+
+\begin{align*}
+    b''-5b' & = \sin 5x \\
+\end{align*}
+
+Предположим, что $b$ имеет вид $r\cos(5x) + s\sin(5x)$:
+
+\begin{align*}
+    b' = -5r\sin(5x) + 5s\cos(5x)    \\
+    b'' = -25r\cos(5x) - 25s\sin(5x) \\
+\end{align*}
+
+\begin{align*}
+    b''-5b'                                              & = \sin 5x \\
+    25r\sin(5x) - 25s\cos(5x) -25r\cos(5x) - 25s\sin(5x) & = \sin 5x \\
+    \begin{cases}
+        25r - 25s = 1 \\
+        -25s - 25r = 0
+    \end{cases}                                       \\
+    \begin{cases}
+        50r = 1 \\
+        s = -r
+    \end{cases}                                       \\
+    \begin{cases}
+        r = 0.02 \\
+        s = -0.02
+    \end{cases}                                       \\
+    b = -0.02\sin(5x) +0.02\cos(5x)
+\end{align*}
+
+Итого частное решение искомого дифура:
+
+\[y = -0.2x^3 - 0.12x^2 - 0.048x -0.02\sin(5x) +0.02\cos(5x)\]
+
+Ответ:
+\[y = C_1 + C_2e^{5x} -0.2x^3 - 0.12x^2 - 0.048x -0.02\sin(5x) +0.02\cos(5x)\]
+
+\end{document}

@@ -1,0 +1,160 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №9}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{$y''-3y'+2=1/(1+e^x)$}
+
+Найдём решение частного уравнения $y'' - 3y' = 0$
+
+\begin{align*}
+    y'' - 3y'            & = 0                \\
+    \lambda^2 - 3\lambda & = 0                \\
+    \begin{sqcases}
+        \lambda = 0 \\
+        \lambda = 3
+    \end{sqcases}                 \\
+    y                    & = C_1 + C_2 e^{3x}
+\end{align*}
+
+Пусть \(C_1 = Z_1(x), C_2 = Z_2(x)\)
+
+\begin{align*}
+     & \begin{cases}
+        Z'_1 + Z'_2 e^{3x} = 0 \\
+        3 Z'_2 e^{3x}     = \frac{1}{1 + e^x} - 2
+    \end{cases} \\
+     & \begin{cases}
+        Z'_1 + \frac{1}{3(1 + e^x)} - \frac{2}{3} = 0 \\
+        Z'_2 e^{3x} = \frac{1}{3(1 + e^x)} - \frac{2}{3}
+    \end{cases} \\
+     & \begin{cases}
+        Z'_1 = \frac{2}{3} - \frac{1}{3(1 + e^x)} \\
+        Z'_2 = \frac{1}{3e^{3x}(1 + e^x)} - \frac{2}{3e^{3x}}
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \int \left(\frac{2}{3} - \frac{1}{3(1 + e^x)} \right)dx \\
+        Z_2 = \int \left(\frac{1}{3e^{3x}(1 + e^x)} - \frac{2}{3e^{3x}} \right)dx
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \frac{2x}{3} - \frac{1}{3} \int \frac{1}{1 + e^x}dx \\
+        Z_2 = \frac{2}{9e^{3x}} + \frac{1}{3}\int \frac{1}{e^{3x}(1 + e^x)}dx
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \frac{2x}{3} - \frac{1}{3} (x - \ln(e^x + 1)) + C_3 \\
+        Z_2 = \frac{2}{9e^{3x}} + \frac{1}{3}\left( - x - \frac{1}{3e^{ - 3x}} + \frac{1}{2e^{ - 2x}} - \frac{1}{e^x} + \ln(e^x + 1)\right) + C_4
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \frac{x}{3} + \frac{\ln(e^x + 1)}{3} + C_3 \\
+        Z_2 = \frac{1}{9e^{3x}} - \frac{x}{3} + \frac{1}{6e^{2x}} - \frac{1}{3e^x} + \frac{\ln(e^x + 1)}{3} + C_4
+    \end{cases} \\
+\end{align*}
+
+\[y = \frac{x}{3} + \frac{\ln(e^x + 1)}{3} + C_3 + \frac{1}{9} - \frac{xe^{3x}}{3} + \frac{e^x}{6} - \frac{e^{2x}}{3} + \frac{e^{3x}\ln(e^x + 1)}{3} + e^{3x}C_4\]
+
+\section{$y''-y'=-(x+1)/x^2$}
+
+Найдём решение частного уравнения $y'' - y' = 0$
+
+\begin{align*}
+    \lambda^2 - \lambda & = 0             \\
+    \begin{sqcases}
+        \lambda = 0 \\
+        \lambda = 1
+    \end{sqcases}             \\
+    y                   & = C_1 + C_2 e^x
+\end{align*}
+
+Пусть \(C_1 = Z_1(x), C_2 = Z_2(x)\)
+
+\begin{align*}
+     & \begin{cases}
+        Z'_1 + Z'_2 e^x = 0 \\
+        Z'_2 e^x = -\frac{x + 1}{x^2}
+    \end{cases} \\
+     & \begin{cases}
+        Z'_1 = \frac{x + 1}{x^2} \\
+        Z'_2 = -\frac{x + 1}{x^2e^x}
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \int \frac{x + 1}{x^2}dx \\
+        Z_2 = -\int \frac{x + 1}{x^2e^x} dx
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \ln |x| - \frac{1}{x} + C_3 \\
+        Z_2 = \frac{1}{xe^x} + C_4
+    \end{cases} \\
+\end{align*}
+
+\begin{align*}
+    y & =  \ln |x| - \frac{1}{x} + C_3 + C_4e^x + \frac{1}{x} \\
+    y & =  \ln |x| + C_3 + C_4e^x                             \\
+\end{align*}
+
+\section{$x^2y''+2xy'-12y=0$}
+
+\begin{align*}
+    x^2y''+2xy'-12y                                                  & = 0                                            \\
+    x : = e^t                      \quad y'_t = y'_x x'_t = y'_x e^t & \quad y''_{tt} = y''_{x x} e^{2t} + y'_x e^{t} \\
+    e^{2t} y''_{xx} + 2e^t y'_x - 12y                                & = 0                                            \\
+    y''_t + y'_t - 12y                                               & = 0                                            \\
+    \lambda^2 + \lambda - 12                                         & = 0                                            \\
+    \begin{sqcases}
+        \lambda = - 4 \\
+        \lambda = 3
+    \end{sqcases}                                                                                        \\
+    y                                                                & = C_1e^{ - 4t} + C_2e^{3t}                     \\
+    y                                                                & = \frac{C_1}{x^4} + C_2x^3                     \\
+\end{align*}
+
+\section{$x^2y''-2y=4/x^2$}
+
+\begin{align*}
+    x^2y''-2y                                                        & = 4/x^2                                        \\
+    x : = e^t                      \quad y'_t = y'_x x'_t = y'_x e^t & \quad y''_{tt} = y''_{x x} e^{2t} + y'_x e^{t} \\
+    e^{2t}y''_{x x} - 2y                                             & =  \frac{4}{e^{2t}}                            \\
+    y''_{tt} - y'_t - 2y                                             & =  \frac{4}{e^{2t}}                            \\
+\end{align*}
+
+Найдём решение частного уравнения $y''_{tt} - y'_t - 2y = 0$
+
+\begin{align*}
+    \lambda^2 - \lambda - 2 & = 0                         \\
+    \begin{sqcases}
+        \lambda = - 1 \\
+        \lambda = 2
+    \end{sqcases}                            \\
+    y                       & = C_1 e^{ - t} + C_2 e^{2t}
+\end{align*}
+
+\begin{align*}
+     & \begin{cases}
+        Z'_1 e^{ - t} + Z'_2 e^{2t}   = 0                \\
+        -Z'_1 e^{ - t} + 2Z'_2 e^{2t} = \frac{4}{e^{2t}} \\
+    \end{cases} \\
+     & \begin{cases}
+        Z'_1 = - Z'_2e^{3t} \\
+        3Z'_2 e^{2t} = \frac{4}{e^{2t}}
+    \end{cases} \\
+     & \begin{cases}
+        Z'_1 = - \frac{4}{3e^t} \\
+        Z'_2 = \frac{4}{3e^{4t}}
+    \end{cases} \\
+     & \begin{cases}
+        Z_1 = \frac{4t}{3e^t} + C_3 \\
+        Z_2 = - \frac{1}{3e^{4 t}} + C_4
+    \end{cases} \\
+\end{align*}
+
+\[y = \frac{4}{3e^{2t}} + \frac{C_3}{e^t} + C_4e^{2t} - \frac{1}{3e^{2t}}\]
+\[y = \frac{1}{e^{2t}} + \frac{C_3}{e^t} + C_4e^{2t}\]
+
+\section{$x'=4x-8y+\tg 4t, y'=4x-4y$}
+
+
+
+\end{document}

@@ -1,0 +1,21 @@
+\input{preamble.sty}
+
+\begin{document}
+
+\[y'''=2xy''\]
+\[t := y'' \quad t'=y'''\]
+\[t' = 2xt\]
+\[\frac{t'}{t} = 2x\]
+\[\ln |t| = x^2 + C\]
+\[|t| = e^{x^2} + e^C\]
+\[t = \pm(e^{x^2} + e^C)\]
+\[y'' = \pm(e^{x^2} + e^C)\]
+\[a := y'\]
+\[a' = \pm(e^{x^2} + e^C)\]
+\[a = \pm\int (e^{x^2} + e^C)dx\]
+\[a = \pm\left(\int e^{x^2} dx + xe^C\right)\]
+\[y' = \pm\left(\int e^{x^2} dx + xe^C\right)\]
+\[y = \pm\int\left(\int e^{x^2} dx + xe^C\right)dx\]
+\[y = \pm\left(\int\int e^{x^2} dx dx + \frac{x^2}{2}e^C\right)\]
+
+\end{document}

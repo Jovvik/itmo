@@ -1,0 +1,234 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math symbols
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{accents}
+\usepackage{cases}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+% Page layout
+% \usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=2cm, bindingoffset=0cm, headheight=15pt]{geometry}
+\usepackage{parskip, fancyhdr, a4wide}
+
+% Font, encoding, russian support
+\usepackage[russian]{babel}
+\usepackage[sb]{libertine}
+\usepackage{xltxtra}
+
+\usepackage{enumitem}
+\usepackage{lipsum}
+\usepackage{lastpage}
+\usepackage{wrapfig}
+
+\usepackage{svg}
+
+\pagestyle{fancy}
+\rhead{стр. \thepage\ из \pageref{LastPage}}
+
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\title{Моделирование двойного маятника}
+\author{Михайлов Максим, Кулагин Ярослав, Винников Глеб}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \centering
+    \includesvg[width=0.48\textwidth]{images/Double-pendulum.svg}
+    \caption{Двойной маятник}
+\end{wrapfigure}
+
+\textbf{Обозначения}:
+\begin{itemize}[leftmargin=0pt]
+    \item \(x_1,y_1,x_2,y_2\) --- координаты центров масс звеньев
+    \item \(m_1, m_2\) --- массы звеньев
+    \item \(l_1, l_2\) --- длины звеньев
+    \item \(\theta_1, \theta_2\) --- угол отклонения от вертикали
+\end{itemize}
+% За точку отсчёта принимаем точку закрепления первого звена.
+
+Выразим координаты центров:
+\begin{numcases}{}
+    x_1 = l_1 \sin \theta_1       \\
+    y_1 = -l_1 \cos \theta_1      \\
+    x_2 = x_1 + l_2 \sin \theta_2 \\
+    y_2 = y_2 - l_2 \cos \theta_2
+\end{numcases}
+
+Возьмём первую и вторую производную этих выражений:
+
+\begin{numcases}{}
+    x_1' = l_1 \theta_1' \cos \theta_1        \\
+    y_1' = l_1 \theta_1' \sin \theta_1        \\
+    x_2' = x_1' + \theta_2' l_2 \cos \theta_2 \\
+    y_2' = y_2' + \theta_2' l_2 \sin \theta_2
+\end{numcases}
+
+\begin{numcases}{}
+    x_1'' = -l_1 \theta_1'^2 \sin \theta_1 + l_1 \theta_1'' \cos \theta_1 \label{ускорение x1}        \\
+    y_1'' = l_1 \theta_1'^2 \cos \theta_1 + l_1 \theta_1'' \sin \theta_1 \label{ускорение y1}         \\
+    x_2'' = x_1'' - \theta_2'^2 l_2 \sin \theta_2 + \theta_2'' l_2 \cos \theta_2 \label{ускорение x2} \\
+    y_2'' = y_1'' + \theta_2'^2 l_2 \cos \theta_2 + \theta_2'' l_2 \sin \theta_2 \label{ускорение y2}
+\end{numcases}
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includesvg[width=0.28\textwidth]{images/Double-pendulum-force1.svg}
+    \caption{Силы в двойном маятнике}
+\end{wrapfigure}
+
+По второму закону Ньютона \textit{(в проекциях)} для верхнего звена:
+\begin{numcases}{}
+    m_1x_1'' = - T_1 \sin \theta_1 + T_2 \sin \theta_2 \label{ньютон верх1} \\
+    m_1y_1'' = T_1 \cos \theta_1 - T_2 \cos \theta_2 - m_1g \label{ньютон верх2}
+\end{numcases}
+
+Аналогично для нижнего звена:
+
+\begin{numcases}{}
+    m_2x_2'' = - T_2 \sin \theta_2 \label{ньютон низ1} \\
+    m_2y_2'' = T_2 \cos \theta_2 - m_2g \label{ньютон низ2}
+\end{numcases}
+
+Выразим \(T_2\sin \theta_2\) и \(T_2\cos \theta_2\) из \eqref{ньютон низ1}, \eqref{ньютон низ2} и подставим в \eqref{ньютон верх1}, \eqref{ньютон верх2}
+
+\begin{numcases}{}
+    m_1 x_1'' = - T_1 \sin \theta_1 - m_2x_2'' \label{a} \\
+    m_1 y_1'' = T_1\cos\theta_1 - m_2y_2'' - m_2g - m_1g \label{b}
+\end{numcases}
+
+Домножим \eqref{a} на \(\cos \theta_1\), \eqref{b} на \(\sin \theta_1\):
+
+\begin{equation}
+    \begin{cases}
+        m_1 x_1''\cos \theta_1 = - T_1 \sin \theta_1\cos \theta_1 - m_2x_2''\cos \theta_1 \\
+        m_1 y_1''\sin \theta_1 = T_1\cos\theta_1\sin \theta_1 - \sin \theta_1(m_2y_2'' + m_2g + m_1g)
+    \end{cases}
+\end{equation}
+\begin{equation}
+    \begin{cases}
+        T_1\sin \theta_1 \cos \theta_1 =- \cos \theta_1 (m_1x_1'' + m_2x_2'') \\
+        T_1\sin \theta_1\cos \theta_1 = \sin\theta_1 (m_1y_1'' + m_2y_2'' + m_2g + m_1g)
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \sin\theta_1 (m_1y_1'' + m_2y_2'' + m_2g + m_1g) = - \cos \theta_1 (m_1x_1'' + m_2x_2'') \label{c}
+\end{equation}
+
+Домножим \eqref{ньютон низ1} на \(\cos \theta_2\) и \eqref{ньютон низ2} на \(\sin \theta_2\):
+
+\begin{equation}
+    \begin{cases}
+        m_2x_2''\cos \theta_2 = - T_2 \sin \theta_2\cos \theta_2 \\
+        m_2y_2''\sin \theta_2 = T_2 \sin \theta_2\cos \theta_2 - m_2g\sin \theta_2
+    \end{cases} \label{d}
+\end{equation}
+
+Приравняем правые части \eqref{d}:
+\begin{equation}
+    \sin \theta_2 (m_2y_2'' + m_2g) = - \cos \theta_2(m_2x_2'')
+\end{equation}
+\begin{equation}
+    \sin \theta_2 (y_2'' + g) = - \cos \theta_2(x_2'')
+\end{equation}
+Подставим \(y_2''\) и \(x_2''\) из \eqref{ускорение x2} и \eqref{ускорение y2}:
+\begin{equation}
+    \sin \theta_2 (y_1'' + \theta_2'^2 l_2 \cos \theta_2 + \theta_2'' l_2 \sin \theta_2 + g) = - \cos \theta_2(x_1'' - \theta_2'^2 l_2 \sin \theta_2 + \theta_2'' l_2 \cos \theta_2)
+\end{equation}
+Подставим \(y_1''\) и \(x_1''\) из \eqref{ускорение x1} и \eqref{ускорение y1}:
+\begin{align}
+    \sin \theta_2 (l_1 \theta_1'^2 \cos \theta_1 + l_1 \theta_1'' \sin \theta_1 + \theta_2'^2 l_2 \cos \theta_2 + \theta_2'' l_2 \sin \theta_2 + g) & = \label{f} \\
+    - \cos \theta_2(-l_1 \theta_1'^2 \sin \theta_1 + l_1 \theta_1'' \cos \theta_1 - \theta_2'^2 l_2 \sin \theta_2 + \theta_2'' l_2 \cos \theta_2) \nonumber
+\end{align}
+\begin{equation}
+    \theta_1'^2 l_1 (\sin \theta_2 \cos \theta_1 - \sin \theta_1 \cos \theta_2) + \theta_1'' l_1 (\sin \theta_1 \sin \theta_2 + \cos \theta_1 \cos \theta_2) + \theta_2'' l_2 + \sin \theta_2 g = 0
+\end{equation}
+\begin{equation}
+    \theta_2'' = -\frac{l_1}{l_2} (\theta_1'^2 (\sin \theta_2 \cos \theta_1 - \sin \theta_1 \cos \theta_2) + \theta_1'' (\sin \theta_1 \sin \theta_2 + \cos \theta_1 \cos \theta_2)) - \sin \theta_2 \frac{g}{l}
+\end{equation}
+\begin{equation}
+    \theta_2'' = \frac{l_1}{l_2} (\theta_1'^2 \sin (\theta_1 - \theta_2) - \theta_1'' \cos(\theta_2 - \theta_1)) - \sin \theta_2 \frac{g}{l_2} \label{тета2}
+\end{equation}
+
+Подставим в \eqref{c} \(y_2''\) и \(x_2''\) из \eqref{ускорение x2} и \eqref{ускорение y2}
+\begin{align}
+    \sin\theta_1 (m_1y_1'' + m_2(y_1'' + \theta_2'^2 l_2 \cos \theta_2 + \theta_2'' l_2 \sin \theta_2) + m_2g + m_1g) & = \\
+    - \cos \theta_1 (m_1x_1'' + m_2(x_1'' - \theta_2'^2 l_2 \sin \theta_2 + \theta_2'' l_2 \cos \theta_2)) \nonumber
+\end{align}
+
+Подставим \(y_1''\) и \(x_1''\) из \eqref{ускорение x1} и \eqref{ускорение y1}:
+\begin{align*}
+    \sin\theta_1 ((m_1 + m_2)(l_1 \theta_1'^2 \cos \theta_1 + l_1 \theta_1'' \sin \theta_1) + m_2(\theta_2'^2 l_2 \cos \theta_2 + \theta_2'' l_2 \sin \theta_2) + m_2g + m_1g) & = \\
+    - \cos \theta_1 ((m_1 + m_2)(-l_1 \theta_1'^2 \sin \theta_1 + l_1 \theta_1'' \cos \theta_1) + m_2(- \theta_2'^2 l_2 \sin \theta_2 + \theta_2'' l_2 \cos \theta_2))
+\end{align*}
+\begin{align*}
+    \theta_1''l_1(m_1 + m_2) + \theta_1'' \cdot 0 + \theta_2'' l_2 m_2(\sin \theta_1 \sin \theta_2 + \cos \theta_1 \cos \theta_2) & {}+{} \\
+    \theta_2'^2 l_2m_2 (\sin \theta_1 \cos \theta_2 - \sin \theta_2 \cos \theta_1) + \sin \theta_1 g(m_1 + m_2)                   & = 0
+\end{align*}
+\begin{equation*}
+    \theta_1''l_1(m_1 + m_2) + \theta_2'' l_2 m_2 \cos(\theta_2 - \theta_1) - \theta_2'^2 l_2m_2 \cos(\theta_1 + \theta_2) + \sin \theta_1 g(m_1 + m_2) = 0
+\end{equation*}
+\begin{equation}
+    \theta_1'' = \theta_2'^2 \frac{l_2m_2}{l_1(m_1 + m_2)}  \cos(\theta_1 + \theta_2) - \theta_2'' \frac{l_2 m_2}{l_1(m_1 + m_2)} \cos(\theta_2 - \theta_1) - \sin \theta_1 \frac{g}{l_1} \label{тета1}
+\end{equation}
+
+Подставим \eqref{тета1} в \eqref{тета2}:
+
+\begin{align*}
+    \theta_2'' = \frac{l_1}{l_2} (\theta_1'^2 \sin (\theta_1 - \theta_2) - \left( \theta_2'^2 \frac{l_2m_2}{l_1(m_1 + m_2)}  \cos(\theta_1 + \theta_2) - \theta_2'' \frac{l_2 m_2}{l_1(m_1 + m_2)} \cos(\theta_2 - \theta_1) - \sin \theta_1 \frac{g}{l_1} \right) & {}\cdot{} \\
+    \cos(\theta_2 - \theta_1)) - \sin \theta_2 \frac{g}{l_2}
+\end{align*}
+\begin{align*}
+    \theta_2'' = \frac{l_1}{l_2}\theta_1'^2 \sin (\theta_1 - \theta_2) - \left(\theta_2'^2 \frac{m_2}{m_1 + m_2}  \cos(\theta_1 + \theta_2) - \theta_2'' \frac{m_2}{m_1 + m_2} \cos(\theta_2 - \theta_1) - \sin \theta_1 \frac{g}{l_2} \right) & {}\cdot{} \\
+    \cos(\theta_2 - \theta_1)) - \sin \theta_2 \frac{g}{l_2}
+\end{align*}
+\begin{align*}
+    \theta_2'' = \frac{l_1}{l_2}\theta_1'^2 \sin (\theta_1 - \theta_2) - \theta_2'^2 \frac{m_2}{m_1 + m_2} \frac{1}{2} (\cos(2\theta_1) + \cos(2\theta_2)) & {}-{} \\
+    \theta_2'' \frac{m_2}{m_1 + m_2} \cos^2(\theta_2 - \theta_1) - \cos(\theta_2 - \theta_1)\sin \theta_1 \frac{g}{l_2} - \sin \theta_2 \frac{g}{l_2}
+\end{align*}
+\begin{align*}
+    \theta_2''\frac{2m_1 + 2m_2 - m_2 \cos^2(\theta_2 - \theta_1)}{m_1 + m_2} = \frac{l_1}{l_2}\theta_1'^2 \sin (\theta_1 - \theta_2) - \theta_2'^2 \frac{m_2}{m_1 + m_2} \frac{1}{2} (\cos(2\theta_1) + \cos(2\theta_2)) {}-{} \\
+    \cos(\theta_2 - \theta_1)\sin \theta_1 \frac{g}{l_2} - \sin \theta_2 \frac{g}{l}
+\end{align*}
+\begin{align*}
+    \theta_2''\frac{2m_1 + m_2 - m_2 \cos(2\theta_2 - 2\theta_1)}{2m_1 + 2m_2} = \frac{l_1}{l_2}\theta_1'^2 \sin (\theta_1 - \theta_2) - \theta_2'^2 \frac{m_2}{m_1 + m_2} \frac{1}{2} (\cos(2\theta_1) + \cos(2\theta_2)) {}-{} \\
+    \cos(\theta_2 - \theta_1)\sin \theta_1 \frac{g}{l_2} - \sin \theta_2 \frac{g}{l}
+\end{align*}
+\begin{align*}
+    \theta_2''\frac{2m_1 + m_2 - m_2\cos(2\theta_2 - 2\theta_1)}{2m_1 + 2m_2} & = \frac{l_1^2(m_1 + m_2)\theta_1'^2\sin (\theta_1 -\theta_2) - m_2\theta_2'^2 l_1l_2\sin(\theta_2 -\theta_1)\cos(\theta_2 -\theta_1)}{l_2l_1(m_1 + m_2)} \\
+                                                                              & + \frac{l_1\sin \theta_1 \cos(\theta_1 -\theta_2)g(m_1 + m_2) - l_1(m_1 + m_2)\sin \theta_2 g}{l_2l_1(m_1 + m_2)}
+\end{align*}
+\begin{align*}
+    \theta_2''\frac{2m_1 + m_2 - m_2\cos(2\theta_2 - 2\theta_1)}{2} & = \frac{l_1(m_1 + m_2)\theta_1'^2\sin (\theta_1 -\theta_2) - m_2\theta_2'^2 l_2\sin(\theta_2 -\theta_1)\cos(\theta_2 -\theta_1)}{l_2} \\
+                                                                    & + \frac{\sin \theta_1 \cos(\theta_1 -\theta_2)g(m_1 + m_2) - (m_1 + m_2)\sin \theta_2 g}{l_2}
+\end{align*}
+\begin{align*}
+    \theta_2'' & = 2\frac{l_1(m_1 + m_2)\theta_1'^2\sin (\theta_1 -\theta_2) - m_2\theta_2'^2 l_2\sin(\theta_2 -\theta_1)\cos(\theta_2 -\theta_1)}{l_2(2m_1 + m_2 - m_2\cos(2\theta_2 - 2\theta_1))} \\
+               & + 2\frac{\sin \theta_1 \cos(\theta_1 -\theta_2)g(m_1 + m_2) - (m_1 + m_2)\sin \theta_2 g}{l_2(2m_1 + m_2 - m_2\cos(2\theta_2 - 2\theta_1))}
+\end{align*}
+\begin{align}
+    \theta_2'' & = 2\sin(\theta_1 - \theta_2)\frac{l_1(m_1 + m_2)\theta_1'^2 + m_2\theta_2'^2 l_2\cos(\theta_1 -\theta_2) + g(m_1 + m_2)\cos \theta_1}{l_2(2m_1 + m_2 - m_2\cos(2\theta_2 - 2\theta_1))} \label{fin2}
+\end{align}
+\begin{align*}
+    \theta_1'' & = \frac{m_2 \theta_2'^2 l_2\sin (\theta_2 - \theta_1) - m_2(l_1 (\theta_1'^2 \sin (\theta_1 - \theta_2) - \theta_1'' \cos (\theta_1 - \theta_2)) - \sin \theta_2 g)\cos (\theta_2 - \theta_1)}{l_1(m_1 + m_2)} \\
+               & + \sin \theta_1 \frac{g}{l_1}
+\end{align*}
+\begin{align*}
+    \theta_1'' - \frac{m_2 \theta_1'' \cos (\theta_1 - \theta_2)}{m_1 + m_2} & = \frac{m_2 \theta_2'^2 l_2\sin (\theta_2 - \theta_1) - m_2(l_1 \theta_1'^2 \sin (\theta_1 - \theta_2) - \sin \theta_2 g)\cos (\theta_2 - \theta_1)}{l_1(m_1 + m_2)} \\
+                                                                             & + \sin \theta_1 \frac{g}{l_1}
+\end{align*}
+\begin{align}
+    \theta_1'' & = \frac{2m_2 \sin (\theta_2 - \theta_1)(\theta_2' l_2 + \theta_1'^2 l_1 \cos(\theta_1 - \theta_2)) + m_2\sin (2\theta_2 - \theta_1)g + g \sin \theta_1 (m_2 - 2m_1 - 2m_2)}{l_1(2m_1 + m_2 - m_2\cos (2\theta_2 - 2\theta_1))} \nonumber \\
+               & = \frac{2m_2 \sin (\theta_2 - \theta_1)(\theta_2' l_2 + \theta_1'^2 l_1 \cos(\theta_1 - \theta_2)) + m_2\sin (2\theta_2 - \theta_1)g - g \sin \theta_1 (2m_1 + m_2)}{l_1(2m_1 + m_2 - m_2\cos (2\theta_2 - 2\theta_1))} \label{fin1}
+\end{align}
+
+Дифуры \eqref{fin1} и \eqref{fin2} решаются методом Рунге-Кутты, если ввести функции \(w_1(t) = \theta_1'(t)\) и \(w_2(t) = \theta_2'(t)\) \textit{(угловые скорости)}.
+
+\end{document}

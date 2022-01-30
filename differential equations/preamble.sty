@@ -1,0 +1,135 @@
+\documentclass[12pt, a4paper]{article}
+
+% Math symbols
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{accents}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+% Page layout
+% \usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=2cm, bindingoffset=0cm, headheight=15pt]{geometry}
+\usepackage{parskip, fancyhdr, a4wide}
+
+% Font, encoding, russian support
+\usepackage[russian]{babel}
+\usepackage[sb]{libertine}
+\usepackage{xltxtra}
+
+% Miscellaneous
+\usepackage{calc}
+\usepackage{catchfilebetweentags}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{lastpage}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage{bigints}
+
+\providetoggle{useproofs}
+\settoggle{useproofs}{false}
+
+\pagestyle{fancy}
+\lfoot{M3137y2019}
+\rhead{стр. \thepage\ из \pageref{LastPage}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\const}{\text{const}}
+
+\newcommand{\teormin}{\textcolor{red}{!}\ }
+
+\DeclareMathOperator*{\xor}{\oplus}
+\DeclareMathOperator*{\equ}{\sim}
+\DeclareMathOperator{\sign}{\text{sign}}
+\DeclareMathOperator{\Sym}{\text{Sym}}
+\DeclareMathOperator{\Asym}{\text{Asym}}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\abs}{\left\lvert}{\right\rvert}
+
+\theoremstyle{plain}
+\newtheorem{axiom}{Аксиома}
+\newtheorem{lemma}{Лемма}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Примечание}
+\newtheorem*{exercise}{Упражнение}
+\newtheorem*{corollary}{Следствие}
+\newtheorem*{example}{Пример}
+\newtheorem*{observation}{Наблюдение}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem*{definition}{Определение}
+\newtheorem*{obozn}{Обозначение}
+
+\newcommand{\dbltilde}[1]{\accentset{\approx}{#1}}
+\newcommand{\intt}{\int\!}
+
+% magical thing that fixes paragraphs
+\makeatletter
+\patchcmd{\CatchFBT@Fin@l}{\endlinechar\m@ne}{}
+  {}{\typeout{Unsuccessful patch!}}
+\makeatother
+
+\newcommand{\get}[2]{
+    \ExecuteMetaData[#1]{#2}
+}
+
+\newcommand{\getproof}[2]{
+    \iftoggle{useproofs}{\ExecuteMetaData[#1]{#2proof}}{}
+}
+
+\newcommand{\getwithproof}[2]{
+    \get{#1}{#2}
+    \getproof{#1}{#2}
+}
+
+\newcommand{\import}[3]{
+    \subsection{#1}
+    \getwithproof{#2}{#3}
+}
+
+\newcommand{\given}[1]{
+    Дано выше. (\ref{#1}, стр. \pageref{#1})
+}
+
+\renewcommand{\ker}{\text{Ker }}
+\newcommand{\im}{\text{Im }}
+\newcommand{\grad}{\text{grad}}
+\newcommand{\defeq}{\stackrel{\text{def}}{=}}
+\newcommand{\itemfix}{\leavevmode\makeatletter\makeatother}
+
+\usepackage{sectsty}
+
+\allsectionsfont{\raggedright}
+\sectionfont{\normalfont\fontsize{14}{15}\selectfont}
+\subsectionfont{\normalfont\fontsize{13}{15}\selectfont}
+\usepackage{svg}
+\svgpath{{images/}}
+\allowdisplaybreaks
+
+\makeatletter
+\newenvironment{sqcases}{%
+  \matrix@check\sqcases\env@sqcases
+}{%
+  \endarray\right.%
+}
+\def\env@sqcases{%
+  \let\@ifnextchar\new@ifnextchar
+  \left\lbrack
+  \def\arraystretch{1.2}%
+  \array{@{}l@{\quad}l@{}}%
+}
+\makeatother
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{calc}
+\usepackage{cases}

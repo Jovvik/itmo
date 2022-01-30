@@ -1,0 +1,322 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №6}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\begin{document}
+
+\section{$2y'=x+\ln y'$}
+
+% \begin{align*}
+%     t := y'                                                  \\
+%     2y'            & = x+\ln y'                              \\
+%     2t             & = x + \ln t                             \\
+%     2t - \ln t     & = x                                     \\
+%     y              & = \int dy                               \\
+%                    & = \int y'dx                             \\
+%                    & = \int td(2t - \ln t)                   \\
+%                    & = \int t\left(2dt - \frac{dt}{t}\right) \\
+%                    & = \int 2tdt - dt                        \\
+%                    & = t^2 - t + C                           \\
+%     y'             & = t                                     \\
+%     (t^2 - t + C)' & = t                                     \\
+%     2t - 1         & = t                                     \\
+% \end{align*}
+
+\begin{align*}
+    2y'           & = x+\ln y'                               \\
+    y' := t                                                  \\
+    2t            & = x + \ln t                              \\
+    2t - \ln t    & = x                                      \\
+    \frac{dy}{dx} & = t                                      \\
+    dy            & = t dx                                   \\
+    \int dy       & = \int t dx                              \\
+    y             & = \int t d(2t - \ln t)                   \\
+    y             & = \int t \left(2dt - \frac{dt}{t}\right) \\
+    y             & = t^2 - t + C                            \\
+\end{align*}
+
+Ответ: $\begin{cases}
+        x = 2t - \ln t \\
+        y = t^2 - t + C
+    \end{cases}$
+
+\section{$4y=x^2+y'^2$}
+
+\begin{align*}
+    4y                       & = x^2+y'^2                                                                                \\
+    t := y'                                                                                                              \\
+    4y                       & = x^2 + t^2                                                                               \\
+    4t                       & = 2x + 2tt'                                                                               \\
+    2t                       & = x + tt'                                                                                 \\
+    \frac{2t}{x}             & = 1 + \frac{tt'}{x}                                                                       \\
+    a := \frac{t}{x}         & \quad t' = a'x + a                                                                        \\
+    2a                       & = 1 + a(a'x+a)                                                                            \\
+    2a                       & = 1 + a'ax + a^2                                                                          \\
+    \frac{-1 + 2a - a^2}{ax} & = a'                                                                                      \\
+    \frac{1}{x}              & = \frac{aa'}{-1 + 2a - a^2}                                                               \\
+    \frac{dx}{x}             & = \frac{ada}{-1 + 2a - a^2}                                                               \\
+    \int \frac{dx}{x}        & = \int \frac{ada}{-1 + 2a - a^2}                                                          \\
+    \ln|x| + C               & = -\ln |a - 1| + \frac{1}{a-1}         \tag{1}                                            \\
+    \ln|x| + C               & = -\ln \left|\frac{t}{x} - 1\right| + \frac{1}{\frac{t}{x}-1}                             \\
+    \ln|x| + C               & = -\ln \left|\frac{\sqrt{4y - x^2}}{x} - 1\right| + \frac{1}{\frac{\sqrt{4y - x^2}}{x}-1} \\
+\end{align*}
+
+(1): $a=1$ --- особое решение, рассмотрим этот случай:
+
+\begin{align*}
+    1                  & = \frac{t}{x}       \\
+    t                  & = x                 \\
+    \pm\sqrt{4y - x^2} & = x                 \\
+    4y - x^2           & = \pm x^2           \\
+    y                  & = \pm \frac{x^2}{2} \\
+\end{align*}
+
+\section{$y'=\tg(y-2x)$}
+
+\begin{align*}
+    y'         & = \tg(y - 2x)                      \\
+    \arctg(y') & = y - 2x + \pi k                   \\
+    t := y'                                         \\
+    \arctg(t)  & = y - 2x + \pi k                   \\
+    t = y'     & = (\arctg t + 2x - \pi k)'         \\
+               & = \frac{1}{1+t^2}t' + 2            \\
+               & = \frac{1}{1+t^2}\frac{dt}{dx} + 2 \\
+    dx         & = \frac{dt}{(1+t^2)(t-2)}          \\
+    \int dx    & = \int \frac{dt}{(1+t^2)(t-2)}     \\
+    x          & = \int \frac{dt}{(1+t^2)(t-2)}     \\
+\end{align*}
+
+\begin{align*}
+    \int \frac{dt}{(t - 2)(t^2+1)}
+     & = \int \frac{dt}{5(t-2)} - \int \frac{t+2}{5(t^2+1)}dt                       \\
+     & = \frac{\ln|t-2|}{5} - \int \frac{t}{5(t^2+1)}dt - \int \frac{2}{5(t^2+1)}dt \\
+     & = \frac{\ln|t-2|}{5} - \frac{\ln|t^2+1|}{10} - \frac{2}{5}\arctg t + C       \\
+\end{align*}
+
+\begin{align*}
+    dy & = tdx                                                                          \\
+    y  & = \int t dx                                                                    \\
+       & = \int \frac{tdt}{(1+t^2)(t-2)}                                                \\
+       & = \int \frac{2dt}{5(t-2)} - \int \frac{2t-1}{5(t^2+1)}dt                       \\
+       & = \frac{2}{5}\ln|t-2| - \int \frac{2t}{5(t^2+1)}dt + \int \frac{1}{5(t^2+1)}dt \\
+       & = \frac{2}{5}\ln|t-2| - \frac{1}{5}\ln|x^2+1| + \frac{\arctg t}{5} + C_1       \\
+    y  & = 2x + \arctg t + C_1
+\end{align*}
+
+% Это уравнение Лагранжа, сведем его к виду $y=f(y')x + g(y')$.
+
+% \begin{align*}
+%     y'                     & = \tg(y-2x)                     \\
+%     \arctg y'              & = y-2x+\pi k                    \\
+%     \arctg y' + 2x - \pi k & = y                             \\
+%     f(y') = 2              & \quad g(y') = \arctg y' - \pi k
+% \end{align*}
+
+% Возьмём замену $t = y'$ и продифференцируем обе части равенства:
+
+% \begin{align*}
+%     \arctg t + 2x - \pi k  & = y                              \\
+%     \frac{1}{t^2+1} t' + 2 & = t                              \\
+%     \frac{1}{t^2+1} t' + 2 & = t                              \\
+%     \frac{1}{t^2+1} t'     & = t - 2                          \\
+%     t'                     & = (t - 2)(t^2+1)                 \\
+%     x                      & = \int \frac{dt}{(t - 2)(t^2+1)} \\
+% \end{align*}
+
+% \begin{align*}
+%     \int \frac{dt}{(t - 2)(t^2+1)}
+%      & = \int \frac{dt}{5(t-2)} - \int \frac{t+2}{5(t^2+1)}dt                       \\
+%      & = \frac{\ln|t-2|}{5} - \int \frac{t}{5(t^2+1)}dt - \int \frac{2}{5(t^2+1)}dt \\
+%      & = \frac{\ln|t-2|}{5} - \frac{\ln|t^2+1|}{10} - \frac{2}{5}\arctg t + C       \\
+% \end{align*}
+
+% Решение искомого уравнения можно записать параметрически, потому что так сказал \href{https://encyclopediaofmath.org/wiki/Lagrange\_equation}{умный сайт}:
+
+% $$\begin{cases}
+%         x = \frac{\ln|t-2|}{5} - \frac{\ln|t^2+1|}{10} - \frac{2}{5}\arctg t + C \\
+%         y = 2\left(\frac{\ln|t-2|}{5} - \frac{\ln|t^2+1|}{10} - \frac{2}{5}\arctg t + C\right) + \arctg t - \pi k
+%     \end{cases}$$
+
+\section{$yy'+xyy''=x(y')^2+x^3$}
+
+
+\section{$2xy'-y=y'\ln (yy')$}
+
+\begin{align*}
+    2xy'-y                  & = y'\ln (yy')                                                                           \\
+    t := y'                                                                                                           \\
+    2xt - y                 & = t \ln (yt)                                                                            \\
+    x                       & = \frac{t\ln(yt) + y}{2t}                                                               \\
+    x                       & = \frac{y}{2t} + \frac{\ln y}{2} + \frac{\ln t}{2}                                      \\
+    \frac{dx}{dy}           & = \frac{1}{2y} + \frac{1}{2t} + \left(\frac{1}{2t} - \frac{y}{2t^2}\right)\frac{dt}{dy} \\
+    \frac{dx}{dy}           & = \frac{t + y}{2yt} + \left(\frac{t - y}{2t^2}\right)\frac{dt}{dy}                      \\
+    \frac{1}{t}             & = \frac{t + y}{2yt} + \left(\frac{t - y}{2t^2}\right)\frac{dt}{dy}                      \\
+    \frac{2y - t - y}{2yt}  & = \left(\frac{t - y}{2t^2}\right)\frac{dt}{dy}                                          \\
+    \frac{y - t}{y}         & = \left(\frac{t - y}{t}\right)\frac{dt}{dy}             \tag{1}                         \\
+    -\frac{1}{y}            & = \frac{1}{t}\frac{dt}{dy}                                                              \\
+    -\frac{dy}{y}           & = \frac{dt}{t}                                                                          \\
+    -\ln|y|                 & = \ln|t| + C                                                                            \\
+    y                       & = \pm\frac{e^C}{t}                                                                      \\
+    y'                      & = \pm\frac{e^C}{y}                                                                      \\
+    \pm 2x\frac{e^C}{y}-y   & = \pm\frac{e^C}{y}\ln (\pm e^C)                                                         \\
+    2x\frac{e^C}{y}-y       & = \frac{e^C}{y}\ln (e^C)                                                                \\
+    (2x - C)\frac{e^C}{y}-y & = 0                                                                                     \\
+    % x                      & = \pm\frac{e^C}{2t^2} - \frac{\ln t + C}{2} + \frac{\ln t}{2}                           \\
+    % x                      & = \pm\frac{e^C}{2t^2} - \frac{C}{2}                                                     \\
+\end{align*}
+
+(1): рассмотрим $t = y$:
+
+\begin{align*}
+    2xy-y               & = y\ln (y^2)        \\
+    2xy-y               & = 2y\ln (y) \tag{2} \\
+    2x-1                & = 2\ln (y)          \\
+    e^\frac{2x-1}{2}    & = y                 \\
+    \frac{e^x}{\sqrt e} & = y                 \\
+\end{align*}
+
+(2): вертикальная прямая $x(y) = \const$ не подходит.
+
+Ответ: $y = \frac{e^x}{\sqrt e}$ или $\begin{cases}
+        x = \pm\frac{e^C}{2t^2} - \frac{C}{2} \\
+        y = \pm\frac{e^C}{t}
+    \end{cases}$
+
+\section{$y=2xy'+y^2(y')^3$}
+
+\begin{align*}
+    y                   & = 2xy' + y^2 y'^3                                                      \tag{1}                   \\
+    x                   & = \frac{y - y^2 y'^3}{2y'}                                                                       \\
+    x                   & = \frac{y}{2y'} - \frac{y^2 y'^2}{2}                                                             \\
+    t := y'                                                                                                                \\
+    x                   & = \frac{y}{2t} - \frac{y^2 t^2}{2}                                                               \\
+    \frac{dx}{dy}       & = \frac{1}{2t} - \frac{2yt^2}{2} - \left(-\frac{y}{2t^2} + \frac{2 y^2 t}{2}\right)\frac{dt}{dy} \\
+    \frac{1}{t}         & = \frac{1}{2t} - yt^2 + \left(-\frac{y}{2t^2} - y^2t\right)\frac{dt}{dy}                         \\
+    \frac{1}{2t} + yt^2 & = \left(-\frac{y}{2t^2} - y^2t\right)\frac{dt}{dy}                                               \\
+    \frac{1}{2t} + yt^2 & = \frac{y}{t}\left(-\frac{1}{2t} - yt^2\right)\frac{dt}{dy}              \tag{2}                 \\
+    1                   & = -\frac{y}{t}\frac{dt}{dy}                                                                      \\
+    \frac{dy}{y}        & = -\frac{dt}{t}                                                                                  \\
+    \ln |y|             & = -\ln |t| + C                                                                                   \\
+    y                   & = \frac{\pm e^C}{t}                                                                              \\
+    \frac{\pm e^C}{y}   & = t                                                                                              \\
+    y                   & = 2x\frac{\pm e^C}{y} + \frac{\pm e^{3C}}{y}                                                     \\
+    % x                   & = \frac{1 \mp y \frac{y^3}{e^{3C}}}{2e^C}                                                        \\
+\end{align*}
+
+(1): $y\equiv0$ подходит.
+
+(2): $\sphericalangle \frac{1}{2t} = yt^2$:
+
+\begin{align*}
+    \frac{1}{2t}   & = yt^2                    \\
+    \frac{1}{2t^3} & = y                       \\
+    \frac{1}{2t^3} & = 2xt + \frac{1}{2t^6}t^3 \\
+    \frac{1}{2t^3} & = 2xt + \frac{1}{2t^3}    \\
+    0              & = 2xt                     \\
+\end{align*}
+
+\section{$y+xy'=4\sqrt{y'}$}
+
+Это уравнение Лагранжа
+
+$f(y') = -y', g(y') = 4\sqrt{y'}$
+
+\begin{align*}
+    y                                  & = 4\sqrt{y'} - xy'                                        \\
+    y                                  & = 4\sqrt{t} - xt                                          \\
+    t                                  & = \frac{2}{\sqrt{t}}{t'} - xt' - t                        \\
+    2t                                 & = \frac{2}{\sqrt{t}}{t'} - xt'                            \\
+    2t                                 & = t'\left(\frac{2}{\sqrt{t}} - x\right)                   \\
+    2t                                 & = \frac{1}{x'}\left(\frac{2}{\sqrt{t}} - x\right) \tag{1} \\
+    2t                                 & = \frac{1}{x'}\frac{2 -x\sqrt{t}}{\sqrt{t}}               \\
+    \frac{2t\sqrt t}{2 -x\sqrt{t}}     & = \frac{1}{x'}                                            \\
+    \frac{2 -x\sqrt{t}}{2t\sqrt t}     & = x'                                                      \\
+    \frac{1}{t\sqrt t} - \frac{x}{2t}  & = x'                                                      \\
+    \frac{1}{t} - \frac{x\sqrt{t}}{2t} & = x'\sqrt{t}                                              \\
+    \frac{1}{t}                        & = x'\sqrt{t} + \frac{x\sqrt{t}}{2t}                       \\
+    \frac{1}{t}                        & = x'\sqrt{t} + \frac{x}{2\sqrt{t}}                        \\
+    \frac{1}{t}                        & = x'\sqrt{t} + x(\sqrt{t})'                               \\
+    \frac{1}{t}                        & = (x\sqrt{t})'                                            \\
+    \int \frac{dt}{t}                  & = \int d(x\sqrt{t})'                                      \\
+    \ln |t| + C                        & = x\sqrt{t}                                               \\
+    \frac{\ln |t| + C}{\sqrt{t}}       & = x                                                       \\
+\end{align*}
+
+(1): производная берется по $t$.
+
+Ответ: $\begin{cases}
+        x = \frac{\ln |t| + C}{\sqrt{t}} \\
+        y = -t \frac{\ln |t| + C}{\sqrt{t}} + 4\sqrt{t}
+    \end{cases}$
+
+\section{Найти кривую, касательная к которой отсекает на осях координат такие отрезки, что сумма величин, обратных квадратам длин этих отрезков, равна 1.}
+
+\begin{align*}
+    \frac{1}{\left(\cfrac{xy'-y}{y'}\right)^2} + \frac{1}{(y-xy')^2} & = 1                                                \\
+    \frac{y'^2}{(xy'-y)^2} + \frac{1}{(y-xy')^2}                     & = 1                                                \\
+    y'^2 + 1                                                         & = (y-xy')^2                                        \\
+    y^2 - 2yxy' - (xy')^2 - y'^2 - 1                                 & = 0                                                \\
+    y                                                                & = xy' \pm \sqrt{1 + y'^2}                          \\
+    y'                                                               & = xy'' + y' \pm \frac{y'y''}{\sqrt{1 + y'^2}}      \\
+    0                                                                & = xy'' \pm \frac{y'y''}{\sqrt{1 + y'^2}}           \\
+    0                                                                & = y''\left(x \pm \frac{y'}{\sqrt{1 + y'^2}}\right) \\
+\end{align*}
+
+1 случай: $y''=0 \Rightarrow y'=C \Rightarrow y = C_1 + Cx, C_1=\pm\sqrt{C^2+1}$
+
+2 случай: $x \mp \frac{y'}{\sqrt{1 + y'^2}} = 0$
+
+\begin{align*}
+    y                & = xy' \pm \sqrt{1 + y'^2}                              \\
+    y                & = \mp \frac{y'}{\sqrt{1 + y'^2}}y' \pm \sqrt{1 + y'^2} \\
+    y\sqrt{1 + y'^2} & = \pm 1                                                \\
+    y^2(1 + y'^2)    & = 1                                                    \\
+    y'^2             & = \frac{1}{y^2} - 1                                    \\
+    y'               & = \sqrt{\frac{1}{y^2} - 1}                             \\
+    x                & = \int\frac{dy}{\sqrt{\frac{1}{y^2} - 1}}              \\
+    x                & = -y\sqrt{\frac{1}{y^2} - 1} + C                       \\
+\end{align*}
+
+Ответ: $\begin{cases}
+        y = \pm\sqrt{C^2+1} + Cx \\
+        x = -y\sqrt{\frac{1}{y^2} - 1} + C
+    \end{cases}$ --- это разные случаи
+
+\section{Модель войны, изменение численности армий: $x'=-by$; $y'=-ax$. $a$,$b$ - мощность армий $y$,$x$ соответственно. Описать результат военных действий на фазовом пространстве.}
+
+\[\begin{cases}
+        x' = -by & \text{(1)} \\
+        y' = -ax & \text{(2)} \\
+    \end{cases} \]
+\begin{align*}
+    x                         & = \frac{y'}{-a}                                                                  \\
+    x'                        & = \frac{y''}{-a} \tag{3}                                                         \\
+    \frac{y''}{-a}            & = -by           \tag{4}                                                          \\
+    y''                       & = aby                                                                            \\
+    t := y'                   & \quad y'' = t't                                                                  \\
+    t't                       & = aby                                                                            \\
+    t                         & = \pm\sqrt{aby^2 + C}                                                            \\
+    y'                        & = \pm\sqrt{aby^2 + C}                                                            \\
+    x                         & = \int \frac{dy}{\pm\sqrt{aby^2 + C}}                                            \\
+    z := \sqrt{\frac{ab}{C}}y & \quad dy = \frac{\sqrt C}{\sqrt ab}dz                                            \\
+    x                         & = \int \frac{\sqrt C dz}{\pm\sqrt{ab} \sqrt{Cz^2 + C}}                           \\
+                              & = \frac{1}{\sqrt{ab}}\int \frac{dz}{\pm\sqrt{z^2 + 1}}                           \\
+                              & = \frac{\ln|\sqrt{z^2 + 1} + z|}{\sqrt{ab}} + C                                  \\
+                              & = \frac{\ln|\sqrt{\frac{ab}{C}y^2 + 1} + \sqrt{\frac{ab}{C}}y|}{\sqrt{ab}} + C_1 \\
+\end{align*}
+
+(4): подставили (3) в (1).
+
+\end{document}

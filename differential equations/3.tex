@@ -1,0 +1,158 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №3}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+
+\section{$(\sin y +y\sin x+1/x)dx+(x\cos y-\cos x-1/y)dy=0$}
+
+\[\begin{cases}
+        u'_x = \sin y +y\sin x+1/x \\
+        u'_y = x\cos y-\cos x-1/y
+    \end{cases}\]
+\[u = \int (\sin y +y\sin x+1/x) dx = x\sin y - y\cos x + \ln |x| + g(y)\]
+\[u'_y = x\cos y-\cos x-1/y\]
+\[x\cos y - \cos x + g'(y) = x\cos y-\cos x-1/y\]
+\[g'(y) = -1/y\]
+\[g(y) = -\ln |y|\]
+\[u = x\sin y - y\cos x + \ln |x| - \ln |y|\]
+\[C = x\sin y - y\cos x + \ln |x| - \ln |y|\]
+
+\section{$\cfrac{2xdx}{y^3}+\cfrac{(y^2-3x^2)dy}{y^4}=0$}
+
+\[\begin{cases}
+        u'_x = \cfrac{2x}{y^3} \\
+        u'_y = \cfrac{y^2-3x^2}{y^4}
+    \end{cases}\]
+\[u = \int \cfrac{2x}{y^3} dx = \frac{x^2}{y^3} + g(y)\]
+\[u'_y = \cfrac{y^2-3x^2}{y^4}\]
+\[\frac{-3x^2}{y^4} + g'(y) = \cfrac{y^2-3x^2}{y^4}\]
+\[g'(y) = \cfrac{1}{y^2}\]
+\[g(y) = \cfrac{-1}{y}\]
+\[u = \frac{x^2}{y^3} - \frac{1}{y}\]
+\[C = \frac{x^2}{y^3} - \frac{1}{y}\]
+
+\section{$(1-x^2y)dx+x^2(y-x)dy=0 \quad \mu=\phi(x)$}
+
+Случай $x\equiv0$ подходит.
+
+\[\underbrace{\mu'_y}_{0} (1-x^2y) + x^2(y-x) \mu'_x = ((x^2(y-x))'_x - (1-x^2y)'_y)\mu\]
+\[x^2(y-x) \mu'_x = (-2xy - 3x^2 + x^2)\mu\]
+\[x^2y\mu' - x^3\mu' = -2xy\mu - 2x^2\mu\]
+\[\begin{cases}
+        x^2\mu' = -2x\mu \\
+        -x^3\mu' = -2x^2\mu
+    \end{cases}\]
+\[\frac{\mu'}{\mu} = -\frac{2}{x}\]
+\[\ln |\mu| = -2\ln|x|\]
+\[|\mu| = |x|^{-2}\]
+\[\mu = \pm|x|^{-2}\]
+\[\mu = \pm\frac{1}{x^2}\]
+\[\left(\frac{1}{x^2}-y\right)dx+(y-x)dy=0\]
+\[\begin{cases}
+        u'_x = \frac{1}{x^2}-y \\
+        u'_y = y-x
+    \end{cases}\]
+\[u = \int (y-x)dy = \frac{y^2}{2} - xy + g(x)\]
+\[u'_x = \frac{1}{x^2}-y\]
+\[-y + g'(x) = \frac{1}{x^2}-y\]
+\[g'(x) = \frac{1}{x^2}\]
+\[g(x) = -\frac{1}{x}\]
+\[u = \frac{y^2}{2} - xy - \frac{1}{x}\]
+\[C = \frac{y^2}{2} - xy - \frac{1}{x}\]
+
+Ответ: $x\equiv0$ или $C = \frac{y^2}{2} - xy - \frac{1}{x}$
+
+\section{$(2xy^2-3y^3)dx+(7-3xy^2)dy=0 \quad \mu=\phi(y)$}
+
+Случай $y\equiv0$ подходит.
+
+\[\mu'_y (2xy^2-3y^3) + (7-3xy^2) \underbrace{\mu'_x}_{0} = ((7-3xy^2)'_x - (2xy^2-3y^3)'_y)\mu\]
+\[\mu' (2xy^2-3y^3) = (-3y^2 - 4xy + 9y^2)\mu\]
+\[\mu' (2xy^2-3y^3) = (6y^2 - 4xy)\mu\]
+\[\mu' (2xy-3y^2) = (6y - 4x)\mu\]
+\[\begin{cases}
+        2y\mu' = -4\mu \\
+        -3y^2\mu' = 6y\mu
+    \end{cases}\]
+\[\frac{\mu'}{\mu} = -\frac{2}{y}\]
+\[\mu = \pm y^{-2}\]
+\[(2x-3y)dx+(\frac{7}{y^2}-3x)dy = 0\]
+\[u = \int (2x-3y)dx + g(y) = x^2 -3xy + g(y)\]
+\[-3x + g'(y) = \frac{7}{y^2}-3x\]
+\[g'(y) = \frac{7}{y^2}\]
+\[g(y) = -\frac{7}{y}\]
+\[x^2 -3xy - \frac{7}{y} = C\]
+
+Ответ: $y \equiv 0$ или $x^2 -3xy - \frac{7}{y} = C$
+
+\section{$(3y^2-x)dx+(2y^3-6xy)dy=0$}
+
+\begin{align*}
+    3y^2-x+(2y^3-6xy)y'                              & = 0                            \\
+    t := y^2                                         & \quad y' = \frac{t'}{2\sqrt t} \\
+    3t - x + \frac{2t^{3/2} - 6x\sqrt t}{2\sqrt t}t' & = 0                            \\
+    3t - x + (t-3x)t'                                & = 0                            \\
+    a := \frac{t}{x}                                 & \quad t' = xa' + a             \\
+    3ax - x + (ax - 3x)(xa' + a)                     & = 0                            \\
+    3ax - x + ax^2a' + a^2x - 3x^2a' - 3xa           & = 0                            \\
+    - x + ax^2a' + a^2x - 3x^2a'                     & = 0                            \\
+    - 1 + axa' + a^2 - 3xa'                          & = 0                            \\
+    a'(ax - 3x)                                      & = 1 - a^2                      \\
+    \frac{a'(a - 3)}{1 - a^2}                        & = \frac{1}{x}                  \\
+    \int \frac{a - 3}{1 - a^2}da                     & = \ln |x| + C                  \\
+    \int \frac{1}{a-1}da - 2\int\frac{1}{a+1}da      & = \ln |x| + C                  \\
+    \ln|a-1| - 2\ln|a+1|                             & = \ln |x| + C                  \\
+    \ln|\frac{y^2}{x}-1| - 2\ln|\frac{y^2}{x}+1|     & = \ln |x| + C                  \\
+\end{align*}
+
+\section{$xdx+ydy+x(xdy-ydx)=0$}
+
+\[(x-xy)dx + (y+x^2)dy = 0\]
+\[(\mu(x-xy))'_y=(\mu(y+x^2))'_x\]
+\[\mu'_y(x-xy) - x\mu=\mu'_x(y+x^2) + 2x\mu\]
+\[\mu'_y(x-xy)=\mu'_x(y+x^2) + 3x\mu\]
+Рассмотрим случай $\mu'_y\equiv0$, т.е. $\mu$ --- функция только от $x$.
+\[-\mu'_x(y+x^2) = 3x\mu\]
+\[\not\exists \mu\]
+Рассмотрим случай $\mu'_x\equiv0$, т.е. $\mu$ --- функция только от $y$.
+\[\mu'_y(x-xy)=3x\mu\]
+\[\mu'_y(1-y)=3\mu\]
+\[\frac{\mu'_y}{\mu}=\frac{3}{1-y}\]
+\[\ln|\mu|=-3\ln|1-y|\]
+\[\mu=\pm |1-y|^{-3}\]
+\[\mu=\pm (1-y)^{-3}\]
+\[\frac{x-xy}{(1-y)^3}dx + \frac{y+x^2}{(1-y)^3}dy = 0\]
+\[\begin{cases}
+        u'_x = \cfrac{x-xy}{(1-y)^3} = \cfrac{x}{(1-y)^2} \\
+        \\
+        u'_y = \cfrac{y+x^2}{(1-y)^3}
+    \end{cases}\]
+\[u = \int \frac{x}{(1-y)^2} dx + g(y) = \frac{x^2}{2(1-y)^2} + g(y)\]
+\[-\left(\frac{x^2}{2(1-y)^2}\right)' + g'(y) = \cfrac{y+x^2}{(1-y)^3}\]
+\[\frac{x^2}{(1-y)^3} + g'(y) = \cfrac{y+x^2}{(1-y)^3}\]
+\[g'(y) = \cfrac{y}{(1-y)^3}\]
+\[g(y) = \cfrac{1+2y}{2(1-y)^2}\]
+\[C = \frac{1}{(1-y)^2}\left(\frac{1+2y+x^2}{2}\right)\]
+
+\section{$y'=y^2-2ye^x+e^{2x}+e^x$}
+
+Это уравнение Рикатти.
+
+\[y' = (y - e^x)^2 + e^x\]
+Частное решение $y = e^x$
+
+Найдем общее решение заменой $y = z + e^x \quad y' = z' + e^x$
+
+\[z' + e^x = (z + e^x - e^x)^2 + e^x\]
+\[z' = z^2\]
+\[\frac{z'}{z^2} = 1\]
+\[-\frac{1}{z} = x + C\]
+\[-\frac{1}{y - e^x} = x + C\]
+В ответе решение $-\cfrac{1}{y - e^x} = x + C$ и $y = e^x$
+
+\end{document}

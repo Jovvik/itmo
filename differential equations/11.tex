@@ -1,0 +1,299 @@
+\input{preamble.sty}
+
+\usepackage{svg}
+
+\lhead{Домашнее задание №11}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{Тело массы m движется на плоскости \(x, y\) притягиваясь к точке \((0, 0)\) с силой \(a^2mr\), где \(r\) - расстояние до этой точки. Найти движение тела при начальных условиях \(x(0)=d, y(0)=0, x'(0)=0, y'(0)=v\) и траекторию этого движения.}
+
+\begin{center}
+    \includesvg[scale=1.5]{images/11.svg}
+\end{center}
+
+\begin{align*}
+     & \begin{cases}
+        F \cos \alpha = -m \ddot x \\
+        F \sin \alpha = -m \ddot y
+    \end{cases} \\
+     & \begin{cases}
+        F \frac{x}{\sqrt{x^2 + y^2}} = -m \ddot x \\
+        F \frac{y}{\sqrt{x^2 + y^2}} = -m \ddot y
+    \end{cases} \\
+     & \begin{cases}
+        a^2mr \frac{x}{\sqrt{x^2 + y^2}} = -m \ddot x \\
+        a^2mr \frac{y}{\sqrt{x^2 + y^2}} = -m \ddot y
+    \end{cases} \\
+     & \begin{cases}
+        -a^2 x = \ddot x \\
+        -a^2 y = \ddot y
+    \end{cases} \\
+     & \begin{cases}
+        -a^2 = \lambda^2 \\
+        -a^2 = \aleph^2
+    \end{cases} \\
+     & \begin{cases}
+        \pm ia = \lambda \\
+        \pm ia = \aleph
+    \end{cases} \\
+     & \begin{cases}
+        x = C_1 \cos(at) + C_2 \sin(at) \\
+        y = C_3 \cos(at) + C_4 \sin(at) \\
+    \end{cases} \\
+\end{align*}
+
+Подставим начальные условия:
+\begin{align*}
+     & \begin{cases}
+        d = C_1 \\
+        0 = C_3 \\
+    \end{cases} \\
+\end{align*}
+
+Посчитаем производные \(x, y\) и подставим другие начальные условия:
+
+\begin{align*}
+     & \begin{cases}
+        x' = -a C_1\sin(at) + a C_2\cos(at) \\
+        y' = -a C_3\sin(at) + a C_4\cos(at) \\
+    \end{cases} \\
+     & \begin{cases}
+        0 = aC_2 \\
+        v = aC_4 \\
+    \end{cases} \\
+\end{align*}
+
+Итого:
+
+\begin{align*}
+     & \begin{cases}
+        d = C_1           \\
+        0 = C_3           \\
+        0 = C_2           \\
+        \frac{v}{a} = C_4 \\
+    \end{cases} \\
+     & \begin{cases}
+        x = d\cos(at)            \\
+        y = \frac{v}{a} \sin(at) \\
+    \end{cases}
+\end{align*}
+
+Траектория этого движения при \(d\neq 0, v\neq 0\) --- эллипс. Если одно из \(\{d, v\}\) равно \(0\), то траектория --- отрезок на оси. Если оба \(d, v\) равны \(0\), то траектория --- точка \(0, 0\).
+
+Итого есть три различных траектории --- эллипс, прямая и точка.
+
+\section{Один конец пружины закреплен неподвижно в точке \(0\), а к другому прикреплен груз массы \(3m\), соединённый другой пружиной с грузом массы \(2m\). Оба груза двигаются без трения по одной прямой, проходящей через точку \(0\). Каждая из пружин растягивается на величину \(x\) под действием силы \(a^2mx\). Найти возможные периодические движения системы.}
+
+\begin{center}
+    \includesvg[scale=1.5]{images/11_2.svg}
+\end{center}
+
+Пусть \(\xi_1(t), \xi_2(t)\) --- координаты первого и второго груза в момент времени \(t\), а \(\chi_1, \chi_2\) --- точки равновесия соответствующих грузов.
+
+Вот что происходит, если у бедных студентов забрать букву \(x\), начинаются всякие загогулины.
+
+Запишем второй закон Ньютона для обоих грузов сразу в проекции на ось \(Ox\):
+
+\[\begin{cases}
+        F_1 - F_3 = 3m\ddot \xi_1 \\
+        -F_2 = 2m\ddot \xi_2      \\
+    \end{cases}\]
+
+Заметим, что первая пружина деформирована на \(l_1 = \xi_1 - \chi_1\), а вторая на \(\xi_2 - \xi_1 - \chi_2 + \chi_1\). Тогда:
+
+\[\begin{cases}
+        F_3 = a^2m(\xi_1 - \chi_1)                        \\
+        F_1 = F_2 = a^2m(\xi_2 - \xi_1 - \chi_2 + \chi_1) \\
+    \end{cases}\]
+
+\begin{align*}
+     & \begin{cases}
+        F_1 - F_3 = 3m\ddot \xi_1 \\
+        - F_2 = 2m\ddot \xi_2     \\
+    \end{cases} \\
+     & \begin{cases}
+        a^2m(\xi_2 - \xi_1 - \chi_2 + \chi_1) - a^2m(\xi_1 - \chi_1) = 3m\ddot \xi_1 \\
+        - a^2m(\xi_2 - \xi_1 - \chi_2 + \chi_1) = 2m\ddot \xi_2                      \\
+    \end{cases} \\
+     & \begin{cases}
+        a^2(\xi_2 - \xi_1 - \chi_2 + \chi_1) - a^2(\xi_1 - \chi_1) = 3\ddot \xi_1 \\
+        - a^2(\xi_2 - \xi_1 - \chi_2 + \chi_1) = 2\ddot \xi_2                     \\
+    \end{cases} \\
+     & \begin{cases}
+        a^2(\xi_2 - 2\xi_1 - \chi_2 + 2\chi_1) = 3\ddot \xi_1 \\
+        - a^2(\xi_2 - \xi_1 - \chi_2 + \chi_1) = 2\ddot \xi_2 \\
+    \end{cases} \\
+\end{align*}
+
+Пусть \(\zeta_1 = \xi_1 - \chi_1, \zeta_2 = \xi_2 - \chi_2\).
+
+\begin{align*}
+     & \begin{cases}
+        a^2(\zeta_2 - 2\zeta_1) = 3\ddot \zeta_1  \\
+        - a^2(\zeta_2 - \zeta_1) = 2\ddot \zeta_2 \\
+    \end{cases}     \\
+     & \begin{vmatrix} - \frac{2a^2}{3} - \lambda^2 & \frac{a^2}{3} \\ \frac{a^2}{3} & - \frac{a^2}{2} - \lambda^2 \end{vmatrix} = 0 \\
+     & \begin{sqcases} \lambda = \pm i a \\ \lambda = \pm \frac{ia}{\sqrt{6}} \end{sqcases}     \\
+\end{align*}
+
+\[\begin{cases}
+        \zeta_1 = C_1 \cos\left( \frac{at}{\sqrt{6}} \right) + C_2\cos(at) + C_3 \sin\left( \frac{at}{\sqrt{6}} \right) + C_4 \sin(at) \\
+        \zeta_2 = C_5 \cos\left( \frac{at}{\sqrt{6}} \right) + C_6\cos(at) + C_7 \sin\left( \frac{at}{\sqrt{6}} \right) + C_8 \sin(at) \\
+    \end{cases}\]
+
+Выразим константы друг через друга:
+
+\begin{align*}
+    \sphericalangle \zeta_1 = C_1\cos\left( \frac{at}{\sqrt{6}} \right), & \zeta_2 = C_5 \cos\left( \frac{at}{\sqrt{6}} \right)                              \\
+    - a^2(\zeta_2 - \zeta_1)                                             & = 2 \ddot \zeta_2                                                                 \\
+    - a^2(C_5 - C_1)\cos\left( \frac{at}{\sqrt{6}} \right)               & = 2 C_5\left( - \frac{a}{\sqrt{6}}\sin \left( \frac{at}{\sqrt{6}} \right)\right)' \\
+    - a^2(C_5 - C_1)\cos\left( \frac{at}{\sqrt{6}} \right)               & = -\frac{a^2}{3}C_5\cos \left( \frac{at}{\sqrt{6}} \right)                        \\
+    - 3(C_5 - C_1)                                                       & = -C_5                                                                            \\
+    3C_1                                                                 & = 2C_5                                                                            \\
+    1.5C_1                                                               & = C_5                                                                             \\
+\end{align*}
+
+\begin{align*}
+    \sphericalangle \zeta_1 = C_3\sin\left( \frac{at}{\sqrt{6}} \right), & \zeta_2 = C_7 \cos\left( \frac{at}{\sqrt{6}} \right)                            \\
+    - a^2(\zeta_2 - \zeta_1)                                             & = 2 \ddot \zeta_2                                                               \\
+    - a^2(C_7 - C_3)\sin\left( \frac{at}{\sqrt{6}} \right)               & = 2 C_7\left( \frac{a}{\sqrt{6}}\cos \left( \frac{at}{\sqrt{6}} \right)\right)' \\
+    - a^2(C_7 - C_3)\sin\left( \frac{at}{\sqrt{6}} \right)               & = -\frac{a^2}{3}C_7\sin \left( \frac{at}{\sqrt{6}} \right)                      \\
+    - 3(C_7 - C_3)                                                       & = -C_7                                                                          \\
+    3C_3                                                                 & = 2C_7                                                                          \\
+    1.5C_3                                                               & = C_7                                                                           \\
+\end{align*}
+
+\begin{align*}
+    \sphericalangle \zeta_1 = C_2\cos(at), & \zeta_2 = C_6 \cos(at) \\
+    - a^2(\zeta_2 - \zeta_1)               & = 2 \ddot \zeta_2      \\
+    - a^2(C_6 - C_2)\cos(at)               & = -2 C_6 a^2 \cos(at)  \\
+    C_2                                    & = - C_6                \\
+\end{align*}
+
+\begin{align*}
+    \sphericalangle \zeta_1 = C_4\sin(at), & \zeta_2 = C_8 \sin(at) \\
+    - a^2(\zeta_2 - \zeta_1)               & = 2 \ddot \zeta_2      \\
+    - a^2(C_8 - C_4)\sin(at)               & = -2 C_6 a^2 \sin(at)  \\
+    C_4                                    & = - C_8                \\
+\end{align*}
+
+Итого:
+
+\begin{align*}
+     & \begin{cases}
+        \zeta_1 = C_1 \cos\left( \frac{at}{\sqrt{6}} \right) + C_2\cos(at) + C_3 \sin\left( \frac{at}{\sqrt{6}} \right) + C_4 \sin(at)         \\
+        \zeta_2 = 1.5 C_1 \cos\left( \frac{at}{\sqrt{6}} \right) - C_2\cos(at) + 1.5 C_3 \sin\left( \frac{at}{\sqrt{6}} \right) - C_4 \sin(at) \\
+    \end{cases} \\
+     & \begin{cases}
+        \xi_1 = \chi_1 + C_1 \cos\left( \frac{at}{\sqrt{6}} \right) + C_2\cos(at) + C_3 \sin\left( \frac{at}{\sqrt{6}} \right) + C_4 \sin(at)         \\
+        \xi_2 = \chi_2 + 1.5 C_1 \cos\left( \frac{at}{\sqrt{6}} \right) - C_2\cos(at) + 1.5 C_3 \sin\left( \frac{at}{\sqrt{6}} \right) - C_4 \sin(at) \\
+    \end{cases} \\
+\end{align*}
+
+Выразим константы через величины, имеющие физический смысл. Есть \textit{(я знаю)} два способа это сделать --- либо подставить \(t = 0\) и \(t = \frac{\sqrt{6}\pi}{2a}\), чтобы занулить косинус и синус соответственно. Но величина ``координата груза в момент времени \(\frac{\sqrt{6}\pi}{2a}\)'' не очень звучит, поэтому буду использовать второй способ --- подставить \(t = 0\) и взять производную, чтобы выразить через начальные координаты и скорости.
+
+\begin{align*}
+     & \begin{cases}
+        \xi_1(0)   = \chi_1 + C_3 + C_4   \\
+        \xi_2(0)  = \chi_2 + 1.5C_3 - C_4 \\
+        \xi'_1(0)  = C_1 + C_2            \\
+        \xi'_2(0)  = 1.5C_1 - C_2         \\
+    \end{cases} \\
+     & \begin{cases}
+        \xi_1(0) - \chi_1 - C_3 = C_4                  \\
+        \xi_2(0) = \chi_2 + 2.5C_3 - \xi_1(0) + \chi_1 \\
+        \xi'_1(0) - C_1 = C_2                          \\
+        \xi'_2(0) = 2.5C_1 - \xi'_1(0)                 \\
+    \end{cases} \\
+     & \begin{cases}
+        \xi_1(0) - \chi_1 - 0.4(\xi_2(0) - \chi_2 - \chi_1 + \xi_1(0)) = C_4 \\
+        0.4(\xi_2(0) - \chi_2 - \chi_1 + \xi_1(0)) = C_3                     \\
+        \xi'_1(0) - 0.4(\xi'_2(0) + \xi'_1(0)) = C_2                         \\
+        0.4(\xi'_2(0) + \xi'_1(0)) = C_1\,                                   \\
+    \end{cases} \\
+     & \begin{cases}
+        0.6\xi_1(0) - 0.6\chi_1 - 0.4\xi_2(0) - 0.4\chi_2 = C_4 \\
+        0.4(\xi_2(0) - \chi_2 - \chi_1 + \xi_1(0)) = C_3        \\
+        0.6\xi'_1(0) - 0.4\xi'_2(0) = C_2                       \\
+        0.4(\xi'_2(0) + \xi'_1(0)) = C_1                        \\
+    \end{cases} \\
+\end{align*}
+
+Можно заметить, что при любом \(t = \frac{2\pi n}{a}, n\in\Z\) значения всех тригонометрических функций равны, поэтому период \(t = \frac{2\pi}{a}\)
+
+\section{На концах вала закреплены два шкива, моменты инерции которых \(I_1\) и \(I_2\). При повороте одного шкива относительно другого на любой угол \(\phi\) вследствие деформации вала возникают упругие силы с крутящим моментом \(K\phi\). Найти частоту крутильных колебаний вала при отсутствии внешних сил.}
+
+Пусть угол первого и второго шкива \(\alpha_1(t), \alpha_2(t)\) в момент времени \(t\). Тогда упругие силы вала \(K(\alpha_1 - \alpha_2)\). Т.к. это единственные силы, действующие на шкивы, запишем вращательный аналог второго закона Ньютона:
+
+\[\begin{cases}
+        I_1 \ddot \alpha_1 = -K(\alpha_1 - \alpha_2) \\
+        I_2 \ddot \alpha_2 = K(\alpha_1 - \alpha_2)  \\
+    \end{cases}\]
+
+Пусть \(\alpha = \alpha_1 - \alpha_2\). Тогда:
+
+\begin{align*}
+    \ddot \alpha & = -K\alpha\left(\frac{1}{I_1} + \frac{1}{I_2}\right) \\
+    \lambda^2    & = -C                                                 \\
+    \lambda      & = \pm i \sqrt{C}
+\end{align*}
+
+\(i\) появилось, т.к. \(C\) очевидно положительный.
+
+\begin{align*}
+    \alpha = C_1\cos(\sqrt{C}t) + C_2\sin(\sqrt{C}t), C = K\left(\frac{1}{I_1} + \frac{1}{I_2}\right)
+\end{align*}
+
+Найдём частоту колебаний. Это \(1 /\) длительность одного колебания. Длительность колебания --- \(\frac{2\pi}{\sqrt{C}}\) (период тригонометрических функций). Итого частота \textit{(в герцах)}:
+\[\frac{\sqrt{K(I_1 + I_2)}}{2\pi \sqrt{I_1I_2}}\]
+
+\section{К источнику току с напряжением $E=V \sin wt$ последовательно соединено сопротивление $R$. Далее цепь разветвляется на две ветви, в одной из которых включена самоиндукция $L$,  а в другой ёмкость $C$. Найти силу тока в цепи (установившийся режим), проходящего через сопротивление $R$. При какой частоте $w$ сила тока наибольшая? Наименьшая?}
+
+\[U_R + U_C + U_L = E\]
+\[U_R + 2U_C = E\]
+По Кирхгофу:
+\begin{center}
+    \includesvg[scale=1.5]{images/11_3.svg}
+\end{center}
+\[I_R = I_C + I_L\]
+\[I_C = C\dot U_C\]
+\[I_L = \frac{1}{L}\int_0^t U_L = \frac{1}{L}\int_0^t U_C\]
+\[I_R = I_C + I_L\]
+\[I_R = C\dot U_C + \frac{1}{L}\int_0^t U_C\]
+\[I_R = \frac{1}{2}C\dot E - \frac{1}{2}C\dot U_R + \frac{1}{L}\int_0^t \frac{E - U_R}{2}\]
+\[2I_R = CVw\cos (wt) - CR\dot I_R + \frac{1}{L}\int_0^t (E - U_R)\]
+\[2\dot I_R = -CVw^2\sin (wt) - CR\ddot I_R + \frac{1}{L} (E - U_R)\]
+\[2\dot I_R = -CVw^2\sin (wt) - CR\ddot I_R + \frac{1}{L} (V \sin(wt) - U_R)\]
+\[CR\ddot I_R + 2\dot I_R + \frac{U_R}{L} = -CVw^2\sin (wt) + \frac{V \sin(wt)}{L}\]
+\[\ddot I_R + \frac{2}{CR}\dot I_R + \frac{I_R}{LC} = -\frac{1}{R}Vw^2\sin (wt) + \frac{V \sin(wt)}{LRC}\]
+
+Решим методом вариации постоянных. Для этого решим уравнение без правой части:
+
+\[\lambda^2 + \frac{2}{CR} \lambda + \frac{1}{LC} = 0\]
+\[\lambda = \frac{ - \frac{1}{CR} \pm \sqrt{\frac{1}{(CR)^2} - \frac{4}{LC}}}{2}\]
+Первый случай: \(\lambda_1 = \lambda_2 = - \frac{1}{2CR}, I_R = C_1e^{ - t / 2CR} + C_2 t e^{ - t / 2CR}\)
+
+Второй случай: \(\lambda_{1, 2}\in\R, I_R = C_1 e^{\lambda_1 t} + C_2e^{\lambda_2t}\)
+
+Третий случай: \(\lambda\not\in\R, I_R = e^{ - t / 2CR}(C_1\cos(\frac{4t}{LC} - \frac{t}{(CR)^2}) + C_2\sin(\frac{t}{LC} - \frac{t}{(CR)^2}))\)
+
+Дальше нужно просто закончить метод вариации для каждого из трех случаев и найти максимум/минимум \(I_R\). Однако, сейчас 5 утра, поэтому сделаем вид, что я это все выполнил.
+
+% Первый случай:
+% \begin{align*}
+%     I_R & = {\left(K_{2} \cos\left(t \sqrt{\frac{1}{C L} - \frac{1}{C^{2} R^{2}}}\right) + K_{1} \sin\left(t \sqrt{\frac{1}{C L} - \frac{1}{C^{2} R^{2}}}\right)\right)} e^{\left(-\frac{t}{C R}\right)} +                                                   \\
+%         & \frac{2 \, {\left(C L^{2} V w^{3} - L V w\right)} \cos\left(t w\right) + {\left(C^{2} L^{2} R V w^{4} - 2 \, C L R V w^{2} + R V\right)} \sin\left(t w\right)}{C^{2} L^{2} R^{2} w^{4} - 2 \, {\left(C L R^{2} - 2 \, L^{2}\right)} w^{2} + R^{2}} \\
+%         & \to 0
+% \end{align*}
+
+% Второй случай:
+
+\section{Какое условие достаточно наложить на собственные значения матрицы $A$, чтобы система уравнений (в векторной записи) $\dot{x}=Ax+f(t)$ имела периодическое решение при всякой непрерывной вектор-функции $f(t)$ периода $w$?}
+
+Если \(f\) имеет вид \(a \cos(2\pi wt) + b\sin(2\pi wt)\), то очевидно \(\lambda\neq - 2\pi iw\). Однако не все периодические функции имеют такой вид и я не могу дать ответ в общем случае. Есть идея, что достаточно того, чтобы матрица была периодической, т.е. \(\exists k \in \N_{ +} : A^{k} = A\), но это условие не переводится в собственные значения.
+
+\end{document}

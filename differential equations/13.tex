@@ -1,0 +1,272 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №13}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+\usepackage{float}\usepackage{subcaption}\usepackage{svg}
+
+\begin{document}
+
+\section{\(y'''' + y'' = 7x - 3\cos x\)}
+
+Найдем решение частного уравнения \(y'''' + y'' = 0\)
+
+\begin{align*}
+    y'''' + y''           & = 0                                  \\
+    \lambda^4 + \lambda^2 & = 0                                  \\
+                          & \begin{sqcases}
+        \lambda = 0 \\
+        \lambda = \pm i
+    \end{sqcases}            \\
+    y                     & = C_1 + C_2x + C_3\sin x + C_4\cos x \\
+\end{align*}
+
+Особое решение уравнения это сумма особых решений уравнений с \(7x\) и \( - 3\cos x\).
+
+Для \(7x\) решение \(x^2(D_1 + D_2 x)\), для \( - 3\cos x\) решение \(x(D_3\cos x + D_4\sin x)\). Тогда частное решение имеет вид \(x^2(D_1 + D_2 x) + x(D_3\cos x + D_4\sin x)\), где \(D_i\) --- константа. Найдем их.
+
+\begin{align*}
+    y     & = x^2(D_1 + D_2 x) + x(D_3\cos x + D_4\sin x)                                                       \\
+    y'    & = 2x D_1 + 3x^2 D_2 + D_3\cos x + D_4\sin x - xD_3\sin x + xD_4\cos x                               \\
+    y''   & = 2 D_1 + 6x D_2 - D_3\sin x + D_4\cos x - D_3\sin x + D_4\cos x - xD_3\cos x - xD_4\sin x          \\
+          & = 2 D_1 + 6x D_2 - 2D_3\sin x + 2D_4\cos x - xD_3\cos x - xD_4\sin x                                \\
+    y'''  & = 6 D_2 - 2D_3\cos x - 2D_4\sin x - D_3\cos x - D_4\sin x + xD_3\sin x - xD_4\cos x                 \\
+    y'''' & = 2D_3\sin x - 2D_4\cos x + D_3\sin x - D_4\cos x + D_3\sin x - D_4\cos x + xD_3\cos x + xD_4\sin x \\
+          & = 4D_3\sin x - 4D_4\cos x + xD_3\cos x + xD_4\sin x                                                 \\
+\end{align*}
+
+Подставим в исходное уравнение:
+
+\begin{align*}
+    2 D_1 + 6x D_2 - 2D_3\sin x + 2D_4\cos x - xD_3\cos x - xD_4\sin x   \\
+    + 4D_3\sin x - 4D_4\cos x + xD_3\cos x + xD_4\sin x & = 7x - 3\cos x \\
+    2 D_1 + 6x D_2 + 2D_3\sin x - 2D_4\cos x            & = 7x - 3\cos x
+\end{align*}
+
+\[\begin{cases}
+        D_1 = 0           \\
+        D_2 = \frac{7}{6} \\
+        D_3 = 0           \\
+        D_4 =- \frac{3}{2}
+    \end{cases}\]
+
+Итого особое решение:
+\[y = \frac{7}{6} x^3 - \frac{3}{2}x\sin x\]
+
+Прибавим к общему и получим ответ:
+\[y = C_1 + C_2x + C_3\sin x + C_4\cos x + \frac{7}{6} x^3 - \frac{3}{2}x\sin x\]
+
+\section{\(y''+2y'+y=3e^{- x}\sqrt{x + 1}\)}
+
+Найдем решение частного уравнения \(y'' + 2y' + y = 0\)
+
+\begin{align*}
+    \lambda^2 + 2\lambda + 1 & = 0                           \\
+    \lambda                  & = -1                          \\
+    y                        & = C_1 e^{ -x} + C_2 e^{ -x} x \\
+\end{align*}
+
+\begin{align*}
+    \mathcal{W} & = \begin{vmatrix} e^{ - x} & e^{ - x}x \\ (e^{ - x})' & (xe^{ - x})' \end{vmatrix}           \\
+                & = \begin{vmatrix} e^{ - x} & e^{ - x}x \\ -e^{ - x} & e^{ - x} - xe^{ - x} \end{vmatrix}           \\
+                & = e^{ - 2x} - xe^{ - 2x} + xe^{ - 2x} \\
+                & = e^{ - 2x}
+\end{align*}
+
+\begin{align*}
+    y_1 & = -\int \frac{3e^{- x}\sqrt{x + 1} e^{ - x}}{W} dx         \\
+        & = -\int \frac{3e^{- x}\sqrt{x + 1} e^{ - x}}{e^{ - 2x}} dx \\
+        & = -\int 3\sqrt{x + 1}                                      \\
+        & = -2\sqrt{x + 1}^3                                         \\
+\end{align*}
+
+\begin{align*}
+    y_2 & = \int \frac{3e^{- x}\sqrt{x + 1} xe^{ - x}}{W} dx         \\
+        & = \int \frac{3e^{- x}\sqrt{x + 1} xe^{ - x}}{e^{ - 2x}} dx \\
+        & = \int 3x\sqrt{x + 1}                                      \\
+        & = \frac{2}{5}\sqrt{x + 1}^3(3x - 2)                        \\
+\end{align*}
+
+Тогда особое решение это
+\[y_1xe^{ - x} + y_2e^{ - x} = -2\sqrt{x + 1}^3xe^{ - x} + \frac{2}{5}\sqrt{x + 1}^3(3x - 2) e^{ - x} = 2\sqrt{x + 1}^3e^{ - x}\left( - x + \frac{2}{5}(3x - 2) \right)\]
+\[ = \frac{4}{5}\sqrt{x + 1}^5e^{ - x}\]
+
+И итоговое решение:
+\[\frac{4}{5}\sqrt{x + 1}^5e^{ - x} + C_1 e^{ -x} + C_2 e^{ -x} x\]
+
+\section{Запишите общее решение, используя вещественный базис: \(x'=x-y-z, y'=x+y, z'=3x+z\)}
+
+\[\begin{cases}
+        x' = x - y - z \\
+        y' = x + y     \\
+        z' = 3x + z
+    \end{cases}\]
+
+Матрица системы:
+\[\begin{pmatrix} 1 & - 1 & - 1 \\ 1 & 1 & 0 \\ 3 & 0 & 1 \end{pmatrix} \]
+\begin{align*}
+    \begin{vmatrix}
+        1 - \lambda & - 1         & - 1         \\
+        1           & 1 - \lambda & 0           \\
+        3           & 0           & 1 - \lambda
+    \end{vmatrix} & = 1 - \lambda + (1 - \lambda)((1 - \lambda)^2 + 3)                           \\
+                               & = 1 - \lambda + (1 - \lambda)(4 + \lambda^2 - 2\lambda)                      \\
+                               & = 1 - \lambda + 4 + \lambda^2 - 2\lambda - 4\lambda - \lambda^3 + 2\lambda^2 \\
+                               & = 5 - 7\lambda - \lambda^3 + 3\lambda^2
+\end{align*}
+
+\[\begin{sqcases}
+        \lambda = 1 \\
+        \lambda = 1 \pm 2i
+    \end{sqcases}\]
+
+\[\sphericalangle \lambda = 1 \quad f_{(1)} = \begin{pmatrix} 0 \\ 1 \\ - 1 \end{pmatrix}\]
+\[\sphericalangle \lambda = 1 \pm 2i \quad f_{(2, 3)} = \begin{pmatrix} \pm 2i \\ 1 \\ 3 \end{pmatrix}\]
+
+Таким образом, мы набрали базис:
+\begin{align*}
+    \begin{pmatrix} x \\ y \\ z \end{pmatrix} & = C_1 e^t \begin{pmatrix} 0 \\ 1 \\ - 1 \end{pmatrix} + C_2 e^{(1 + 2i)t} \begin{pmatrix} 2i \\ 1 \\ 3 \end{pmatrix} + C_3 e^{(1 - 2i)t} \begin{pmatrix} -2i \\ 1 \\ 3 \end{pmatrix}                         \\
+                               & = C_1 e^t \begin{pmatrix} 0 \\ 1 \\ - 1 \end{pmatrix} + C_2 e^{t}(\cos 2t + i\sin 2t) \begin{pmatrix} 2i \\ 1 \\ 3 \end{pmatrix} + C_3 e^{t}(\cos 2t - i\sin 2t) \begin{pmatrix} -2i \\ 1 \\ 3 \end{pmatrix} \\
+                               & = C_1 e^t \begin{pmatrix} 0 \\ 1 \\ - 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \\ 3 \end{pmatrix} (C_2 e^{t}(\cos 2t + i\sin 2t) + C_3 e^{t}(\cos 2t - i\sin 2t))                          \\
+                               & \quad + \begin{pmatrix} 2i \\ 0 \\ 0 \end{pmatrix} (C_2 e^{t}(\cos 2t + i\sin 2t) - C_3 e^{t}(\cos 2t - i\sin 2t))                                                         \\
+                               & = C_1 e^t \begin{pmatrix} 0 \\ 1 \\ - 1 \end{pmatrix} + C_2e^t \begin{pmatrix} - 2\sin 2t \\ \cos 2t \\ 3\cos 2t \end{pmatrix} + C_3 \begin{pmatrix} 2\cos 2t \\ \sin 2t \\ 3 \sin 2t \end{pmatrix}
+\end{align*}
+
+\section{Решить систему: \(x'=y-5\cos t, y'=2x+y\)}
+
+\[\begin{cases}
+        \dot x = y - 5\cos t \\
+        \dot y = 2x + y
+    \end{cases}\]
+\[\begin{cases}
+        \dot x = y - 5\cos t \\
+        \ddot y = 2\dot x + \dot y
+    \end{cases}\]
+\[\begin{cases}
+        \dot x = y - 5\cos t \\
+        \ddot y = 2y - 10\cos t + \dot y
+    \end{cases}\]
+
+Решим \(\ddot y = 2y - 10\cos t + \dot y\).
+
+Найдем решение частного уравнения \(\ddot y - \dot y - 2y = 0\)
+
+\begin{align*}
+    \lambda^2 - \lambda - 2 & = 0                         \\
+    \begin{sqcases}
+        \lambda = 2 \\
+        \lambda = - 1
+    \end{sqcases}
+    y                       & = C_1 e^{ - t} + C_2 e^{2t} \\
+\end{align*}
+
+Пусть \(C_1 = Z_1(t), C_2 = Z_2(t)\).
+
+\[\begin{cases}
+        Z_1'(t)e^{ - t} + Z_2'(t) e^{2t} = 0 \\
+        -Z_1'(t)e^{ - t} + 2Z_2'(t) e^{2t} = - 10\cos t
+    \end{cases}\]
+\[\begin{cases}
+        Z_1'(t)e^{ - t} + Z_2'(t) e^{2t} = 0 \\
+        3Z_2'(t) e^{2t} = - 10\cos t
+    \end{cases}\]
+\[\begin{cases}
+        Z_1'(t)e^{ - t} + Z_2'(t) e^{2t} = 0 \\
+        3Z_2'(t) e^{2t} = - 10\cos t
+    \end{cases}\]
+
+\begin{align*}
+    Z_2'(t) & = - \frac{10}{3}\cos t e^{ -2t}                  \\
+    Z_2(t)  & = - \frac{10}{3}\int \cos t e^{ -2t} dt          \\
+            & = - \frac{2}{3}e^{ - 2t}(\sin t - 2\cos t) + C_1 \\
+\end{align*}
+
+\begin{align*}
+    Z_1'(t)e^{ - t} & = - Z_2'(t) e^{2t}                       \\
+                    & = \frac{10}{3}\cos t e^t                 \\
+    Z_1(t)          & = \frac{5}{3} e^t(\sin t + \cos t) + C_2
+\end{align*}
+
+\begin{align*}
+    y  & = Z_1 e^{ - t} + Z_2 e^{2t}                                                                                                             \\
+       & = \left( \frac{5}{3} e^t(\sin t + \cos t) + C_2 \right) e^{ - t} + \left( - \frac{2}{3}e^{ - 2t}(\sin t - 2\cos t) + C_1 \right) e^{2t} \\
+       & = e^{ - t} C_2 + C_1 e^{2t} + \frac{5}{3} (\sin t + \cos t) - \frac{2}{3}(\sin t - 2\cos t)                                             \\
+       & = e^{ - t} C_2 + C_1 e^{2t} + \sin t + 3\cos t                                                                                          \\
+    y' & = -e^{ - t} C_2 + 2C_1 e^{2t} + \cos t - 3\sin t                                                                                        \\
+\end{align*}
+
+\begin{align*}
+    \dot y & = 2x + y                                                                                                  \\
+    x      & = \frac{\dot y - y}{2}                                                                                    \\
+           & = \frac{-e^{ - t} C_2 + 2C_1 e^{2t} + \cos t - 3\sin t - e^{ - t} C_2 - C_1 e^{2t} - \sin t - 3\cos t}{2} \\
+           & = \frac{- 2e^{ - t} C_2 + C_1 e^{2t} - 4\sin t - 2\cos t}{2}                                              \\
+           & = -e^{ - t} C_2 + \frac{C_1}{2} e^{2t} - 2\sin t - \cos t                                                 \\
+\end{align*}
+
+Ответ:
+\[\begin{cases}
+        x = -e^{ - t} C_2 + \frac{C_1}{2} e^{2t} - 2\sin t - \cos t \\
+        y = e^{ - t} C_2 + C_1 e^{2t} + \sin t + 3\cos t
+    \end{cases}\]
+
+\section{}
+
+\section{Сделайте эскиз фазового портрета в окрестностях особых точек}
+
+\[\begin{cases}
+        \dot x = y + x - 4 \\
+        \dot y = 3y - x
+    \end{cases}\]
+
+Найдем особые точки.
+
+\[\begin{cases}
+        \dot x = 0 \\
+        \dot y = 0
+    \end{cases}\]
+
+\[\begin{cases}
+        y + x - 4 = 0 \\
+        3y - x = 0
+    \end{cases}\]
+
+\[\begin{cases}
+        y = 1 \\
+        x = 3
+    \end{cases}\]
+
+Перейдем в систему координат, в которой в уравнениях нет свободного члена:
+
+\[\tilde x : = x + 3, \tilde y : = y + 1\]
+\[\begin{cases}
+        \dot{\tilde x} = \tilde y + \tilde x \\
+        \dot{\tilde y} = 3\tilde y - \tilde x
+    \end{cases}\]
+
+Тогда уравнения описываются матрицей \(A\):
+
+\[A = \begin{pmatrix} 1 & 1 \\ - 1 & 3 \end{pmatrix} \]
+
+Найдем её собственные значения.
+
+\[\begin{vmatrix} 1 - \lambda & 1 \\ - 1 & 3 - \lambda \end{vmatrix} = (1 - \lambda)(3 - \lambda) + 1 = 4 + \lambda^2 - 4 \lambda\]
+\[\lambda = 2\]
+
+Собственные значения положительные действительные, поэтому рассматриваемая точка --- неустойчивый узел и фазовый портрет выглядит так:
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includesvg[width=.9\textwidth]{images/Phase_Portrait_Unstable_Node.svg}
+        \caption{Фазовый портрет согласно википедии}
+    \end{subfigure}
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=.9\textwidth]{images/matlab.png}
+        \caption{Часть фазового портрета в матлабе}
+    \end{subfigure}
+\end{figure}
+
+\end{document}

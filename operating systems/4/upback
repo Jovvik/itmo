@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+shopt -s extglob
+
+LAST_BACKUP=$(find "$HOME" -maxdepth 1 -type d -name "Backup-*" | sort -t- -k2 -k3 -k4 | tail -n1)
+
+for filename in "$LAST_BACKUP/"*
+do
+    if [ -z "$(find "$LAST_BACKUP" -name "$(basename "$filename").*")" ]
+    then
+        if [[ ! "$(basename "$filename")" =~ .*[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2} ]]
+        then
+            cp "$filename" "$HOME/restore/$(basename "$filename")"
+        fi
+    fi
+done

@@ -1,0 +1,202 @@
+\input{preamble.sty}
+
+\lhead{Домашнее задание №12}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{}
+
+Линейной заменой уничтожить член с первой производной. \(x^2y''-2xy'+(x^2+2)y=0\). Указать через пробел замену и получившиеся уравнение.
+
+\[
+    y : = a(x) z \quad y' = a'z + az' \quad y'' = a''z + az'' + 2a'z'
+\]
+
+\begin{align*}
+    x^2y''-2xy'+(x^2+2)y\,                                     & = 0            \\
+    x^2(a''z + az'' + 2a'z') - 2x(a'z + az') + (x^2+2) az      & = 0            \\
+    x^2a''z + x^2az'' + 2x^2a'z' - 2xa'z - 2xaz' + x^2az + 2az & = 0            \\
+    x^2a''z + x^2az'' + z'(2x^2a' - 2xa) - 2xa'z + x^2az + 2az & = 0            \\
+    2x^2 a' - 2xa                                              & = 0            \\
+    x a' - a                                                   & = 0            \\
+    a'                                                         & = \frac{a}{x}  \\
+    \frac{da}{a}                                               & = \frac{dx}{x} \\
+    \ln|a|                                                     & = \ln|x| + C   \\
+    |a|                                                        & = |x|e^C       \\
+    a                                                          & = \pm xe^C     \\
+    a                                                          & = xC           \\
+    a'                                                         & = C            \\
+    a''                                                        & = 0            \\
+    x^2z''xC - 2xzC + x^2zxC + 2zxC                            & = 0            \\
+    x^2z''xC + x^2zxC                                          & = 0            \\
+    x^3C(z'' + z)                                              & = 0            \\
+\end{align*}
+
+\section{}
+
+Заменой независимого переменного уничтожить член с первой производной. \(xy''-y'-4x^3y=0\). Указать через пробел замену и получившиеся уравнение.
+
+\[
+    t : = \varphi(x) \quad y'_x = \varphi'_x y'_t \quad y''_{xx} = \varphi''_{xx} y'_t + (\varphi'_x)^2 y''_{tt}
+\]
+
+\begin{align*}
+    xy''-y'-4x^3y & = 0 \\
+\end{align*}
+Далее все производные \(y\) берутся по \(t\), все производные \(\varphi\) --- по \(x\)
+\begin{align*}
+    x(\varphi'' y' + \varphi'^2 y'')-\varphi' y' - 4x^3y & = 0                \\
+    x\varphi'' y' + x\varphi'^2 y''-\varphi' y' - 4x^3y  & = 0                \\
+    x\varphi'^2 y'' + (x\varphi'' - \varphi') y' - 4x^3y & = 0                \\
+    x\varphi'' - \varphi'                                & = 0                \\
+    x\varphi''                                           & = \varphi'         \\
+    t : = \varphi'                                                            \\
+    xt'                                                  & = t                \\
+    t                                                    & = xC               \\
+    \varphi'                                             & = xC               \\
+    \varphi                                              & = \frac{xC}{2} + A \\
+    \varphi''                                            & = C                \\
+    x^3C^2 y'' - 4x^3y                                   & = 0                \\
+\end{align*}
+
+\section{}
+
+Найти линейно независимое решение в виде ряда. \((1 - x^2)y'' - 4xy' - 2y = 0\). Собрать ряды в функцию. Если ответов несколько указать через пробел.
+
+Пусть \(y = \sum\limits_{n = 0}^{ +\infty} a_n x^n\)
+
+\begin{align*}
+    (1 - x^2)y'' - 4xy' - 2y                                                                                                                                                  & = 0 \\
+    (1 - x^2)\sum\limits_{n = 2}^{ +\infty} n(n - 1) a_n x^{n - 2} - 4x\sum\limits_{n = 1}^{ +\infty} na_n x^{n - 1} - 2\sum\limits_{n = 0}^{ +\infty} a_n x^n                & = 0 \\
+    \sum\limits_{n = 2}^{ +\infty} n(n - 1) a_n (x^{n - 2} - x^n) - 4\sum\limits_{n = 1}^{ +\infty} na_n x^n - 2\sum\limits_{n = 0}^{ +\infty} a_n x^n                        & = 0 \\
+    \sum\limits_{n = 2}^{ +\infty} n(n - 1) a_n (x^{n - 2} - x^n) - 4\sum\limits_{n = 2}^{ +\infty} na_n x^n - 4a_1x - 2\sum\limits_{n = 2}^{ +\infty} a_n x^n - 2a_0 - 2a_1x & = 0 \\
+    \sum\limits_{n = 2}^{ +\infty} \left( n(n - 1) a_n (x^{n - 2} - x^n) - 4 na_n x^n - 2 a_n x^n\right) - 2a_0 - 6a_1x                                                       & = 0 \\
+\end{align*}
+
+Все коэффициенты при \(x_n\) равны \(0\):
+
+\begin{align*}
+     & \begin{cases}
+        a_0 = a_2       \\
+        6a_3 - 6a_1 = 0 \\
+        (n + 1)(n + 2) a_{n + 2} - n(n - 1)a_{n} - 4na_n - 2a_n = 0
+    \end{cases} \\
+     & \begin{cases}
+        a_0 = a_2 \\
+        a_1 = a_3 \\
+        (n^2 + 3n + 2) a_{n + 2} = (n^2 - n + 4n + 2)a_n
+    \end{cases} \\
+     & \begin{cases}
+        a_0 = a_2 \\
+        a_1 = a_3 \\
+        (n^2 + 3n + 2) a_{n + 2} = (n^2 + 3n + 2)a_n
+    \end{cases} \\
+     & \begin{cases}
+        a_0 = a_2 \\
+        a_1 = a_3 \\
+        a_{n + 2} = a_n
+    \end{cases} \\
+\end{align*}
+
+Пусть \(a_0 = 1, a_1 = 0\). Тогда \(y = \sum\limits_{n = 0}^{ +\infty} x^{2n}\). При \(x \in ( - 1, 1)\) этот ряд сходится к \(\cfrac{1}{1 - x^2}\), иначе этот ряд не сходится.
+
+Пусть \(a_0 = 0, a_1 = 1\). Тогда \(y = \sum\limits_{n = 0}^{ +\infty} x^{2n + 1}\). При \(x \in ( - 1, 1)\) этот ряд сходится к \(\cfrac{x}{1 - x^2}\), иначе этот ряд не сходится.
+
+\section{}
+
+Решить \(y'^4- y'^2=y^2\). Условия Коши \(y(-2 \sqrt 3)=-2 \sqrt 3\), рассмотрите \(x,y<0\) укажите \(y(-\pi/3)\).
+
+\(y \equiv 0\) --- решение
+
+\begin{align*}
+    y'^4- y'^2                                                                       & = y^2 \\
+    p : = y'                                                                                 \\
+    p^4 - p^2                                                                        & = y^2 \\
+    \pm \sqrt{p^4 - p^2}                                                             & = y   \\
+    \pm \frac{(4p^3 - 2p)dp}{2\sqrt{p^4 - p^2}}                                      & = dy  \\
+    \pm \frac{(4p^3 - 2p)dp}{2\sqrt{p^4 - p^2}}                                      & = pdx \\
+    \pm \frac{(2p^3 - 1)dp}{\sqrt{p^4 - p^2}}                                        & = dx  \\
+    \pm \frac{(2p^3 - 1)dp}{p\sqrt{p^2 - 1}}                                         & = dx  \\
+    \pm \int \frac{(2p^3 - 1)dp}{p\sqrt{p^2 - 1}}                                    & = x   \\
+    \pm \int \frac{2p^2dp}{\sqrt{p^2 - 1}} \mp \int \frac{dp}{p \sqrt{p^2 - 1}}      & = x   \\
+    \pm \sqrt{p^2 - 1}p \pm \ln(2p + 2 \sqrt{p^2 - 1}) \pm \arcsin \frac{1}{|p|} + C & = x   \\
+\end{align*}
+
+\[
+    \begin{cases}
+        y = \pm \sqrt{p^2 - 1}p \\
+        x = \pm \sqrt{p^2 - 1}p \pm \ln(2p + 2 \sqrt{p^2 - 1}) \pm \arcsin \frac{1}{|p|} + C
+    \end{cases}
+\]
+
+Подставим условие Коши:
+
+\begin{align*}
+     & \begin{cases}
+        -2 \sqrt{3} = \pm \sqrt{p^2 - 1}p \\
+        -2 \sqrt{3} = -2 \sqrt{3} \pm \ln(2p + 2 \sqrt{p^2 - 1}) \pm \arcsin \frac{1}{|p|} + C
+    \end{cases} \\
+     & \begin{cases}
+        -2 \sqrt{3} = \pm \sqrt{p^2 - 1}p \\
+        0 = \pm \ln(2p + 2 \sqrt{p^2 - 1}) \pm \arcsin \frac{1}{|p|} + C
+    \end{cases} \\
+\end{align*}
+
+Таким образом, есть два случая: \( p\in \{ \mp 2, \pm i\sqrt{3} \}\). Хочется верить, что в комплексные числа лезть не надо, поэтому рассмотрим \(p = \mp 2\).
+
+\begin{align*}
+    0                                         & = \pm \ln( \mp 4 + 2 \sqrt{3}) \pm \arcsin \frac{1}{2} + C \\
+    0                                         & = - \ln(4 + 2 \sqrt{3}) - \arcsin \frac{1}{2}          + C \\
+    \ln(4 + 2 \sqrt{3}) + \arcsin \frac{1}{2} & = C                                                        \\
+\end{align*}
+
+Найдём \(y( -\frac{\pi}{3})\):
+
+\begin{align*}
+     & \begin{cases}
+        y = -\sqrt{p^2 - 1}p \\
+        -\frac{\pi}{3} = -\sqrt{p^2 - 1}p - \ln(2p + 2 \sqrt{p^2 - 1}) - \arcsin \frac{1}{|p|} + \ln(4 + 2 \sqrt{3}) + \arcsin \frac{1}{2}
+    \end{cases} \\
+\end{align*}
+
+\(p\approx 1.35475\). \(y \approx -1.2382\)
+
+\section{}
+
+$2y'^2(y-xy')=1$. Коши $y(1)=55/18$. Найти $y(1/9)$
+
+\begin{align*}
+    2y'^2(y-xy')       & = 1                              \\
+    p : = y'                                              \\
+    y                  & = px + C                         \\
+    2p^2 (px + C - px) & = 1                              \\
+    2p^2 C             & = 1                              \\
+    C                  & = \frac{1}{2p^2}                 \\
+    y                  & = px + \frac{1}{2p^2}            \\
+    dy                 & = pdx + xdp - \frac{dp}{p^3}     \\
+    pdx                & = pdx + xdp - \frac{dp}{p^3}     \\
+    0                  & = xdp - \frac{dp}{p^3}           \\
+    x                  & = \frac{1}{p^3}                  \\
+    x^\frac{1}{3}      & = \frac{1}{p}                    \\
+    y'                 & = \frac{1}{x^\frac{1}{3}}        \\
+    \int y' dx         & = \int \frac{dx}{x^\frac{1}{3}}  \\
+    y                  & = \frac{3}{2}x^{\frac{2}{3}} + C \\
+\end{align*}
+
+Подставим условие Коши:
+\begin{align*}
+    \frac{55}{18}      & = \frac{3}{2} + C \\
+    \frac{55 - 27}{18} & = C               \\
+    \frac{14}{9}       & = C               \\
+\end{align*}
+
+Найдём \(y(1 / 9)\):
+\begin{align*}
+    y(1 / 9) & = \frac{3}{2} \frac{1}{9^{2 / 3}} + \frac{14}{9} \\
+             & = \frac{1}{2\cdot 3^{1 / 3}} + \frac{14}{9}      \\
+\end{align*}
+
+\end{document}

@@ -1,0 +1,182 @@
+\input{../preamble.sty}
+
+\lhead{СР №1}
+\lfoot{Михайлов Максим}
+\chead{Вариант 2}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{\(y' x^3 \sin y = xy' - 2y\)}
+
+\begin{align*}
+    \frac{dy}{dx} x^3 \sin y - x\frac{dy}{dx} + 2y & = 0 \\
+    dy x^3 \sin y - xdy + 2ydx                     & = 0 \\
+\end{align*}
+
+Найдем интегрирующий множитель при $P = 2y, Q = x^3 \sin y - x$
+
+\begin{align*}
+    \mu'_y P - \mu'_x Q                 & = (Q'_x - P'_y) \mu         \\
+    \mu'_y 2y - \mu'_x (x^3 \sin y - x) & = (3x^2 \sin y - 1 - 2) \mu \\
+    \mu'_y 2y - \mu'_x (x^3 \sin y - x) & = (3x^2 \sin y - 3) \mu     \\
+\end{align*}
+
+Рассмотрим случай $\mu'_x \equiv0$, т.е. $\mu$ --- функция от $y$.
+
+\begin{align*}
+    \mu'_y 2y & = (3x^2 \sin y - 3) \mu \\
+\end{align*}
+
+Этот случай сложно решается, попробуем $\mu_y'\equiv0$, т.к. нам нужно найти хоть какой-то $\mu$, а не все возможные.
+
+\begin{align*}
+    - \mu'_x (x^3 \sin y - x) & = (3x^2 \sin y - 3) \mu \\
+\end{align*}
+
+Здесь есть подслучай $x^2\sin y - 1 \equiv 0$, рассмотрим его позже.
+
+\begin{align*}
+    - \mu'_x x           & = 3 \mu           \\
+    - \frac{\mu'_x}{\mu} & = \frac{3}{x}     \\
+    - \ln |\mu|          & = 3\ln|x| + C     \\
+    |\mu|^{-1}           & = |x|^3 \cdot e^C \\
+    \mu^{-1}             & = \pm(|x|^3 e^C)  \\
+\end{align*}
+
+Т.к. нужен только некоторый $\mu$, пусть $C=0$
+
+\[\mu = \pm\frac{1}{x^3}\]
+
+Домножим исходное уравнение на $\mu$:
+
+\begin{align*}
+    \sin y dy - \frac{dy}{x^2} + \frac{2ydx}{x^3} & = 0 \\
+\end{align*}
+
+Найдем $u(x, y)$, такое что:
+\[\begin{cases}
+        u'_x = \cfrac{2y}{x^3} \\
+        u'_y = \sin y - \cfrac{1}{x^2}
+    \end{cases}\]
+
+\begin{align*}
+    u & = \int \left(\sin y - \frac{1}{x^2}\right)dy + g(x) \\
+      & = -\cos y - \frac{y}{x^2} + g(x)
+\end{align*}
+
+\begin{align*}
+    u'_x                                           & = \frac{2y}{x^3} \\
+    \left(-\cos y - \frac{y}{x^2} + g(x)\right)'_x & = \frac{2y}{x^3} \\
+    \frac{2y}{x^3} + g'(x)                         & = \frac{2y}{x^3} \\
+    g'(x)                                          & = 0              \\
+    g(x)                                           & = C              \\
+\end{align*}
+
+Вернемся к случаю $x^2\sin y - 1 \equiv 0$.
+
+\[y = \arctg\frac{1}{x^2}\]
+\[y' = \frac{2x}{x^4+1}\]
+
+Подставим в исходное уравнение.
+
+\[\frac{2x}{x^4+1}x^3 \sin y = x\frac{2x}{x^4+1} - 2\arctg\frac{1}{x^2}\]
+
+Очевидно этот случай не подходит.
+
+Ответ: \(-\cos y - \cfrac{y}{x^2} = C\)
+
+\section{\((x^2 - \sin^2 y) dx + x\sin 2y dy = 0\)}
+
+Найдем интегрирующий множитель при $P = x^2 - \sin^2 y, Q = x\sin 2y$
+
+\begin{align*}
+    \mu'_y P - \mu'_x Q                       & = (Q'_x - P'_y) \mu             \\
+    \mu'_y (x^2 - \sin^2 y) - \mu'_x x\sin 2y & = (\sin 2y + 2\sin y\cos y) \mu \\
+    \mu'_y (x^2 - \sin^2 y) - \mu'_x x\sin 2y & = 2\sin 2y \mu                  \\
+\end{align*}
+
+Рассмотрим случай $\mu'_y \equiv 0$
+
+\begin{align*}
+    - \mu'_x x\sin 2y    & = 2\sin 2y \mu \\
+    - \mu'_x x           & = 2 \mu        \\
+    - \frac{\mu'_x}{\mu} & = \frac{2}{x}  \\
+    - \ln |\mu|          & = 2\ln|x|      \\
+    \mu                  & = \pm x^{-2}   \\
+\end{align*}
+
+Домножим исходное уравнение на $\mu$:
+
+\begin{align*}
+    \left(1 - \frac{\sin^2 y}{x^2}\right) dx + \frac{\sin 2y}{x} dy & = 0
+\end{align*}
+
+Найдем $u(x, y)$, такое что:
+\[\begin{cases}
+        u'_x = 1 - \cfrac{\sin^2 y}{x^2} \\
+        u'_y = \cfrac{\sin 2y}{x}
+    \end{cases}\]
+
+\begin{align*}
+    u & = \int \frac{\sin 2y}{x}dy + g(x) \\
+      & = \frac{-2\cos 2y}{x} + g(x)
+\end{align*}
+
+\begin{align*}
+    u'_x                                       & = 1 - \frac{\sin^2 y}{x^2}             \\
+    \left(\frac{-2\cos 2y}{x} + g(x)\right)'_x & = 1 - \frac{\sin^2 y}{x^2}             \\
+    \frac{2\cos 2y}{x^2} + g'(x)               & = 1 - \frac{\sin^2 y}{x^2}             \\
+    \frac{2(\cos^2 y - \sin^2 y)}{x^2} + g'(x) & = 1 - \frac{\sin^2 y}{x^2}             \\
+    g'(x)                                      & = 1 - \frac{2\cos^2 y - \sin^2 y}{x^2} \\
+    g(x)                                       & = x + \frac{2\cos^2 y - \sin^2 y}{x}   \\
+\end{align*}
+
+Ответ: \(x + \cfrac{\sin^2 y}{x} = C\)
+
+\section{\((x^2+1)(y'^2-yy'') = xyy'\)}
+
+\begin{align*}
+    (x^2+1)(y'^2-yy'')           & = xyy'                             \\
+    t := \frac{y'}{y}            & \quad t' = \frac{yy'' - y'^2}{y^2} \\
+    (x^2+1)\frac{y'^2-yy''}{y^2} & = \frac{xy'}{y}                    \\
+    (x^2+1)t'                    & = xt                               \\
+    \frac{t'}{t}                 & = \frac{x}{x^2+1}                  \\
+    \ln |t|                      & = \frac{1}{2}\ln|x^2+1|+C          \\
+    |t|                          & = |x^2+1|^\frac{1}{2}e^C           \\
+    |t|                          & = \sqrt{x^2+1}e^C                  \\
+    t                            & = \sqrt{x^2+1}e^C                  \\
+    \frac{y'}{y}                 & = \sqrt{x^2+1}e^C                  \\
+    \ln |y|                      & = e^C\int \sqrt{x^2+1} dx          \\
+\end{align*}
+
+Ответ: \(\ln |y| = e^C\int \sqrt{x^2+1} dx\)
+
+\section{}
+
+\subsection*{Условие}
+
+Площадь, ограниченная кривой, осями координат и ординатой любой точки кривой есть длина соответствующей дуги кривой. Найти такие кривые, что $M(0, 1)\in$ кривой.
+
+\subsection*{Решение}
+
+\[S = \int_{a}^{0} y(x) dx \]
+\[l = \int_{a}^{0} \sqrt{y'^2 + 1} dx\]
+\[y = \sqrt{y'^2 + 1}\]
+\[y^2 = y'^2 + 1\]
+\[y^2-1 = y'^2\]
+\[\sqrt{y^2-1} = |y'|\]
+\[\pm\sqrt{y^2-1} = y'\]
+\[\pm1 = \frac{y'}{\sqrt{y^2-1}}\]
+\[\int \pm1 dx = \int \frac{dy}{\sqrt{y^2-1}}\]
+\[x + C = \cosh^{-1} (y)\]
+
+Подставим $M$:
+
+\[C = \cosh^{-1} (1)\]
+\[C = 0\]
+
+Ответ: \(x = \cosh^{-1} (y)\)
+
+\end{document}

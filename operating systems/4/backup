@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+LAST_BACKUP=$(find "$HOME" -maxdepth 1 -type d -name "Backup-*" | sort -t- -k2 -k3 -k4 | tail -n1)
+LAST_DATE=$(cut -d- -f2- <<< "$LAST_BACKUP")
+
+if (( ($(date +%s) - $(date --date="$LAST_DATE" +%s))/(60*60*24) < 7 ))
+then
+    UPDATED=""
+    ADDED=""
+    for filename in "$HOME/source/"*
+    do
+        BACKED_UP=$LAST_BACKUP/$(basename "$filename")
+        if [ -f "$BACKED_UP" ]
+        then
+            if [ "$(du -sb "$filename" | cut -f1)" -ne "$(du -sb "$BACKED_UP" | cut -f1)" ]
+            then
+                mv "$BACKED_UP" "$BACKED_UP.$(date -I)"
+                cp "$filename" "$BACKED_UP"
+                UPDATED+="$filename "
+            fi
+        else
+            cp "$filename" "$BACKED_UP"
+            ADDED+="$filename "
+        fi
+    done
+    echo "Updated $LAST_BACKUP" >> "$HOME/backup-report"
+    [ -n "$UPDATED" ] && echo "Updated files $UPDATED" >> "$HOME/backup-report"
+    [ -n "$ADDED" ] && echo "Added files $ADDED" >> "$HOME/backup-report"
+else
+    NEW_BACKUP=$HOME/Backup-$(date -I)
+    mkdir "$NEW_BACKUP"
+    TO_BACKUP=$(find "$HOME"/source -maxdepth 1 -type f)
+    cp -t "$NEW_BACKUP" $TO_BACKUP
+    {
+        echo "Created $NEW_BACKUP"
+        echo $TO_BACKUP
+    } >> "$HOME/backup-report"
+fi

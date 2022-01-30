@@ -1,0 +1,140 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[russian]{babel}
+\usepackage[sb]{libertine}
+\usepackage{xltxtra}
+\usepackage{a4wide}
+\usepackage{svg}
+\usepackage{listings}
+
+\setmonofont{Inconsolata}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}}
+
+\begin{document}
+
+\title{Отчёт по лабораторной работе №5}
+\author{Михайлов Максим, M3237}
+
+\maketitle
+
+Текущая конфигурация системы:
+
+\begin{tabular}{|l|r|}
+    \hline
+    Общий объем оперативной памяти                                           & 16G    \\
+    Объем раздела подкачки                                                   & 9G     \\
+    Размер страницы виртуальной памяти                                       & 4096B  \\
+    Объем свободной физической памяти в ненагруженной системе                & 15141M \\
+    Объем свободного пространства в разделе подкачки в ненагруженной системе & 9G     \\
+    \hline
+\end{tabular}
+
+\section*{Эксперимент №1}
+
+\subsection*{Первый этап}
+
+\subsubsection*{Значения параметров работающего скрипта}
+
+\begin{itemize}
+    \item PID, USER, PR, NI, SHR, S и COMMAND очевидно не изменялись
+    \item TIME+ очевидно росло равномерно
+    \item \%MEM, \%CPU:
+\end{itemize}
+
+\includesvg[scale=0.7]{images_old/memcpu_old.svg}
+
+\begin{itemize}
+    \item VIRT, RES:
+\end{itemize}
+
+\includesvg[scale=0.7]{images_old/virtres_old.svg}
+
+\includesvg[scale=0.5]{images_old/memory_old.svg}
+
+\subsubsection*{Изменения в верхних пяти процессах}
+
+Изначально было 4 процесса \texttt{code} и 1 процесс \texttt{brave}, на пятой секунде процесс bash занял первое место и вытеснил \texttt{brave}. До остановки скрипта изменений не было, после остановки \texttt{brave} вернулся на пятую позицию.
+
+Команда \texttt{dmesg | grep "mem.bash"} дала следующий вывод \textit{(красные стрелки обозначают перенос строки)}:
+
+\begin{lstlisting}
+[ 8953.787883] [  35459]  1000 35459  4016742  2881206 32239616  1133840             0 mem.bash
+[ 8953.787893] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-2.scope,task=mem.bash,pid=35459,uid=1000
+[ 8953.787902] Out of memory: Killed process 35459 (mem.bash) total-vm:16066968kB, anon-rss:11524824kB, file-rss:0kB, shmem-rss:0kB, UID:1000 pgtables:31484kB oom_score_adj:0
+[ 8956.727222] oom_reaper: reaped process 35459 (mem.bash), now anon-rss:0kB, file-rss:0kB, shmem-rss:0kB
+\end{lstlisting}
+
+Значение последней строки в файле \texttt{report.log} --- 233000000.
+
+\subsection*{Второй этап}
+
+\subsubsection*{Значения параметров работающих скриптов}
+
+\begin{itemize}
+    \item PID, USER, PR, NI, SHR, S и COMMAND очевидно не изменялись
+    \item TIME+ очевидно росло равномерно
+    \item \%MEM, \%CPU:
+\end{itemize}
+
+\includesvg[scale=0.7]{images/memcpu.svg}
+
+\begin{itemize}
+    \item VIRT, RES:
+\end{itemize}
+
+\includesvg[scale=0.7]{images/virtres.svg}
+
+\includesvg[scale=0.5]{images/memory.svg}
+
+\subsubsection*{Изменения в верхних пяти процессах}
+
+Изначально было 3 процесса \texttt{code} на первых трёх местах и \texttt{mem2.bash}, \texttt{mem.bash} на четвёртом и пятом местах соответственно. На четвёртой секунде \texttt{mem2} и \texttt{mem} поднялись на первое и второе место соответственно. Изменений не было до остановки \texttt{mem2}, после чего \texttt{mem} поднялся на первое место, а пятое место занимали попеременно различные процессы. После аварийной остановки \texttt{mem} также вышел из первых пяти процессов.
+
+Команда \texttt{dmesg | grep "mem[2]*.bash"} дала следующий вывод:
+
+\begin{lstlisting}
+[ 8953.787883] [  35459]  1000 35459  4016742  2881206 32239616  1133840             0 mem.bash
+[ 8953.787893] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-2.scope,task=mem.bash,pid=35459,uid=1000
+[ 8953.787902] Out of memory: Killed process 35459 (mem.bash) total-vm:16066968kB, anon-rss:11524824kB, file-rss:0kB, shmem-rss:0kB, UID:1000 pgtables:31484kB oom_score_adj:0
+[ 8956.727222] oom_reaper: reaped process 35459 (mem.bash), now anon-rss:0kB, file-rss:0kB, shmem-rss:0kB
+[11525.860040] [  40777]  1000 40777  2094921  1431770 16834560   661470             0 mem.bash
+[11525.860042] [  40778]  1000 40778  2080830  1418976 16719872   660169             0 mem2.bash
+[11525.860049] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-2.scope,task=mem.bash,pid=40777,uid=1000
+[11525.860057] Out of memory: Killed process 40777 (mem.bash) total-vm:8379684kB, anon-rss:5727080kB, file-rss:0kB, shmem-rss:0kB, UID:1000 pgtables:16440kB oom_score_adj:0
+[11527.623645] oom_reaper: reaped process 40777 (mem.bash), now anon-rss:0kB, file-rss:0kB, shmem-rss:0kB
+[11753.389686] [  40778]  1000 40778  4215171  2756128 33828864  1457336             0 mem2.bash
+[11753.389699] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-2.scope,task=mem2.bash,pid=40778,uid=1000
+[11753.389708] Out of memory: Killed process 40778 (mem2.bash) total-vm:16860684kB, anon-rss:11024512kB, file-rss:0kB, shmem-rss:0kB, UID:1000 pgtables:33036kB oom_score_adj:0
+[11758.184627] oom_reaper: reaped process 40778 (mem2.bash), now anon-rss:0kB, file-rss:0kB, shmem-rss:0kB
+[17130.429021] [  48359]  1000 48359  2312160  1490357 18563072   820101             0 mem.bash
+[17130.429023] [  48360]  1000 48360  2354136  1520009 18915328   832449             0 mem2.bash
+[17130.429033] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-2.scope,task=mem2.bash,pid=48360,uid=1000
+[17130.429041] Out of memory: Killed process 48360 (mem2.bash) total-vm:9416544kB, anon-rss:6080036kB, file-rss:0kB, shmem-rss:0kB, UID:1000 pgtables:18472kB oom_score_adj:0
+[17133.115172] oom_reaper: reaped process 48360 (mem2.bash), now anon-rss:0kB, file-rss:0kB, shmem-rss:0kB
+[18483.704393] [  48359]  1000 48359  4655886  2955116 37351424  1699084             0 mem.bash
+[18483.704415] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-2.scope,task=mem.bash,pid=48359,uid=1000
+[18483.704423] Out of memory: Killed process 48359 (mem.bash) total-vm:18623544kB, anon-rss:11820464kB, file-rss:0kB, shmem-rss:0kB, UID:1000 pgtables:36476kB oom_score_adj:0
+[18487.884211] oom_reaper: reaped process 48359 (mem.bash), now anon-rss:0kB, file-rss:0kB, shmem-rss:0kB
+\end{lstlisting}
+
+Значение последней строки в файле \texttt{report.log} --- 238000000, в \texttt{report2.log} --- 120000000.
+
+\subsection*{Объяснение результатов}
+
+\begin{itemize}
+    \item \%CPU процессов высоко, т.к. процесс ожидает только выделения дополнительной памяти. Это же объясняет неполную загрузку процессора процессами и падение загрузки перед аварийной остановкой.
+    \item \%MEM обозначает используемый объём \textit{физической} памяти, поэтому он сначала растёт. При использовании файла подкачки \%MEM падает, т.к. часть страниц памяти, используемых процессом, переносится в swap. Это происходит скачкообразно, т.к. страницы переносятся не по одной. Аналогичное верно про RES.
+    \item В эксперименте с двумя процессами \%MEM и RES первого \textit{(долгоживущего)} процесса не уменьшаются перед остановкой процесса, т.к. почти весь swap уже занят.
+    \item В случае запуска одного скрипта количество элементов массива при аварийной остановке \(\approx 2.38 \cdot 10^{8}\), т.к. \(1.75 \cdot 10^{9}\) (приблизительно объем используемой памяти в байтах) \(/ 2.38 \cdot 10^8 \approx 8\) байт. \texttt{bash} использует числовые переменные размером 64 бит.
+    \item При запуске двух скриптов второй скрипт останавливается при использовании примерно половины от $2.38 \cdot 10^8$ элементов, т.к. первый скрипт использует столько же и в сумме используется вся доступная память. После остановки второго скрипта первый останавливается при $2.38 \cdot 10^8$ элементов, т.к. теперь память использует только он и фоновые процессы.
+\end{itemize}
+
+\textbf{Выводы}: было проанализировано поведение механизмов управления памятью OS Linux при растущем использовании памяти. Теоретические сведения были подтверждены двумя эксперементами.
+
+\section*{Эксперимент №2}
+
+При \texttt{K=30}, \texttt{N=238000000} ряд процессов закончился аварийно, т.к. процессы требуют суммарно приблизительно в 3 раза больше оперативной памяти, чем доступно.
+
+Максимальное значение \texttt{N}, такое что при \texttt{K=30} не происходило аварийных остановок процессов --- $9\cdot 10^7$. Оно отличается от ожидаемого значения --- \(2.38\cdot 10^9 / 30 \approx 8\cdot 10^7\), т.к. процессы не работают синхронно и некоторые достигают штатного завершения раньше других, пока оперативной памяти хватает.
+
+\end{document}

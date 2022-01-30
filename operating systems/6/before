@@ -1,0 +1,129 @@
+These Windows services are started:
+
+   Adobe Genuine Monitor Service
+   Adobe Genuine Software Integrity Service
+   BluetoothUserService_3a11c
+   cbdhsvc_3a11c
+   CDPUserSvc_3a11c
+   CoreMessaging
+   DHCP-клиент
+   Digital Wave Update Service
+   DNS-клиент
+   Intel(R) Content Protection HDCP Service
+   Intel(R) Content Protection HECI Service
+   Intel(R) Dynamic Application Loader Host Interface Service
+   Intel(R) Graphics Command Center Service
+   Intel(R) HD Graphics Control Panel Service
+   Intel(R) Management and Security Application Local Management Service
+   Killer Analytics Service
+   Killer Dynamic Bandwidth Management
+   Killer Network Service
+   KillerSmartphoneSleepService
+   LMIGuardianSvc
+   Logitech Gaming Registry Service
+   LogMeIn Hamachi Tunneling Engine
+   MegaFon Internet Service
+   Micro Star SCM
+   MSI True Color Service by Portrait Displays
+   Nahimic service
+   NVIDIA Display Container LS
+   NVIDIA LocalSystem Container
+   OneSyncSvc_3a11c
+   Plug and Play
+   Quality Windows Audio Video Experience
+   Realtek Audio Universal Service
+   Steam Client Service
+   SynTPEnhService
+   SysMain
+   TeamViewer 14
+   Wallpaper Engine Service
+   Windows Audio
+   Windows Search
+   WpnUserService_3a11c
+   xTendUtilityService
+   Автонастройка WWAN
+   Антивирусная программа "Защитника Windows"
+   Брандмауэр Защитника Windows
+   Брокер времени
+   Брокер мониторинга среды выполнения System Guard
+   Брокер системных событий
+   Вспомогательная служба IP
+   Диспетчер локальных сеансов
+   Диспетчер печати
+   Диспетчер платежей и NFC/защищенных элементов
+   Диспетчер подключений Windows
+   Диспетчер подключений удаленного доступа
+   Диспетчер пользователей
+   Диспетчер учетных веб-записей
+   Диспетчер учетных данных
+   Диспетчер учетных записей безопасности
+   Доступ к HID-устройствам
+   Журнал событий Windows
+   Изоляция ключей CNG
+   Инструментарий управления Windows
+   Использование данных
+   Клиент отслеживания изменившихся связей
+   Кэш шрифтов Windows Presentation Foundation 3.0.0.0
+   Модуль запуска процессов DCOM-сервера
+   Модуль поддержки NetBIOS через TCP/IP
+   Обнаружение SSDP
+   Определение оборудования оболочки
+   Питание
+   Планировщик заданий
+   Посредник подключений к сети
+   Публикация ресурсов обнаружения функции
+   Рабочая станция
+   Распространение сертификата
+   Сведения о приложении
+   Сервер
+   Сетевые подключения
+   Система событий COM+
+   Служба "Безопасность Windows"
+   Служба AVCTP
+   Служба SSTP
+   Служба Windows License Manager
+   Служба автоматического обнаружения веб-прокси WinHTTP
+   Служба автонастройки WLAN
+   Служба базовой фильтрации
+   Служба географического положения
+   Служба диспетчера доступа к возможностям
+   Служба загрузки изображений Windows (WIA)
+   Служба звукового шлюза Bluetooth
+   Служба интерфейса сохранения сети
+   Служба инфраструктуры фоновых задач
+   Служба кэша шрифтов Windows
+   Служба маршрутизатора SMS Microsoft Windows.
+   Служба оркестратора обновлений
+   Служба платформы подключенных устройств
+   Служба поддержки Bluetooth
+   Служба политики диагностики
+   Служба политики отображения
+   Служба помощника по совместимости программ
+   Служба проверки сети Windows Defender Antivirus
+   Служба профилей пользователей
+   Служба развертывания AppX (AppXSVC)
+   Служба репозитория состояний
+   Служба сведений о подключенных сетях
+   Служба сенсорной клавиатуры и панели рукописного ввода
+   Служба системы push-уведомлений Windows
+   Служба сопоставления устройств
+   Служба списка сетей
+   Служба уведомления о системных событиях
+   Служба улучшения отображения
+   Служба установки Microsoft Store
+   Служба хранилища
+   Службы криптографии
+   Сопоставитель конечных точек RPC
+   Средство построения конечных точек Windows Audio
+   Телефония
+   Телефонная связь
+   Темы
+   Удаленный вызов процедур (RPC)
+   Узел службы диагностики
+   Функциональные возможности для подключенных пользователей и телеметрия
+   Хост поставщика функции обнаружения
+   Центр обеспечения безопасности
+   Центр обновления Windows
+
+The command completed successfully.
+

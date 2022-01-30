@@ -25,3 +25,4 @@ out
 *.wav
 *.tsv
 runs/
+*.log

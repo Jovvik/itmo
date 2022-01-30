@@ -1,0 +1,230 @@
+\input{preamble.sty}
+
+\usepackage{svg}
+
+\lhead{Домашнее задание №14}
+\lfoot{Михайлов Максим}
+\cfoot{}
+\rfoot{M3237}
+
+\begin{document}
+
+\section{}
+
+Вывести уравнение движения маятника без сопротивления. Для случая, когда все постоянные равны 1, начертить траектории на фазовой плоскости. Дать физическое истолкование траекториям различных типов.
+
+\textbf{Обозначения}:
+\begin{itemize}
+    \item \(m\) --- масса маятника
+    \item \(l\) --- длина маятника
+    \item \(\theta\) --- угол наклона маятника
+\end{itemize}
+
+Рассмотрим ось \(x\), которая сонаправлена с вектором скорости конца маятника \textit{(в разные моменты времени оси разные)}. Тогда сила, действующая со стороны нити в проекции на эту ось имеет значение \(0\). Таким образом, по вторму закону Ньютона:
+\[ - mg \sin \theta = m\ddot x\]
+\[ - g \sin \theta = \ddot x\]
+Т.к. длина дуги \( = l \theta\):
+\[ - g \sin \theta = l \ddot \theta\]
+
+% Если не считать, что \(\sin \theta \sim \theta\), то решение получается в эллиптических интегралах, поэтому предположим, что колебания малые.
+
+% \[- g \theta = l \ddot \theta\]
+% \[- g = l \lambda^2\]
+% \[ \pm i\frac{\sqrt{g}}{\sqrt{l}} = \lambda\]
+% \[\theta = C_1 \cos\left(\frac{\sqrt{g}}{\sqrt{l}}t\right) + C_2 \sin\left(\frac{\sqrt{g}}{\sqrt{l}}t\right)\]
+% \[\theta' = -\frac{\sqrt{g}}{\sqrt{l}}C_1 \sin\left(\frac{\sqrt{g}}{\sqrt{l}}t\right) + \frac{\sqrt{g}}{\sqrt{l}}C_2 \cos\left(\frac{\sqrt{g}}{\sqrt{l}}t\right)\]
+
+% Рассмотрим случай, когда все постоянные равны 1:
+
+% \[\theta = \cos\left(\frac{\sqrt{g}}{\sqrt{l}}t\right) + \sin\left(\frac{\sqrt{g}}{\sqrt{l}}t\right)\]
+% \[\theta' = -\frac{\sqrt{g}}{\sqrt{l}} \sin\left(\frac{\sqrt{g}}{\sqrt{l}}t\right) + \frac{\sqrt{g}}{\sqrt{l}} \cos\left(\frac{\sqrt{g}}{\sqrt{l}}t\right)\]
+
+% На фазовой кривой это эллипс с центром в \((0, 0)\)
+
+Сведем к дифференциальному уравнению первого порядка, пусть \(a(t) = \dot \theta(t)\)
+
+\[\begin{cases}
+        \dot \theta = a \\
+        l \dot a = - g\sin \theta
+    \end{cases}\]
+
+Т.к. все постоянные равны 1:
+
+\[\begin{cases}
+        \dot \theta = a \\
+        \dot a = -\sin \theta
+    \end{cases}\]
+
+Найдем особые точки:
+
+\[\begin{cases}
+        0 = a \\
+        0 = - \sin \theta
+    \end{cases}\]
+\[\begin{cases}
+        a = 0 \\
+        \theta = \pi n, n\in \Z
+    \end{cases}\]
+
+Рассмотрим малые колебания маятника, т.е. \(\sin \theta \sim \begin{cases}
+    \theta - \pi n,  & n \equiv 0 \mod 2 \\
+    -\theta + \pi n, & n \equiv 1 \mod 2 \\
+\end{cases}\), где \(\theta \approx \pi n\)
+
+Пусть \(\wp(\theta) = \begin{cases}
+    1,   & n \equiv 0 \mod 2 \\
+    - 1, & n \equiv 1 \mod 2 \\
+\end{cases}\)
+
+\[\begin{cases}
+        \dot \theta = a \\
+        \dot a = - \wp(\theta) (\theta - \pi n)
+    \end{cases}\]
+
+Это линейное уравнение с матрицей \(A = \begin{pmatrix} 0 & 1 \\ - \wp(\theta) & 0 \end{pmatrix} \)
+
+При \(\wp = -1\) собственные значения \( \pm 1\) и точка седловая, при \(wp = 1\) собственные значения \( \pm i\) и точка --- центр.
+
+Анализ не малых колебаний маятника очевиден из физики --- если совершен хотя бы он оборот, то маятник без сопротивления продолжит в эту сторону вращаться без изменений.
+
+\begin{figure}[h]
+    \centering
+    \includesvg{images/14.1.svg}
+\end{figure}
+
+Если колебания не малые (\(\theta'\) примерно \( > 2\)), то маятник делает обороты в одну сторону без остановки. Некоторые траектории ведут в точки вида \(\theta = \pi (2n + 1), \theta' = 0\) и оттуда не выходят, т.е. маятник останавливается в верхнем положении и из него не сдвигается \textit{(состояние нестабильного покоя)}. Остальные траектории периодичны --- маятник колеблется сначала в одну сторону, потом в другую.
+
+\section{}
+
+Вывести уравнение движения маятника с сопротивлением пропорциональным квадрату скорости. Дать чертёж траекторий.
+
+Аналогично предыдущему заданию:
+
+\[ - mg \sin \theta - k \dot x^2 \cdot \sign \dot x = m\ddot x\]
+\[ - mg \sin \theta - kl^2 \dot \theta^2 \cdot \sign \dot \theta = ml\ddot \theta\]
+\[ - mg \sin \theta - kl^2 \dot \theta |\dot \theta| = ml\ddot \theta\]
+
+Сведем к дифференциальному уравнению первого порядка, пусть \(a(t) = \dot \theta(t)\)
+
+\[\begin{cases}
+        \dot \theta = a \\
+        ml \dot a = - mg \sin \theta - kl^2 a|a|
+    \end{cases}\]
+
+Найдем особые точки:
+
+\[\begin{cases}
+        0 = a \\
+        0 = - mg \sin \theta - kl^2 \dot a|a|
+    \end{cases}\]
+\[\begin{cases}
+        0 = a \\
+        0 = - mg \sin \theta
+    \end{cases}\]
+\[\begin{cases}
+        0 = a \\
+        \theta = \pi n, n\in\Z
+    \end{cases}\]
+
+Рассмотрим малые колебания маятника, т.е. \(\sin \theta \sim \begin{cases}
+    \theta - \pi n,  & n \equiv 0 \mod 2 \\
+    -\theta + \pi n, & n \equiv 1 \mod 2 \\
+\end{cases}\), где \(\theta \approx \pi n\)
+
+Пусть \(\wp(\theta) = \begin{cases}
+    1,   & n \equiv 0 \mod 2 \\
+    - 1, & n \equiv 1 \mod 2 \\
+\end{cases}\)
+
+\[\begin{cases}
+        \dot \theta = a \\
+        \dot a = - \frac{g}{l} \wp(\theta) (\theta - \pi n) - \frac{kl}{g} a|a|
+    \end{cases}\]
+
+Т.к. мы рассматриваем область точки \((0, \pi n)\), \(a|a| \approx a\).
+
+\[\begin{cases}
+        \dot \theta = a \\
+        \dot a = - \frac{g}{l} \wp(\theta) (\theta - \pi n) - \frac{kl}{g} a
+    \end{cases}\]
+
+Это линейная система с матрицей \(A = \begin{pmatrix} 0 & 1 \\ - \frac{g}{l} \wp(\theta) & - \frac{kl}{g} \end{pmatrix}\). Предположим, что все постоянные 1.
+
+При \(\wp = 1\) собственные значения \( - \frac{1}{2} \pm i \frac{\sqrt{3}}{2}\), то есть \((0, \pi n)\) --- устойчивый фокус по линейным членам. При \(\wp = - 1\) собственные значения \( - \frac{1}{2} \pm \frac{\sqrt{5}}{2} \), то есть \((0, \pi n)\) --- седло по линейным членам. И седло, и фокус сохраняют свой тип при переходе назад к нелинейной системе \textit{(но у седла сепаратиссы могут искривиться)}.
+
+\begin{figure}[h]
+    \centering
+    \includesvg[scale=0.9]{images/14.2.svg}
+\end{figure}
+
+\section{}
+
+Вывести уравнение движения маятника, на который действует постоянная сила, равная половине веса маятника и направленная всегда в одну сторону по касательной к дуге окружности, по которой движется маятник. Для случая, когда $l$ и $g$ равны 1, начертить траектории на фазовой плоскости. Какие движения маятника изображаются траекториями различных типов?
+
+Когда постоянная сила сонаправлена с проекцией веса:
+\[ - mg \sin \theta - \frac{mg}{2} = m\ddot x\]
+
+Когда они разнонаправлены:
+\[ - mg \sin \theta + \frac{mg}{2} = m\ddot x\]
+
+Пусть при \(\theta \in \left( \frac{\pi}{2} + 2\pi n, \frac{3\pi}{2} + 2\pi n \right), n\in\Z\) они сонаправлены, иначе разнонаправлены.
+
+Пусть \(\vartheta(\theta) = \begin{cases}
+    - \frac{1}{2}, & \theta \in \left( \frac{\pi}{2} + 2\pi n, \frac{3\pi}{2} + 2\pi n \right) \\
+    \frac{1}{2},   & \text{иначе}
+\end{cases}\)
+
+\[ - mg \sin \theta + \vartheta(\theta) mg = m\ddot x\]
+\[ - mg \sin \theta + \vartheta(\theta) mg = lm\ddot \theta\]
+\[ - g \sin \theta + \vartheta(\theta) mg = l\ddot \theta\]
+
+При \(l = g = 1\):
+
+\[ -\sin \theta + \vartheta(\theta) = \ddot \theta\]
+
+Сведем к дифференциальному уравнению первого порядка, пусть \(a(t) = \dot \theta(t)\)
+
+\[\begin{cases}
+        \dot \theta = a \\
+        \dot a = - \sin \theta + \vartheta(\theta)
+    \end{cases}\]
+
+Найдем особые точки:
+
+\[\begin{cases}
+        0 = a \\
+        0 = - \sin \theta + \vartheta(\theta)
+    \end{cases}\]
+\[\theta \in \left\{ \frac{\pi}{6} + 2\pi n, \frac{7\pi}{6} + 2\pi n\ \Big|\ n\in\Z\right\}\]
+
+Нетрудно заметить, что эта система эквивалентна предыдущей с точностью до константы (\(\vartheta\)), поэтому анализ точек аналогичен. Если \(\theta =\frac{\pi}{6} + 2\pi n\), то это центр, иначе --- седло.
+
+\begin{figure}[h]
+    \centering
+    \includesvg{images/14.3.svg}
+\end{figure}
+
+\section{}
+
+Начертить на фазовой плоскости траектории систем, записанных в полярных координатах.
+
+\begin{enumerate}
+    \item \(\cfrac{dr}{dt} = r \sin \cfrac{1}{r}, \cfrac{d\varphi}{dt} = 1\)
+    \item \(\cfrac{dr}{dt} = r(1 - r)^2, \cfrac{d\varphi}{dt} = 1\)
+\end{enumerate}
+
+Решим 1. Заметим, что при \(r\in \left( \frac{1}{2n\pi}, \frac{1}{(2n + 1)\pi} \right) r' > 0\), при \(r = \frac{1}{n\pi}, r' = 0\), иначе \(r' < 0\). Таким образом, все траектории ведут к кругам с радиусом \(\frac{1}{n\pi}\), центром в \((0, 0)\). При \(r\in \left( \frac{1}{2n\pi}, \frac{1}{(2n + 1)\pi} \right)\) траектория идет к кругу снаружи, иначе к кругу внутри. Т.к. \(\varphi' = 1\), движение идет против часовой стрелки.
+
+\begin{figure}[h]
+    \centering
+    \includesvg[scale=2]{images/14.4.1.svg}
+\end{figure}
+
+Решим 2. Т.к. \(r' > 0\), все траектории расходятся по спирали. Т.к. \(\varphi' = 1\), движение против часовой стрелки.
+
+\begin{figure}[h]
+    \centering
+    \includesvg[scale=2]{images/14.4.svg}
+\end{figure}
+
+\end{document}
