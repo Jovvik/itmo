@@ -18,6 +18,15 @@ Archive of various things I did at ITMO University. Large assignments are in sep
 - [8](data%20analysis/8.ipynb)
 - [vk cup](data%20analysis/vk.ipynb)
 
+## Functional programming
+
+### Labs
+
+- [0](functional%20programming/hw0/)
+- [1](functional%20programming/hw1/)
+- [2](functional%20programming/hw2/)
+- [3 aka hi](https://github.com/Jovvik/hi)
+
 ## Translation methods
 
 ### Labs
